@@ -1,0 +1,255 @@
+{
+  "nodes": [
+    {
+      "id": "johndoe",
+      "name": "johndoe",
+      "type": "User",
+      "tier": "Tier1",
+      "risk_score": 2.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "Domain Admins",
+      "name": "Domain Admins",
+      "type": "ADGroup",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "Schema Admins",
+      "name": "Schema Admins",
+      "type": "ADGroup",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "sconnor",
+      "name": "sconnor",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "staleadmin",
+      "name": "staleadmin",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "Enterprise Admins",
+      "name": "Enterprise Admins",
+      "type": "ADGroup",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "ad_users"
+    },
+    {
+      "id": "external.vendor@gmail.com",
+      "name": "external.vendor@gmail.com",
+      "type": "Guest",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "entra_role_assignments"
+    },
+    {
+      "id": "Global Administrator",
+      "name": "Global Administrator",
+      "type": "EntraRole",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "entra_role_assignments"
+    },
+    {
+      "id": "sarah.connor@scb.com",
+      "name": "sarah.connor@scb.com",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "entra_role_assignments"
+    },
+    {
+      "id": "helpdesk.tier1@scb.com",
+      "name": "helpdesk.tier1@scb.com",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "entra_role_assignments"
+    },
+    {
+      "id": "User Administrator",
+      "name": "User Administrator",
+      "type": "EntraRole",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "entra_role_assignments"
+    },
+    {
+      "id": "admin-john",
+      "name": "admin-john",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "AdministratorAccessPolicy",
+      "name": "AdministratorAccessPolicy",
+      "type": "AwsIamPolicy",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "DevOps-Group",
+      "name": "DevOps-Group",
+      "type": "Group",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "EC2ReadOnlyProd",
+      "name": "EC2ReadOnlyProd",
+      "type": "AwsIamPolicy",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "service-deployer",
+      "name": "service-deployer",
+      "type": "User",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "IAMPassRoleWildcard",
+      "name": "IAMPassRoleWildcard",
+      "type": "AwsIamPolicy",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "Role-S3-Export",
+      "name": "Role-S3-Export",
+      "type": "Role",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "S3FullAccessCustomerData",
+      "name": "S3FullAccessCustomerData",
+      "type": "AwsIamPolicy",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "SecOps-Role",
+      "name": "SecOps-Role",
+      "type": "Role",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "HardenedSecurityAudit",
+      "name": "HardenedSecurityAudit",
+      "type": "AwsIamPolicy",
+      "tier": "Tier0",
+      "risk_score": 4.0,
+      "source_table": "aws_iam_policies"
+    },
+    {
+      "id": "policy-read-only",
+      "name": "policy-read-only",
+      "type": "VaultPolicy",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "vault_acl_policies"
+    },
+    {
+      "id": "secret/data/finance/*",
+      "name": "secret/data/finance/*",
+      "type": "VaultMount",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "vault_acl_policies"
+    },
+    {
+      "id": "policy-wildcard-sudo",
+      "name": "policy-wildcard-sudo",
+      "type": "VaultPolicy",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "vault_acl_policies"
+    },
+    {
+      "id": "secret/data/*",
+      "name": "secret/data/*",
+      "type": "VaultMount",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "vault_acl_policies"
+    },
+    {
+      "id": "usr-sarah-12",
+      "name": "usr-sarah-12",
+      "type": "PamUser",
+      "tier": "Tier1",
+      "risk_score": 3.0,
+      "source_table": "beyondtrust_active_sessions"
+    },
+    {
+      "id": "dc-01.scb.com",
+      "name": "dc-01.scb.com",
+      "type": "PamBastion",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "beyondtrust_active_sessions"
+    },
+    {
+      "id": "usr-mike-44",
+      "name": "usr-mike-44",
+      "type": "PamUser",
+      "tier": "Tier1",
+      "risk_score": 3.0,
+      "source_table": "beyondtrust_active_sessions"
+    },
+    {
+      "id": "bastion-aws-01",
+      "name": "bastion-aws-01",
+      "type": "PamBastion",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "beyondtrust_active_sessions"
+    },
+    {
+      "id": "usr-john-99",
+      "name": "usr-john-99",
+      "type": "PamUser",
+      "tier": "Tier1",
+      "risk_score": 3.0,
+      "source_table": "beyondtrust_active_sessions"
+    },
+    {
+      "id": "srv-db-prod-01.scb.com",
+      "name": "srv-db-prod-01.scb.com",
+      "type": "PamBastion",
+      "tier": "Tier0",
+      "risk_score": 5.0,
+      "source_table": "beyondtrust_active_sessions"
+    }
+  ],
+  "total_nodes": 31,
+  "total_edges": 24,
+  "generated_from_sql_db": true
+}

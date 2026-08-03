@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITDR Shield: Attack Points Generation, Multi-Hop Layer Traversal & Blast Radius Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #050811;
+      --bg-card: #0a0e17;
+      --bg-card-alt: #0e1524;
+      --border-color: #1e2638;
+      --border-cyan: #00e5ff;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #38bdf8;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, rgba(14, 21, 36, 0.95), rgba(5, 8, 17, 0.98));
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+      position: relative;
+    }
+
+    .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .doc-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 1050px;
+    }
+
+    /* Badge Bar */
+    .badge-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid;
+    }
+
+    .badge-cyan { background: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+    .badge-blue { background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); border-color: var(--accent-blue); }
+    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border-color: var(--accent-amber); }
+    .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); border-color: var(--accent-green); }
+
+    /* Section Styling */
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    .section-title i { color: var(--accent-cyan); }
+
+    /* Grid Layouts */
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-color: var(--accent-cyan);
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .entity-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid var(--accent-cyan);
+      display: inline-block;
+      margin: 2px;
+    }
+
+    /* Hop Step Box */
+    .hop-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .hop-step {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-left: 5px solid;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .hop-step.h0 { border-left-color: var(--accent-cyan); }
+    .hop-step.h1 { border-left-color: var(--accent-blue); }
+    .hop-step.h2 { border-left-color: var(--accent-amber); }
+    .hop-step.h3 { border-left-color: var(--accent-purple); }
+    .hop-step.h4 { border-left-color: #ec4899; }
+    .hop-step.h5 { border-left-color: var(--accent-red); }
+
+    .hop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .hop-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .hop-body {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Code Block */
+    pre {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: #e2e8f0;
+      margin: 16px 0;
+    }
+
+    .sql-keyword { color: #f43f5e; font-weight: bold; }
+    .sql-function { color: #38bdf8; }
+    .sql-table { color: #00e5ff; font-weight: bold; }
+    .sql-comment { color: #64748b; font-style: italic; }
+    .sql-string { color: #f59e0b; }
+
+    /* SVG Diagram Container */
+    .svg-container {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="badge-bar">
+      <span class="badge badge-cyan"><i class="fa-solid fa-shield-halved"></i> ITDR Shield Platform</span>
+      <span class="badge badge-blue"><i class="fa-solid fa-route"></i> Multi-Hop Layer Traversal</span>
+      <span class="badge badge-amber"><i class="fa-solid fa-sitemap"></i> 5 Core Attack Point Types</span>
+      <span class="badge badge-green"><i class="fa-solid fa-code"></i> Production Traversal Code</span>
+    </div>
+    <h1 class="doc-title">Attack Points Generation & Multi-Hop Blast Radius Traversal Architecture</h1>
+    <p class="doc-subtitle">
+      Comprehensive architectural specification detailing the 5 attack point types generated by the ITDR application, the step-by-step layer traversal mechanics for discovering next hops, production source code for all three blast radius engines, and interactive visual flow diagrams.
+    </p>
+  </header>
+
+  <!-- SECTION 1: THE 5 TYPES OF ATTACK POINTS GENERATED -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-crosshairs"></i> 1. Types of Attack Points (Entry Vectors) Generated</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      The ITDR 3-Layer Platform analyzes threat intelligence bulletins, telemetry events, and database topology to dynamically resolve <strong>5 distinct classes of attack points (entry vectors)</strong>. Each attack point type represents an initial compromise origin where an attacker gains a foothold:
+    </p>
+
+    <div class="grid-5">
+      <!-- TYPE 1 -->
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-cyan);"><i class="fa-solid fa-user-gear"></i> 1. User Identity</div>
+        <p class="card-desc">Human user accounts, executive accounts, kerberoastable SPNs, and domain admin credentials.</p>
+        <span class="entity-tag">USER_JDOE</span>
+        <span class="entity-tag">svc_sql_production</span>
+        <span class="entity-tag">USER_AMILLER</span>
+      </div>
+
+      <!-- TYPE 2 -->
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-blue);"><i class="fa-solid fa-server"></i> 2. Web & Compute</div>
+        <p class="card-desc">Public web instances, EC2 VMs, Kubernetes pods exposed via SSRF or IMDSv1 metadata endpoints.</p>
+        <span class="entity-tag">EC2-APP-01</span>
+        <span class="entity-tag">pod-payment-gw</span>
+        <span class="entity-tag">10.240.10.15</span>
+      </div>
+
+      <!-- TYPE 3 -->
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-amber);"><i class="fa-solid fa-key"></i> 3. Service Principal</div>
+        <p class="card-desc">Cloud App Registrations, OIDC Workload Identity Federations, and OAuth service principals.</p>
+        <span class="entity-tag">APP-REG-001</span>
+        <span class="entity-tag">sp-github-actions</span>
+        <span class="entity-tag">gcp-sa-deployer</span>
+      </div>
+
+      <!-- TYPE 4 -->
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-purple);"><i class="fa-solid fa-vault"></i> 4. Vault & Storage</div>
+        <p class="card-desc">HashiCorp Vault secret KV engines, public S3 buckets, and Azure KeyVault instances.</p>
+        <span class="entity-tag">secret/data/prod</span>
+        <span class="entity-tag">s3-pii-vault</span>
+        <span class="entity-tag">kv-finance-keys</span>
+      </div>
+
+      <!-- TYPE 5 -->
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-red);"><i class="fa-solid fa-network-wired"></i> 5. PAM & Socket</div>
+        <p class="card-desc">Privileged Access Management (PAM) bastions, open SSH/RDP management ports, and network sockets.</p>
+        <span class="entity-tag">sys-bt-pam-bank-001</span>
+        <span class="entity-tag">bastion-rdp-01</span>
+        <span class="entity-tag">tcp:22-open</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: HOW LAYERS ARE TRAVERSED TO FIND NEXT HOPS -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> 2. Layer Traversal Mechanics: How Next Hops Are Found</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      Finding the Blast Radius requires traversing directional edges in <code>security_blast_radius_edges</code> up to a maximum depth of 5 hops. Algorithmically, the <strong>next layer is found by matching the target node of the current layer as the source node of the subsequent layer</strong>:
+    </p>
+
+    <div class="hop-container">
+      <!-- HOP 0 -->
+      <div class="hop-step h0">
+        <div class="hop-header">
+          <span class="hop-title">Hop 0: Entry Point Initialization</span>
+          <span class="badge badge-cyan">Initial Foothold</span>
+        </div>
+        <div class="hop-body">
+          Attacker establishes compromise on entry vector $E_0$ (e.g. <code>EC2-APP-01</code> or <code>USER_JDOE</code>). Depth = 0.
+        </div>
+      </div>
+
+      <!-- HOP 1 -->
+      <div class="hop-step h1">
+        <div class="hop-header">
+          <span class="hop-title">Hop 1: Direct Resource & Entitlement Binding (How Next Layer is Found)</span>
+          <span class="badge badge-blue">Direct Reach</span>
+        </div>
+        <div class="hop-body">
+          Query locates all edges where <code>source_node = E_0</code>. Resolves attached instance profiles and AD group memberships.<br>
+          <em>Match Condition:</em> <code>source_node = 'EC2-APP-01'</code> &rarr; Target Found: <code>iam-role-app-executor</code>.
+        </div>
+      </div>
+
+      <!-- HOP 2 -->
+      <div class="hop-step h2">
+        <div class="hop-header">
+          <span class="hop-title">Hop 2: Cloud Role Assumption & Token Exchange</span>
+          <span class="badge badge-amber">Role Assumption</span>
+        </div>
+        <div class="hop-body">
+          Query locates edges where <code>source_node</code> matches any Hop 1 target. Traverses <code>STS_ASSUME_ROLE</code> and <code>ASSIGNED_ROLE</code> edges.<br>
+          <em>Match Condition:</em> <code>source_node = 'iam-role-app-executor'</code> &rarr; Target Found: <code>AssumeRole: AWSAdministratorAccess</code>.
+        </div>
+      </div>
+
+      <!-- HOP 3 -->
+      <div class="hop-step h3">
+        <div class="hop-header">
+          <span class="hop-title">Hop 3: Secrets Vault & API Key Extraction</span>
+          <span class="badge badge-purple">Vault Mount</span>
+        </div>
+        <div class="hop-body">
+          Query locates edges where <code>source_node</code> matches any Hop 2 target. Traverses <code>VAULT_READ</code> and <code>API_KEY_THEFT</code> edges.<br>
+          <em>Match Condition:</em> <code>source_node = 'AWSAdministratorAccess'</code> &rarr; Target Found: <code>secret/data/database/prod</code>.
+        </div>
+      </div>
+
+      <!-- HOP 4 -->
+      <div class="hop-step h4">
+        <div class="hop-header">
+          <span class="hop-title">Hop 4: Transitive PAM Bastion & Privileged Session Checkout</span>
+          <span class="badge" style="background: rgba(236,72,153,0.15); color:#ec4899; border-color:#ec4899;">PAM Bastion</span>
+        </div>
+        <div class="hop-body">
+          Query locates edges where <code>source_node</code> matches any Hop 3 target. Traverses <code>PAM_SESSION_CHECKOUT</code> and <code>UNAUTH_SESSION</code> edges.<br>
+          <em>Match Condition:</em> <code>source_node = 'secret/data/database/prod'</code> &rarr; Target Found: <code>sys-bt-pam-bank-001</code>.
+        </div>
+      </div>
+
+      <!-- HOP 5 -->
+      <div class="hop-step h5">
+        <div class="hop-header">
+          <span class="hop-title">Hop 5: Critical Core Infrastructure & Sensitive Data Exfiltration</span>
+          <span class="badge" style="background: rgba(239,68,68,0.15); color:#ef4444; border-color:#ef4444;">Target Exfiltration</span>
+        </div>
+        <div class="hop-body">
+          Query locates edges where <code>source_node</code> matches any Hop 4 target. Reaches root target storage buckets, Domain Controllers, or SWIFT databases.<br>
+          <em>Match Condition:</em> <code>source_node = 'sys-bt-pam-bank-001'</code> &rarr; Target Found: <code>bank-customer-pii-vault</code>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: DETAILED VIEW & SAMPLE CODE FOR EACH OF THE 3 BLAST TYPES -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-code"></i> 3. Implementation Code & Traversal Logic (3 Blast Types)</h2>
+
+    <!-- TYPE 1 CODE -->
+    <h3 style="color: var(--accent-blue); font-size: 18px; margin-bottom: 8px;">3.1 Type 1: Standard Identity Graph Blast Radius Engine</h3>
+    <p style="font-size: 13px; color: var(--text-muted);">
+      Uses Python in-memory Breadth-First Search (BFS) / NetworkX graph traversal to calculate identity privilege accumulation:
+    </p>
+
+    <pre><code><span class="sql-comment"># backend/services/graph_service.py - In-Memory BFS Traversal Logic</span>
+<span class="sql-keyword">def</span> calculate_identity_blast_radius(user_identity: str, graph_edges: list) -> dict:
+    visited = set()
+    queue = [(user_identity, 0, [user_identity])]
+    reachable_nodes = []
+    
+    <span class="sql-keyword">while</span> queue:
+        current_node, depth, path = queue.pop(0)
+        <span class="sql-keyword">if</span> current_node <span class="sql-keyword">in</span> visited <span class="sql-keyword">or</span> depth > 4:
+            <span class="sql-keyword">continue</span>
+        visited.add(current_node)
+        
+        <span class="sql-keyword">if</span> depth > 0:
+            reachable_nodes.append({
+                <span class="sql-string">"node"</span>: current_node,
+                <span class="sql-string">"depth"</span>: depth,
+                <span class="sql-string">"path"</span>: <span class="sql-string">" -> "</span>.join(path)
+            })
+            
+        <span class="sql-comment"># Find next layer matching current_node as source</span>
+        next_layer = [e[<span class="sql-string">"target"</span>] <span class="sql-keyword">for</span> e <span class="sql-keyword">in</span> graph_edges <span class="sql-keyword">if</span> e[<span class="sql-string">"source"</span>] == current_node]
+        <span class="sql-keyword">for</span> nxt <span class="sql-keyword">in</span> next_layer:
+            queue.append((nxt, depth + 1, path + [nxt]))
+            
+    <span class="sql-keyword">return</span> {<span class="sql-string">"identity"</span>: user_identity, <span class="sql-string">"reachable_nodes"</span>: reachable_nodes}</code></pre>
+
+    <!-- TYPE 2 CODE -->
+    <h3 style="color: var(--accent-cyan); font-size: 18px; margin: 28px 0 8px 0;">3.2 Type 2: 3-Layer Single-Entity Rule Engine Blast Radius</h3>
+    <p style="font-size: 13px; color: var(--text-muted);">
+      Executes a 5-hop recursive T-SQL Common Table Expression (CTE) query directly against Microsoft SQL Server:
+    </p>
+
+    <pre><code><span class="sql-comment">-- backend/services/blast_radius_rule_engine.py - 5-Hop T-SQL CTE Traversal</span>
+<span class="sql-keyword">WITH</span> BlastRadiusCTE <span class="sql-keyword">AS</span> (
+    <span class="sql-comment">-- Anchor Member: Hop 0 Entry Point Match</span>
+    <span class="sql-keyword">SELECT</span> 
+        source_node, 
+        target_node, 
+        relationship, 
+        1 <span class="sql-keyword">AS</span> hop_depth,
+        <span class="sql-function">CAST</span>(source_node + <span class="sql-string">' -> '</span> + target_node <span class="sql-keyword">AS</span> VARCHAR(MAX)) <span class="sql-keyword">AS</span> path_trace
+    <span class="sql-keyword">FROM</span> <span class="sql-table">security_blast_radius_edges</span>
+    <span class="sql-keyword">WHERE</span> source_node = @entry_entity
+
+    <span class="sql-keyword">UNION ALL</span>
+
+    <span class="sql-comment">-- Recursive Member: Join next layer where source_node matches previous target_node</span>
+    <span class="sql-keyword">SELECT</span> 
+        e.source_node, 
+        e.target_node, 
+        e.relationship, 
+        cte.hop_depth + 1 <span class="sql-keyword">AS</span> hop_depth,
+        <span class="sql-function">CAST</span>(cte.path_trace + <span class="sql-string">' -> '</span> + e.target_node <span class="sql-keyword">AS</span> VARCHAR(MAX)) <span class="sql-keyword">AS</span> path_trace
+    <span class="sql-keyword">FROM</span> <span class="sql-table">security_blast_radius_edges</span> e
+    <span class="sql-keyword">INNER JOIN</span> BlastRadiusCTE cte <span class="sql-keyword">ON</span> e.source_node = cte.target_node
+    <span class="sql-keyword">WHERE</span> cte.hop_depth < 5
+)
+<span class="sql-keyword">SELECT DISTINCT</span> 
+    target_node <span class="sql-keyword">AS</span> target_entity, 
+    <span class="sql-function">MIN</span>(hop_depth) <span class="sql-keyword">AS</span> hop_depth, 
+    relationship <span class="sql-keyword">AS</span> relationship_type
+<span class="sql-keyword">FROM</span> BlastRadiusCTE
+<span class="sql-keyword">GROUP BY</span> target_node, relationship;</code></pre>
+
+    <!-- TYPE 3 CODE -->
+    <h3 style="color: var(--accent-amber); font-size: 18px; margin: 28px 0 8px 0;">3.3 Type 3: Threat Bulletin All-Entry Cumulative Blast Radius</h3>
+    <p style="font-size: 13px; color: var(--text-muted);">
+      Resolves all entry vectors belonging to a Threat Bulletin, executes parallel 5-hop CTEs, merges overlapping nodes, and calculates cumulative risk score:
+    </p>
+
+    <pre><code><span class="sql-comment"># backend/services/blast_radius_rule_engine.py - Multi-Entry Aggregation Logic</span>
+<span class="sql-keyword">def</span> calculate_bulletin_blast_radius(self, bulletin_id: str) -> dict:
+    entry_points = self._resolve_all_bulletin_entry_points(bulletin_id)
+    cumulative_score = 0.0
+    combined_assets = {}
+
+    <span class="sql-keyword">for</span> ep <span class="sql-keyword">in</span> entry_points:
+        <span class="sql-comment"># Execute Single-Entity 5-Hop CTE for each entry vector</span>
+        res = self.calculate_blast_radius(ep[<span class="sql-string">"id"</span>])
+        cumulative_score += res.get(<span class="sql-string">"blast_radius_score"</span>, 0.0)
+
+        <span class="sql-comment"># Merge overlapping target nodes & flag multi-entry overlaps</span>
+        <span class="sql-keyword">for</span> asset <span class="sql-keyword">in</span> res.get(<span class="sql-string">"reachable_assets"</span>, []):
+            ent = asset[<span class="sql-string">"entity"</span>]
+            <span class="sql-keyword">if</span> ent <span class="sql-keyword">not in</span> combined_assets:
+                combined_assets[ent] = {**asset, <span class="sql-string">"entry_points"</span>: [ep[<span class="sql-string">"id"</span>]]}
+            <span class="sql-keyword">else</span>:
+                <span class="sql-keyword">if</span> ep[<span class="sql-string">"id"</span>] <span class="sql-keyword">not in</span> combined_assets[ent][<span class="sql-string">"entry_points"</span>]:
+                    combined_assets[ent][<span class="sql-string">"entry_points"</span>].append(ep[<span class="sql-string">"id"</span>])
+
+    <span class="sql-keyword">return</span> {
+        <span class="sql-string">"bulletin_id"</span>: bulletin_id,
+        <span class="sql-string">"cumulative_score"</span>: round(cumulative_score, 2),
+        <span class="sql-string">"total_combined_assets"</span>: len(combined_assets),
+        <span class="sql-string">"reachable_assets"</span>: list(combined_assets.values())
+    }</code></pre>
+  </section>
+
+  <!-- SECTION 4: VISUAL ARCHITECTURAL DIAGRAMS -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-chart-network"></i> 4. Architectural Visual Flow Diagrams</h2>
+
+    <h3 style="color: #ffffff; font-size: 16px; margin-bottom: 14px;">Diagram 1: 5-Hop Layer Traversal Flowchart</h3>
+    <div class="svg-container">
+      <svg width="1100" height="220" viewBox="0 0 1100 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid -->
+        <rect width="1100" height="220" fill="#050811" rx="10"/>
+
+        <!-- Nodes -->
+        <!-- Hop 0 -->
+        <circle cx="90" cy="110" r="42" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="3"/>
+        <text x="90" y="105" text-anchor="middle" fill="#00e5ff" font-weight="bold" font-size="12">Hop 0</text>
+        <text x="90" y="122" text-anchor="middle" fill="#ffffff" font-size="10">EC2-APP-01</text>
+
+        <!-- Arrow 1 -->
+        <path d="M 135 110 L 225 110" stroke="#00e5ff" stroke-width="2"/>
+
+        <!-- Hop 1 -->
+        <circle cx="270" cy="110" r="42" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2"/>
+        <text x="270" y="105" text-anchor="middle" fill="#38bdf8" font-weight="bold" font-size="12">Hop 1</text>
+        <text x="270" y="122" text-anchor="middle" fill="#ffffff" font-size="10">IAM Role</text>
+
+        <!-- Arrow 2 -->
+        <path d="M 315 110 L 405 110" stroke="#38bdf8" stroke-width="2"/>
+
+        <!-- Hop 2 -->
+        <circle cx="450" cy="110" r="42" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+        <text x="450" y="105" text-anchor="middle" fill="#f59e0b" font-weight="bold" font-size="12">Hop 2</text>
+        <text x="450" y="122" text-anchor="middle" fill="#ffffff" font-size="10">STS Assume</text>
+
+        <!-- Arrow 3 -->
+        <path d="M 495 110 L 585 110" stroke="#f59e0b" stroke-width="2"/>
+
+        <!-- Hop 3 -->
+        <circle cx="630" cy="110" r="42" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="2"/>
+        <text x="630" y="105" text-anchor="middle" fill="#a855f7" font-weight="bold" font-size="12">Hop 3</text>
+        <text x="630" y="122" text-anchor="middle" fill="#ffffff" font-size="10">Vault Mount</text>
+
+        <!-- Arrow 4 -->
+        <path d="M 675 110 L 765 110" stroke="#a855f7" stroke-width="2"/>
+
+        <!-- Hop 4 -->
+        <circle cx="810" cy="110" r="42" fill="rgba(236,72,153,0.15)" stroke="#ec4899" stroke-width="2"/>
+        <text x="810" y="105" text-anchor="middle" fill="#ec4899" font-weight="bold" font-size="12">Hop 4</text>
+        <text x="810" y="122" text-anchor="middle" fill="#ffffff" font-size="10">PAM Bastion</text>
+
+        <!-- Arrow 5 -->
+        <path d="M 855 110 L 945 110" stroke="#ec4899" stroke-width="2"/>
+
+        <!-- Hop 5 -->
+        <circle cx="990" cy="110" r="42" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="3"/>
+        <text x="990" y="105" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="12">Hop 5</text>
+        <text x="990" y="122" text-anchor="middle" fill="#ffffff" font-size="10">S3 PII Vault</text>
+      </svg>
+    </div>
+
+    <h3 style="color: #ffffff; font-size: 16px; margin: 24px 0 14px 0;">Diagram 2: Threat Bulletin Multi-Entry Cumulative Overlap Architecture</h3>
+    <div class="svg-container">
+      <svg width="1100" height="260" viewBox="0 0 1100 260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1100" height="260" fill="#050811" rx="10"/>
+
+        <!-- Entry Points -->
+        <rect x="50" y="30" width="180" height="40" rx="8" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="2"/>
+        <text x="140" y="55" text-anchor="middle" fill="#00e5ff" font-weight="bold" font-size="11">Entry 1: APP-REG-001</text>
+
+        <rect x="50" y="85" width="180" height="40" rx="8" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="2"/>
+        <text x="140" y="110" text-anchor="middle" fill="#00e5ff" font-weight="bold" font-size="11">Entry 2: Vault secret/prod</text>
+
+        <rect x="50" y="140" width="180" height="40" rx="8" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="2"/>
+        <text x="140" y="165" text-anchor="middle" fill="#00e5ff" font-weight="bold" font-size="11">Entry 3: EC2-APP-01</text>
+
+        <rect x="50" y="195" width="180" height="40" rx="8" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="2"/>
+        <text x="140" y="220" text-anchor="middle" fill="#00e5ff" font-weight="bold" font-size="11">Entry 4: S3 PII Vault</text>
+
+        <!-- Arrows to CTE Engine -->
+        <path d="M 230 50 L 380 130" stroke="#00e5ff" stroke-width="2"/>
+        <path d="M 230 105 L 380 130" stroke="#00e5ff" stroke-width="2"/>
+        <path d="M 230 160 L 380 130" stroke="#00e5ff" stroke-width="2"/>
+        <path d="M 230 215 L 380 130" stroke="#00e5ff" stroke-width="2"/>
+
+        <!-- Parallel CTE Engine Box -->
+        <rect x="380" y="80" width="280" height="100" rx="10" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+        <text x="520" y="120" text-anchor="middle" fill="#f59e0b" font-weight="bold" font-size="13">Parallel 5-Hop T-SQL CTE Engine</text>
+        <text x="520" y="145" text-anchor="middle" fill="#ffffff" font-size="11">Executes 4 Parallel Graph Traversals</text>
+
+        <!-- Arrow to Merged Graph -->
+        <path d="M 660 130 L 800 130" stroke="#f59e0b" stroke-width="2"/>
+
+        <!-- Merged Overlap Red Box -->
+        <rect x="800" y="70" width="250" height="120" rx="10" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="3"/>
+        <text x="925" y="110" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="14">Cumulative Merged Graph</text>
+        <text x="925" y="135" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="12">14 Reachable Target Assets</text>
+        <text x="925" y="160" text-anchor="middle" fill="#ef4444" font-size="11">Red Multi-Vector Overlap Nodes</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CONSTRUCTION OF TABLE security_blast_radius_edges & SOURCE FILES -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-database"></i> 5. Construction of Table <code>security_blast_radius_edges</code> & Source Files Pipeline</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      The global graph table <code>security_blast_radius_edges</code> serves as the primary data store queried by the T-SQL 5-Hop Recursive CTE engine. This section specifies its database DDL schema, the backend data generator pipeline, and the source files used to construct the directional edges.
+    </p>
+
+    <h3 style="color: var(--accent-cyan); font-size: 18px; margin-bottom: 12px;">5.1 DDL Schema Definition (SQL Server)</h3>
+    <pre><code><span class="sql-comment">-- backend/db/blast_radius_migrator.py - Table DDL</span>
+<span class="sql-keyword">CREATE TABLE</span> <span class="sql-table">security_blast_radius_edges</span> (
+    edge_id VARCHAR(128) <span class="sql-keyword">PRIMARY KEY</span>,
+    source_entity VARCHAR(128) <span class="sql-keyword">NOT NULL</span>,
+    source_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    target_entity VARCHAR(128) <span class="sql-keyword">NOT NULL</span>,
+    target_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    relationship_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    hop_count <span class="sql-keyword">INT DEFAULT</span> 1,
+    criticality_weight <span class="sql-keyword">FLOAT DEFAULT</span> 1.0,
+    sensitivity_weight <span class="sql-keyword">FLOAT DEFAULT</span> 1.0,
+    raw_edge_json NVARCHAR(<span class="sql-keyword">MAX</span>),
+    created_at DATETIME <span class="sql-keyword">DEFAULT GETDATE</span>()
+);</code></pre>
+
+    <h3 style="color: var(--accent-amber); font-size: 18px; margin: 28px 0 12px 0;">5.2 Source Files & Telemetry Feeds Used in Construction</h3>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+      The directional graph edges are extracted and synthesized from the following primary source files located in the project workspace:
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-cyan);"><i class="fa-solid fa-file-csv"></i> 1. Specification CSV Files</div>
+        <p class="card-desc">Defines relational table DDL, edge definitions, and column mappings across RDBMS tables.</p>
+        <span class="entity-tag">threat_blast_radius_data_spec.csv</span>
+        <span class="entity-tag">threat_assessment_data_spec.csv</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-blue);"><i class="fa-solid fa-file-code"></i> 2. Bank Topology JSON Feed</div>
+        <p class="card-desc">Main topological graph seed file specifying initial nodes, edges, user privileges, and asset criticality weights.</p>
+        <span class="entity-tag">backend/data/sample_feeds/bank_topology.json</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-amber);"><i class="fa-solid fa-server"></i> 3. On-Premises AD & PAM Feeds</div>
+        <p class="card-desc">Active Directory users, group memberships, SPNs, and BeyondTrust PAM bastion checkout sessions.</p>
+        <span class="entity-tag">active_directory.json</span>
+        <span class="entity-tag">beyondtrust_pam.json</span>
+        <span class="entity-tag">sailpoint_governance.json</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-purple);"><i class="fa-solid fa-cloud"></i> 4. Multi-Cloud & Vault Feeds</div>
+        <p class="card-desc">AWS IAM policies, EC2 roles, Azure KeyVault access policies, GCP IAM bindings, and HashiCorp Vault KV mounts.</p>
+        <span class="entity-tag">aws_iam.json</span>
+        <span class="entity-tag">azure_iam.json</span>
+        <span class="entity-tag">hashicorp_vault.json</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-green);"><i class="fa-solid fa-shield-halved"></i> 5. CSPM & EDR Threat Graph</div>
+        <p class="card-desc">Wiz.io toxic combinations, Defender for Identity lateral movement paths, and SentinelOne EDR socket links.</p>
+        <span class="entity-tag">wiz_io.json</span>
+        <span class="entity-tag">mdi_alerts_sample.json</span>
+        <span class="entity-tag">sentinelone_threats_sample.json</span>
+      </div>
+    </div>
+
+    <h3 style="color: var(--accent-green); font-size: 18px; margin: 28px 0 12px 0;">5.3 Backend Ingestion & Construction Python Pipeline</h3>
+    <p style="font-size: 13px; color: var(--text-muted);">
+      The python backend service <code>BlastRadiusDataGenerator</code> in <code>backend/db/blast_radius_data_generator.py</code> ingests the source files, populates relational telemetry tables, and executes <code>_build_topological_blast_radius_edges()</code> to construct directional edges:
+    </p>
+
+    <pre><code><span class="sql-comment"># backend/db/blast_radius_data_generator.py - Graph Construction Code</span>
+<span class="sql-keyword">def</span> _build_topological_blast_radius_edges(self):
+    logger.info(<span class="sql-string">"Building Global Security Blast Radius Edges for 5-Hop Recursive CTE Graph Traversal..."</span>)
+    
+    edges = [
+        <span class="sql-comment"># Hop 0 -> Hop 1 (User Identity / Workstation to Entitlements)</span>
+        (<span class="sql-string">"USER_JDOE"</span>, <span class="sql-string">"USER_ACCOUNT"</span>, <span class="sql-string">"WS-FINANCE-01"</span>, <span class="sql-string">"WORKSTATION"</span>, <span class="sql-string">"LOGS_INTO"</span>, 1, 3.0, 3.0),
+        (<span class="sql-string">"USER_JDOE"</span>, <span class="sql-string">"USER_ACCOUNT"</span>, <span class="sql-string">"Entra_GlobalAdmin_Role"</span>, <span class="sql-string">"ENTRA_ROLE"</span>, <span class="sql-string">"ASSIGNED_ROLE"</span>, 1, 5.0, 5.0),
+        (<span class="sql-string">"USER_JDOE"</span>, <span class="sql-string">"USER_ACCOUNT"</span>, <span class="sql-string">"svc_sql_production"</span>, <span class="sql-string">"SERVICE_ACCOUNT"</span>, <span class="sql-string">"HAS_SPN_RIGHTS"</span>, 1, 4.0, 4.0),
+
+        <span class="sql-comment"># Hop 1 -> Hop 2 (Entitlements to Systems & Service Principals)</span>
+        (<span class="sql-string">"WS-FINANCE-01"</span>, <span class="sql-string">"WORKSTATION"</span>, <span class="sql-string">"i-0789a0001bank"</span>, <span class="sql-string">"AWS_EC2"</span>, <span class="sql-string">"ACTIVE_SOCKET_PORT_445"</span>, 2, 4.0, 3.0),
+        (<span class="sql-string">"Entra_GlobalAdmin_Role"</span>, <span class="sql-string">"ENTRA_ROLE"</span>, <span class="sql-string">"app-spn-bank-core-001"</span>, <span class="sql-string">"SERVICE_PRINCIPAL"</span>, <span class="sql-string">"CONTROLS_APP"</span>, 2, 5.0, 4.0),
+        (<span class="sql-string">"svc_sql_production"</span>, <span class="sql-string">"SERVICE_ACCOUNT"</span>, <span class="sql-string">"DC-BANK-NODE-001.bank.lan"</span>, <span class="sql-string">"DOMAIN_CONTROLLER"</span>, <span class="sql-string">"KERBEROASTABLE_TO"</span>, 2, 5.0, 5.0),
+
+        <span class="sql-comment"># Hop 2 -> Hop 3 (Systems to Cloud Roles & Secret Vaults)</span>
+        (<span class="sql-string">"i-0789a0001bank"</span>, <span class="sql-string">"AWS_EC2"</span>, <span class="sql-string">"Bank-EC2-PRODUCTION-Role"</span>, <span class="sql-string">"AWS_IAM_ROLE"</span>, <span class="sql-string">"ASSUMES_IAM_ROLE"</span>, 3, 4.0, 4.0),
+        (<span class="sql-string">"app-spn-bank-core-001"</span>, <span class="sql-string">"SERVICE_PRINCIPAL"</span>, <span class="sql-string">"kv-bank-prod-secrets"</span>, <span class="sql-string">"AZURE_KEYVAULT"</span>, <span class="sql-string">"READS_SECRETS"</span>, 3, 5.0, 5.0),
+
+        <span class="sql-comment"># Hop 3 -> Hop 4 (Cloud Roles & Vaults to Sensitive Targets & Bastions)</span>
+        (<span class="sql-string">"Bank-EC2-PRODUCTION-Role"</span>, <span class="sql-string">"AWS_IAM_ROLE"</span>, <span class="sql-string">"bank-customer-pii-vault"</span>, <span class="sql-string">"AWS_S3_BUCKET"</span>, <span class="sql-string">"READS_S3_DATA"</span>, 4, 5.0, 5.0),
+        (<span class="sql-string">"kv-bank-prod-secrets"</span>, <span class="sql-string">"AZURE_KEYVAULT"</span>, <span class="sql-string">"sys-bt-pam-bank-001"</span>, <span class="sql-string">"PAM_BASTION"</span>, <span class="sql-string">"CONTAINS_DB_PASSWORDS"</span>, 4, 4.0, 5.0),
+
+        <span class="sql-comment"># Hop 4 -> Hop 5 (Bastions & Storage to Root Critical Targets)</span>
+        (<span class="sql-string">"bank-customer-pii-vault"</span>, <span class="sql-string">"AWS_S3_BUCKET"</span>, <span class="sql-string">"gcp-instance-prod-bank-001"</span>, <span class="sql-string">"GCP_COMPUTE"</span>, <span class="sql-string">"CROSS_CLOUD_SYNC"</span>, 5, 4.0, 5.0),
+        (<span class="sql-string">"sys-bt-pam-bank-001"</span>, <span class="sql-string">"PAM_BASTION"</span>, <span class="sql-string">"srv-pam-target-001.bank.lan"</span>, <span class="sql-string">"PAYMENT_GATEWAY"</span>, <span class="sql-string">"UNCONSTRAINED_CHECKOUT"</span>, 5, 5.0, 5.0)
+    ]
+
+    <span class="sql-comment"># Insert into SQL Server security_blast_radius_edges table</span>
+    <span class="sql-keyword">for</span> src, stype, tgt, ttype, rel, hop, crit, sens <span class="sql-keyword">in</span> edges:
+        eid = f<span class="sql-string">"edge-{hash(src+tgt)%100000:05d}"</span>
+        sql_db.execute_non_query(<span class="sql-string">"""
+            IF NOT EXISTS (SELECT 1 FROM security_blast_radius_edges WHERE edge_id = ?)
+            BEGIN
+                INSERT INTO security_blast_radius_edges 
+                (edge_id, source_entity, source_type, target_entity, target_type, relationship_type, hop_count, criticality_weight, sensitivity_weight)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            END
+        """</span>, (eid, eid, src, stype, tgt, ttype, rel, hop, crit, sens))</code></pre>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    ITDR Shield Platform Technical Documentation &bull; Blast Radius Layer Traversal Specification &bull; August 2026
+  </footer>
+
+</div>
+
+</body>
+</html>

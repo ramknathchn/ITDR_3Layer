@@ -1,0 +1,83 @@
+{
+  "rules": [
+    {
+      "id": "ITDR-001",
+      "name": "Brute Force Detection",
+      "description": "Detects multiple failed logon attempts within a short time window on a single account.",
+      "mitre_technique": "T1110",
+      "event_type": "LOGIN_FAILURE",
+      "threshold": 5,
+      "window_seconds": 300,
+      "severity": "HIGH",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-002",
+      "name": "Impossible Travel Security Anomaly",
+      "description": "Flags logins from distinct geolocations at a velocity physically impossible by aircraft travel.",
+      "mitre_technique": "T1078",
+      "event_type": "LOGIN_SUCCESS",
+      "distance_km": 500,
+      "window_seconds": 1800,
+      "severity": "CRITICAL",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-003",
+      "name": "Dormant Account Authentication Alert",
+      "description": "Alerts on any logon activity from user accounts that have been inactive for over 90 days.",
+      "mitre_technique": "T1078.001",
+      "event_type": "LOGIN_SUCCESS",
+      "inactive_days": 90,
+      "severity": "MEDIUM",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-004",
+      "name": "Administrative Privilege Escalation",
+      "description": "Detects unauthorized additions to administrative groups or privilege alterations.",
+      "mitre_technique": "T1078.004",
+      "event_type": "PRIVILEGE_ESCALATION",
+      "severity": "HIGH",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-005",
+      "name": "MFA Bypass / Session Manipulation",
+      "description": "Detects logins where MFA requirement was bypassed or disabled on privileged accounts.",
+      "mitre_technique": "T1556.006",
+      "event_type": "MFA_BYPASS",
+      "severity": "CRITICAL",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-006",
+      "name": "Service Account Anomaly Detection",
+      "description": "Detects service account authentication from unexpected subnets or non-standard hours.",
+      "mitre_technique": "T1078.001",
+      "event_type": "SERVICE_ACCOUNT_USAGE",
+      "severity": "MEDIUM",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-007",
+      "name": "Distributed Password Spraying Attack",
+      "description": "Identifies failed logon attempts across multiple accounts coming from the same source IP.",
+      "mitre_technique": "T1110.003",
+      "event_type": "LOGIN_FAILURE",
+      "threshold": 3,
+      "window_seconds": 300,
+      "severity": "HIGH",
+      "enabled": true
+    },
+    {
+      "id": "ITDR-008",
+      "name": "OAuth Token Abuse / Hijacking",
+      "description": "Flags active session token actions originating from unexpected networks or devices.",
+      "mitre_technique": "T1528",
+      "event_type": "TOKEN_ISSUED",
+      "severity": "HIGH",
+      "enabled": true
+    }
+  ]
+}

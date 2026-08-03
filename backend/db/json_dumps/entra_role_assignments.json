@@ -1,0 +1,35 @@
+[
+  {
+    "assignment_id": "assign-entra-globaladmin-guest",
+    "role_definition_id": "role-def-ga",
+    "role_name": "Global Administrator",
+    "principal_id": "princ-guest-99",
+    "principal_name": "external.vendor@gmail.com",
+    "principal_type": "Guest",
+    "is_guest": 1,
+    "is_pim_eligible": null,
+    "transitive_member_ids": null
+  },
+  {
+    "assignment_id": "assign-entra-globaladmin-user",
+    "role_definition_id": "role-def-ga",
+    "role_name": "Global Administrator",
+    "principal_id": "princ-sconnor",
+    "principal_name": "sarah.connor@scb.com",
+    "principal_type": "User",
+    "is_guest": 0,
+    "is_pim_eligible": null,
+    "transitive_member_ids": null
+  },
+  {
+    "assignment_id": "assign-entra-useradmin",
+    "role_definition_id": "role-def-ua",
+    "role_name": "User Administrator",
+    "principal_id": "princ-helpdesk",
+    "principal_name": "helpdesk.tier1@scb.com",
+    "principal_type": "User",
+    "is_guest": 0,
+    "is_pim_eligible": null,
+    "transitive_member_ids": null
+  }
+]

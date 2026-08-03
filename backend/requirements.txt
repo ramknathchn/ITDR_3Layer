@@ -1,0 +1,16 @@
+# ==========================================
+# MVP1 Scope Dependencies
+# Core Ingestion, Relational Tables, & Feeds
+# ==========================================
+fastapi>=0.100.0
+uvicorn>=0.20.0
+pyodbc>=5.0.0
+pydantic>=2.0.0
+python-multipart
+
+# ==========================================
+# MVP2 Scope Dependencies
+# Knowledge Graphs, Path Analyzers, & UEBA
+# ==========================================
+neo4j>=5.0.0
+networkx>=3.0

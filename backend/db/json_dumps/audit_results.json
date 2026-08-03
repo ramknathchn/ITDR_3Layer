@@ -1,0 +1,1019 @@
+[
+  {
+    "id": 266,
+    "bulletin_id": "1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.318659Z"
+  },
+  {
+    "id": 267,
+    "bulletin_id": "1",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.319752Z"
+  },
+  {
+    "id": 268,
+    "bulletin_id": "10",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.342803Z"
+  },
+  {
+    "id": 269,
+    "bulletin_id": "11",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.361241Z"
+  },
+  {
+    "id": 270,
+    "bulletin_id": "11",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.361847Z"
+  },
+  {
+    "id": 271,
+    "bulletin_id": "12",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.389423Z"
+  },
+  {
+    "id": 272,
+    "bulletin_id": "13",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.400129Z"
+  },
+  {
+    "id": 273,
+    "bulletin_id": "14",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.411208Z"
+  },
+  {
+    "id": 274,
+    "bulletin_id": "14",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.412282Z"
+  },
+  {
+    "id": 275,
+    "bulletin_id": "15",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.426358Z"
+  },
+  {
+    "id": 276,
+    "bulletin_id": "16",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.441144Z"
+  },
+  {
+    "id": 277,
+    "bulletin_id": "16",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.442304Z"
+  },
+  {
+    "id": 278,
+    "bulletin_id": "17",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.478436Z"
+  },
+  {
+    "id": 279,
+    "bulletin_id": "17",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.479090Z"
+  },
+  {
+    "id": 280,
+    "bulletin_id": "18",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.499508Z"
+  },
+  {
+    "id": 281,
+    "bulletin_id": "19",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.526745Z"
+  },
+  {
+    "id": 282,
+    "bulletin_id": "2",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.554772Z"
+  },
+  {
+    "id": 283,
+    "bulletin_id": "20",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.563794Z"
+  },
+  {
+    "id": 284,
+    "bulletin_id": "20",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.564925Z"
+  },
+  {
+    "id": 285,
+    "bulletin_id": "21",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.576822Z"
+  },
+  {
+    "id": 286,
+    "bulletin_id": "21",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.578677Z"
+  },
+  {
+    "id": 287,
+    "bulletin_id": "22",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.589040Z"
+  },
+  {
+    "id": 288,
+    "bulletin_id": "23",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.613406Z"
+  },
+  {
+    "id": 289,
+    "bulletin_id": "23",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.613927Z"
+  },
+  {
+    "id": 290,
+    "bulletin_id": "24",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.644574Z"
+  },
+  {
+    "id": 291,
+    "bulletin_id": "24",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.645634Z"
+  },
+  {
+    "id": 292,
+    "bulletin_id": "25",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.669437Z"
+  },
+  {
+    "id": 293,
+    "bulletin_id": "3",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.679424Z"
+  },
+  {
+    "id": 294,
+    "bulletin_id": "3",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.680072Z"
+  },
+  {
+    "id": 295,
+    "bulletin_id": "4",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.699489Z"
+  },
+  {
+    "id": 296,
+    "bulletin_id": "4",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.700543Z"
+  },
+  {
+    "id": 297,
+    "bulletin_id": "5",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.713321Z"
+  },
+  {
+    "id": 298,
+    "bulletin_id": "5",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.713864Z"
+  },
+  {
+    "id": 299,
+    "bulletin_id": "6",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.724585Z"
+  },
+  {
+    "id": 300,
+    "bulletin_id": "6",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.725660Z"
+  },
+  {
+    "id": 301,
+    "bulletin_id": "7",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.755417Z"
+  },
+  {
+    "id": 302,
+    "bulletin_id": "8",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:05.783065Z"
+  },
+  {
+    "id": 303,
+    "bulletin_id": "8",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.783600Z"
+  },
+  {
+    "id": 304,
+    "bulletin_id": "9",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.793973Z"
+  },
+  {
+    "id": 305,
+    "bulletin_id": "TB-2026-0008",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.817771Z"
+  },
+  {
+    "id": 306,
+    "bulletin_id": "TB-2026-0008",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.817771Z"
+  },
+  {
+    "id": 307,
+    "bulletin_id": "TB-2026-0009",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.862685Z"
+  },
+  {
+    "id": 308,
+    "bulletin_id": "TB-2026-0009",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.862685Z"
+  },
+  {
+    "id": 309,
+    "bulletin_id": "TB-2026-0010",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.892395Z"
+  },
+  {
+    "id": 310,
+    "bulletin_id": "TB-2026-0010",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.892395Z"
+  },
+  {
+    "id": 311,
+    "bulletin_id": "TB-2026-0010",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.892395Z"
+  },
+  {
+    "id": 312,
+    "bulletin_id": "TB-2026-0011",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.914350Z"
+  },
+  {
+    "id": 313,
+    "bulletin_id": "TB-2026-0011",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.914350Z"
+  },
+  {
+    "id": 314,
+    "bulletin_id": "TB-2026-0012",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.941126Z"
+  },
+  {
+    "id": 315,
+    "bulletin_id": "TB-2026-0012",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:05.941126Z"
+  },
+  {
+    "id": 316,
+    "bulletin_id": "TB-2026-0015",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:05.973984Z"
+  },
+  {
+    "id": 317,
+    "bulletin_id": "TB-2026-0015",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:05.973984Z"
+  },
+  {
+    "id": 318,
+    "bulletin_id": "TB-2026-0017",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.003524Z"
+  },
+  {
+    "id": 319,
+    "bulletin_id": "TB-2026-0018",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:06.015173Z"
+  },
+  {
+    "id": 320,
+    "bulletin_id": "TB-2026-0271",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.024831Z"
+  },
+  {
+    "id": 321,
+    "bulletin_id": "TB-2026-0271",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.024831Z"
+  },
+  {
+    "id": 322,
+    "bulletin_id": "TB-2026-0291",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.053805Z"
+  },
+  {
+    "id": 323,
+    "bulletin_id": "TB-2026-0291",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.053805Z"
+  },
+  {
+    "id": 324,
+    "bulletin_id": "TB-2026-0307",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.084594Z"
+  },
+  {
+    "id": 325,
+    "bulletin_id": "TB-2026-0307",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.084594Z"
+  },
+  {
+    "id": 326,
+    "bulletin_id": "TB-2026-0347",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.116500Z"
+  },
+  {
+    "id": 327,
+    "bulletin_id": "TB-2026-0347",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.116500Z"
+  },
+  {
+    "id": 328,
+    "bulletin_id": "TB-2026-0355",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.140882Z"
+  },
+  {
+    "id": 329,
+    "bulletin_id": "TB-2026-0355",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.140882Z"
+  },
+  {
+    "id": 330,
+    "bulletin_id": "TB-2026-2382",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.166452Z"
+  },
+  {
+    "id": 331,
+    "bulletin_id": "TB-2026-2382",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.166452Z"
+  },
+  {
+    "id": 332,
+    "bulletin_id": "TB-2026-2382",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:06.166452Z"
+  },
+  {
+    "id": 333,
+    "bulletin_id": "TB-2026-3757",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.194122Z"
+  },
+  {
+    "id": 334,
+    "bulletin_id": "TB-2026-3757",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.194122Z"
+  },
+  {
+    "id": 335,
+    "bulletin_id": "TB-2026-3757",
+    "countermeasure_id": "D3-CloudStorageAudit",
+    "countermeasure_name": "Cloud Storage Public Policy Audit",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CloudStorageAudit] active.",
+    "timestamp": "2026-07-31T08:12:06.194122Z"
+  },
+  {
+    "id": 336,
+    "bulletin_id": "TB-2026-4030",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.224790Z"
+  },
+  {
+    "id": 337,
+    "bulletin_id": "TB-2026-4101",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.247467Z"
+  },
+  {
+    "id": 338,
+    "bulletin_id": "TB-2026-4160",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.263245Z"
+  },
+  {
+    "id": 339,
+    "bulletin_id": "TB-2026-4472",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.274630Z"
+  },
+  {
+    "id": 340,
+    "bulletin_id": "TB-2026-4485",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.300246Z"
+  },
+  {
+    "id": 341,
+    "bulletin_id": "TB-2026-4532",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.311359Z"
+  },
+  {
+    "id": 342,
+    "bulletin_id": "TB-2026-4532",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.311359Z"
+  },
+  {
+    "id": 343,
+    "bulletin_id": "TB-2026-5404",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.342316Z"
+  },
+  {
+    "id": 344,
+    "bulletin_id": "TB-2026-5446",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.366214Z"
+  },
+  {
+    "id": 345,
+    "bulletin_id": "TB-2026-6404",
+    "countermeasure_id": "D3-PowerShellLogging",
+    "countermeasure_name": "PowerShell Transcription & Block-level Audit Logging",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-PowerShellLogging] active.",
+    "timestamp": "2026-07-31T08:12:06.375448Z"
+  },
+  {
+    "id": 346,
+    "bulletin_id": "TB-2026-8412",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.399178Z"
+  },
+  {
+    "id": 347,
+    "bulletin_id": "TB-2026-8412",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.399744Z"
+  },
+  {
+    "id": 348,
+    "bulletin_id": "TB-2026-9090",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.410996Z"
+  },
+  {
+    "id": 349,
+    "bulletin_id": "TB-2026-9090",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.412092Z"
+  },
+  {
+    "id": 350,
+    "bulletin_id": "TB-RSS-1784943764.023184-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.424396Z"
+  },
+  {
+    "id": 351,
+    "bulletin_id": "TB-RSS-1784943764.023184-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.424396Z"
+  },
+  {
+    "id": 352,
+    "bulletin_id": "TB-RSS-1784943764.086631-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.472199Z"
+  },
+  {
+    "id": 353,
+    "bulletin_id": "TB-RSS-1784944066.976058-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.496206Z"
+  },
+  {
+    "id": 354,
+    "bulletin_id": "TB-RSS-1784944066.976058-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.496736Z"
+  },
+  {
+    "id": 355,
+    "bulletin_id": "TB-RSS-1784944067.002914-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.507391Z"
+  },
+  {
+    "id": 356,
+    "bulletin_id": "TB-RSS-1784944081.991006-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.539641Z"
+  },
+  {
+    "id": 357,
+    "bulletin_id": "TB-RSS-1784944081.991006-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.541176Z"
+  },
+  {
+    "id": 358,
+    "bulletin_id": "TB-RSS-1784944082.010857-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.564018Z"
+  },
+  {
+    "id": 359,
+    "bulletin_id": "TB-RSS-1784944093.47684-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.585946Z"
+  },
+  {
+    "id": 360,
+    "bulletin_id": "TB-RSS-1784944093.47684-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.587086Z"
+  },
+  {
+    "id": 361,
+    "bulletin_id": "TB-RSS-1784944093.498911-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.613262Z"
+  },
+  {
+    "id": 362,
+    "bulletin_id": "TB-RSS-1785189984.503904-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.622159Z"
+  },
+  {
+    "id": 363,
+    "bulletin_id": "TB-RSS-1785189984.503904-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.623418Z"
+  },
+  {
+    "id": 364,
+    "bulletin_id": "TB-RSS-1785189984.528968-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.632437Z"
+  },
+  {
+    "id": 365,
+    "bulletin_id": "TB-RSS-1785190133.463018-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.662202Z"
+  },
+  {
+    "id": 366,
+    "bulletin_id": "TB-RSS-1785190133.463018-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.663309Z"
+  },
+  {
+    "id": 367,
+    "bulletin_id": "TB-RSS-1785190133.512868-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.694128Z"
+  },
+  {
+    "id": 368,
+    "bulletin_id": "TB-RSS-1785210025.666806-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.716785Z"
+  },
+  {
+    "id": 369,
+    "bulletin_id": "TB-RSS-1785210025.666806-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.717904Z"
+  },
+  {
+    "id": 370,
+    "bulletin_id": "TB-RSS-1785210025.702094-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.749011Z"
+  },
+  {
+    "id": 371,
+    "bulletin_id": "TB-RSS-1785210045.373441-0",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.761623Z"
+  },
+  {
+    "id": 372,
+    "bulletin_id": "TB-RSS-1785210045.373441-0",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:12:06.762814Z"
+  },
+  {
+    "id": 373,
+    "bulletin_id": "TB-RSS-1785210045.407661-1",
+    "countermeasure_id": "D3-CredentialRotation",
+    "countermeasure_name": "User Account Lockout & Password Spray Filter",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CredentialRotation] active.",
+    "timestamp": "2026-07-31T08:12:06.774736Z"
+  },
+  {
+    "id": 379,
+    "bulletin_id": "TB-2026-45321",
+    "countermeasure_id": "D3-SPP",
+    "countermeasure_name": "Software Provenance Verification & OIDC Build Security",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-SPP] active.",
+    "timestamp": "2026-07-31T08:13:22.529379Z"
+  },
+  {
+    "id": 380,
+    "bulletin_id": "TB-2026-45321",
+    "countermeasure_id": "D3-SPP",
+    "countermeasure_name": "Software Dependency Integrity & Lockfile Verification",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-SPP] active.",
+    "timestamp": "2026-07-31T08:13:22.529379Z"
+  },
+  {
+    "id": 381,
+    "bulletin_id": "TB-2026-45321",
+    "countermeasure_id": "D3-SPP",
+    "countermeasure_name": "SLSA Level 3 Provenance & Sigstore Certificate Validation",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-SPP] active.",
+    "timestamp": "2026-07-31T08:13:22.529379Z"
+  },
+  {
+    "id": 382,
+    "bulletin_id": "TB-2026-45321",
+    "countermeasure_id": "D3-MFA",
+    "countermeasure_name": "Multi-Factor Authentication Enforcement",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-MFA] active.",
+    "timestamp": "2026-07-31T08:13:22.535390Z"
+  },
+  {
+    "id": 383,
+    "bulletin_id": "TB-2026-45321",
+    "countermeasure_id": "D3-CH",
+    "countermeasure_name": "Build Environment Secret Vaulting & Rotation",
+    "status": "Secured",
+    "details": "Verified compliant against active security baselines. Control [D3-CH] active.",
+    "timestamp": "2026-07-31T08:13:22.535390Z"
+  }
+]

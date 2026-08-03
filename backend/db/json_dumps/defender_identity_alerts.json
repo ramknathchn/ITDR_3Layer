@@ -1,0 +1,35 @@
+[
+  {
+    "alert_id": "alert-mdi-dcsync-01",
+    "title": "DCSync attack detected from Host-FIN-DC02",
+    "severity": "High",
+    "category": "ActiveDirectorySecurity",
+    "status": "UNRESOLVED",
+    "impacted_user": "johndoe",
+    "impacted_computer": "HOST-FIN-DC02",
+    "mitre_techniques": "[\"T1003.006\"]",
+    "target_service_account": null
+  },
+  {
+    "alert_id": "alert-mdi-goldenticket-03",
+    "title": "Suspected Golden Ticket Activity",
+    "severity": "Critical",
+    "category": "Persistence",
+    "status": "NEW",
+    "impacted_user": "krbtgt",
+    "impacted_computer": "HOST-DC-01",
+    "mitre_techniques": "[\"T1558.001\"]",
+    "target_service_account": null
+  },
+  {
+    "alert_id": "alert-mdi-kerberoast-02",
+    "title": "Kerberoasting attempt targeting MSSQL SPNs",
+    "severity": "High",
+    "category": "CredentialAccess",
+    "status": "UNRESOLVED",
+    "impacted_user": "staleadmin",
+    "impacted_computer": "HOST-WORKSTATION-88",
+    "mitre_techniques": "[\"T1558.003\"]",
+    "target_service_account": null
+  }
+]

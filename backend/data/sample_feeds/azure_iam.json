@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "az-iam-001",
+    "feed_id": "azure_iam",
+    "title": "Azure RBAC: Subscription Owner Role Assignment",
+    "content": "Azure Resource Manager audit log: Active Directory identity 'admin_kbrown@scb.com' assigned the 'Owner' role assignment on the production transaction subscription.",
+    "severity": "CRITICAL",
+    "source": "Azure Resource Provider",
+    "raw_json": "{\"operationName\": \"Microsoft.Authorization/roleAssignments/write\", \"caller\": \"admin_kbrown@scb.com\", \"properties\": {\"roleDefinitionId\": \"Owner\", \"principalId\": \"9876-efgh-5432-abcd\", \"scope\": \"/subscriptions/scb-core-banking-prod-sub\"}}"
+  },
+  {
+    "entry_id": "az-iam-002",
+    "feed_id": "azure_iam",
+    "title": "Azure Key Vault: Principal Access Policy Alteration",
+    "content": "Azure Activity Log: Key Vault permission policies were altered for vault 'scb-prod-secrets-kv' to grant read permissions to a new service principal registration.",
+    "severity": "HIGH",
+    "source": "Azure Resource Provider",
+    "raw_json": "{\"operationName\": \"Microsoft.KeyVault/vaults/write\", \"caller\": \"admin_kbrown@scb.com\", \"properties\": {\"vaultName\": \"scb-prod-secrets-kv\", \"accessPoliciesUpdated\": true}}"
+  }
+]

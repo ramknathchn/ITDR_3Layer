@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "hc-vlt-001",
+    "feed_id": "hashicorp",
+    "title": "Vault Secret Checkout: Production Database Credentials Retreival",
+    "content": "Secret engine accessed: check-out of temporary dynamic administrative credentials for SG-PROD-SQL-DB01 database by service principal 'svc_reporting'.",
+    "severity": "LOW",
+    "source": "HashiCorp Vault Audit Log",
+    "raw_json": "{\"accessor\": \"token-sha256:abcd1234\", \"path\": \"database/creds/prod-db-admin\", \"operation\": \"read\", \"clientToken\": \"svc_reporting\", \"remoteIp\": \"10.147.20.101\", \"authType\": \"approle\"}"
+  },
+  {
+    "entry_id": "hc-vlt-002",
+    "feed_id": "hashicorp",
+    "title": "Policy Violation: Unauthorized Secret Path Read Attempt",
+    "content": "Vault access denied for user 'scb\\\\dev_llee' requesting read access on administrative signing certificates ('transit/keys/root-sign-key'). Policy transit-dev-read does not grant this path permission.",
+    "severity": "HIGH",
+    "source": "HashiCorp Vault Audit Log",
+    "raw_json": "{\"accessor\": \"token-sha256:efgh5678\", \"path\": \"transit/keys/root-sign-key\", \"operation\": \"read\", \"clientToken\": \"dev_llee\", \"remoteIp\": \"192.168.82.44\", \"error\": \"permission denied\"}"
+  }
+]

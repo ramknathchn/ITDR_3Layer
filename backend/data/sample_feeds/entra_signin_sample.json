@@ -1,0 +1,67 @@
+[
+  {
+    "event_id": "entra-ev-001",
+    "timestamp": "2026-07-13T06:10:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "m_clarke@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 10.0,
+    "raw_data": "{\"id\": \"entra-ev-001\", \"createdDateTime\": \"2026-07-13T06:10:00Z\", \"userPrincipalName\": \"m_clarke@scb.com\", \"ipAddress\": \"165.225.116.14\", \"location\": {\"city\": \"New York\", \"state\": \"New York\", \"countryOrRegion\": \"US\"}, \"status\": {\"errorCode\": 0, \"failureReason\": \"None\"}, \"appliedConditionalAccessPolicies\": [{\"id\": \"cap-001\", \"displayName\": \"Enforce MFA for external locations\", \"result\": \"success\"}], \"authenticationRequirement\": \"multiFactorAuthentication\"}"
+  },
+  {
+    "event_id": "entra-ev-002",
+    "timestamp": "2026-07-13T06:15:30Z",
+    "event_type": "IMPOSSIBLE_TRAVEL",
+    "identity": "m_clarke@scb.com",
+    "identity_type": "user",
+    "source_ip": "185.220.101.5",
+    "geo_location": "Frankfurt, DE",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 85.0,
+    "raw_data": "{\"id\": \"entra-ev-002\", \"createdDateTime\": \"2026-07-13T06:15:30Z\", \"userPrincipalName\": \"m_clarke@scb.com\", \"ipAddress\": \"185.220.101.5\", \"location\": {\"city\": \"Frankfurt\", \"state\": \"Hesse\", \"countryOrRegion\": \"DE\"}, \"status\": {\"errorCode\": 0}, \"riskState\": \"atRisk\", \"riskLevelAggregated\": \"high\", \"riskDetail\": \"impossibleTravel\", \"authenticationRequirement\": \"singleFactorAuthentication\"}"
+  },
+  {
+    "event_id": "entra-ev-003",
+    "timestamp": "2026-07-13T06:20:00Z",
+    "event_type": "MFA_CHALLENGE",
+    "identity": "admin_kbrown@scb.com",
+    "identity_type": "admin",
+    "source_ip": "203.0.113.88",
+    "geo_location": "Singapore, SG",
+    "identity_provider": "EntraID",
+    "success": false,
+    "risk_score": 15.0,
+    "raw_data": "{\"id\": \"entra-ev-003\", \"createdDateTime\": \"2026-07-13T06:20:00Z\", \"userPrincipalName\": \"admin_kbrown@scb.com\", \"ipAddress\": \"203.0.113.88\", \"location\": {\"city\": \"Singapore\", \"countryOrRegion\": \"SG\"}, \"status\": {\"errorCode\": 500121, \"failureReason\": \"Authentication failed during strong authentication request (MFA).\"}}"
+  },
+  {
+    "event_id": "entra-ev-004",
+    "timestamp": "2026-07-13T06:20:45Z",
+    "event_type": "MFA_BYPASS",
+    "identity": "admin_kbrown@scb.com",
+    "identity_type": "admin",
+    "source_ip": "203.0.113.88",
+    "geo_location": "Singapore, SG",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 90.0,
+    "raw_data": "{\"id\": \"entra-ev-004\", \"createdDateTime\": \"2026-07-13T06:20:45Z\", \"userPrincipalName\": \"admin_kbrown@scb.com\", \"ipAddress\": \"203.0.113.88\", \"location\": {\"city\": \"Singapore\", \"countryOrRegion\": \"SG\"}, \"status\": {\"errorCode\": 0}, \"authenticationDetails\": [{\"authenticationMethod\": \"Password\", \"succeeded\": true}, {\"authenticationMethod\": \"Temporary Access Pass\", \"succeeded\": true, \"detail\": \"MFA bypassed via TAP enrollment restriction bypass\"}]}"
+  },
+  {
+    "event_id": "entra-ev-005",
+    "timestamp": "2026-07-13T06:22:15Z",
+    "event_type": "PRIVILEGE_ESCALATION",
+    "identity": "admin_kbrown@scb.com",
+    "identity_type": "admin",
+    "source_ip": "203.0.113.88",
+    "geo_location": "Singapore, SG",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 80.0,
+    "raw_data": "{\"id\": \"entra-ev-005\", \"activityDateTime\": \"2026-07-13T06:22:15Z\", \"activityDisplayName\": \"Add member to role\", \"initiatedBy\": {\"user\": {\"userPrincipalName\": \"admin_kbrown@scb.com\"}}, \"targetResources\": [{\"displayName\": \"Global Administrator\", \"type\": \"Role\"}, {\"displayName\": \"compromised_app_svc\", \"type\": \"ServicePrincipal\"}]}"
+  }
+]

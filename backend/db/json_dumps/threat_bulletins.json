@@ -1,0 +1,702 @@
+[
+  {
+    "id": "1",
+    "bulletin_id": "1",
+    "title": "TB-2026-01: APT41 Cloud Infrastructure Hijack (T1078.004)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.212324",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-01: APT41 Cloud Infrastructure Hijack (T1078.004)"
+  },
+  {
+    "id": "10",
+    "bulletin_id": "10",
+    "title": "TB-2026-10: Automated Data Exfiltration via HTTPS (T1020)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.248254",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-10: Automated Data Exfiltration via HTTPS (T1020)"
+  },
+  {
+    "id": "11",
+    "bulletin_id": "11",
+    "title": "TB-2026-11: APT41 Persistence via Scheduled Jobs (T1053)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.250237",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-11: APT41 Persistence via Scheduled Jobs (T1053)"
+  },
+  {
+    "id": "12",
+    "bulletin_id": "12",
+    "title": "TB-2026-12: Cloud Database Exfiltration (T1537)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.251784",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-12: Cloud Database Exfiltration (T1537)"
+  },
+  {
+    "id": "13",
+    "bulletin_id": "13",
+    "title": "TB-2026-13: Lazarus Group Password Spraying (T1110.003)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.255865",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-13: Lazarus Group Password Spraying (T1110.003)"
+  },
+  {
+    "id": "14",
+    "bulletin_id": "14",
+    "title": "TB-2026-14: Scattered Spider MFA Fatigue Attack (T1556.006)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.256844",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-14: Scattered Spider MFA Fatigue Attack (T1556.006)"
+  },
+  {
+    "id": "15",
+    "bulletin_id": "15",
+    "title": "TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.261850",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)"
+  },
+  {
+    "id": "16",
+    "bulletin_id": "16",
+    "title": "TB-2026-16: Phishing Attachment Spearhead (T1566.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.263078",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-16: Phishing Attachment Spearhead (T1566.001)"
+  },
+  {
+    "id": "17",
+    "bulletin_id": "17",
+    "title": "TB-2026-17: Cloud Infrastructure API Hijacking (T1078.004)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.263078",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-17: Cloud Infrastructure API Hijacking (T1078.004)"
+  },
+  {
+    "id": "18",
+    "bulletin_id": "18",
+    "title": "TB-2026-18: Lazarus automated bank exfiltration (T1020)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.266271",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-18: Lazarus automated bank exfiltration (T1020)"
+  },
+  {
+    "id": "19",
+    "bulletin_id": "19",
+    "title": "TB-2026-19: Local Service Account Spray (T1110.003)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.267284",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-19: Local Service Account Spray (T1110.003)"
+  },
+  {
+    "id": "2",
+    "bulletin_id": "2",
+    "title": "TB-2026-02: Scattered Spider Password Spraying Campaign (T1110.003)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.219086",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-02: Scattered Spider Password Spraying Campaign (T1110.003)"
+  },
+  {
+    "id": "20",
+    "bulletin_id": "20",
+    "title": "TB-2026-20: Cozy Bear Persistence via Cron (T1053)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.268674",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-20: Cozy Bear Persistence via Cron (T1053)"
+  },
+  {
+    "id": "21",
+    "bulletin_id": "21",
+    "title": "TB-2026-21: Scattered Spider Phishing Link (T1566.002)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.269765",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-21: Scattered Spider Phishing Link (T1566.002)"
+  },
+  {
+    "id": "22",
+    "bulletin_id": "22",
+    "title": "TB-2026-22: APT41 PowerShell Backdoor Execution (T1059.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.270758",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-22: APT41 PowerShell Backdoor Execution (T1059.001)"
+  },
+  {
+    "id": "23",
+    "bulletin_id": "23",
+    "title": "TB-2026-23: Lazarus Group Automated Database Theft (T1020)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.271769",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-23: Lazarus Group Automated Database Theft (T1020)"
+  },
+  {
+    "id": "24",
+    "bulletin_id": "24",
+    "title": "TB-2026-24: Scattered Spider MFA Bombing Attack (T1556.006)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.272756",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-24: Scattered Spider MFA Bombing Attack (T1556.006)"
+  },
+  {
+    "id": "25",
+    "bulletin_id": "25",
+    "title": "TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.273755",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)"
+  },
+  {
+    "id": "3",
+    "bulletin_id": "3",
+    "title": "TB-2026-03: Lazarus Group Spearphishing Campaign (T1566.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.225250",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-03: Lazarus Group Spearphishing Campaign (T1566.001)"
+  },
+  {
+    "id": "4",
+    "bulletin_id": "4",
+    "title": "TB-2026-04: Cozy Bear Cloud Storage Data Theft (T1537)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.229886",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-04: Cozy Bear Cloud Storage Data Theft (T1537)"
+  },
+  {
+    "id": "5",
+    "bulletin_id": "5",
+    "title": "TB-2026-05: LockBit Ransomware Infiltration (T1053)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.232583",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-05: LockBit Ransomware Infiltration (T1053)"
+  },
+  {
+    "id": "6",
+    "bulletin_id": "6",
+    "title": "TB-2026-06: APT29 MFA Push Fatigue Attack (T1556.006)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.236452",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-06: APT29 MFA Push Fatigue Attack (T1556.006)"
+  },
+  {
+    "id": "7",
+    "bulletin_id": "7",
+    "title": "TB-2026-07: Local Admin Credential Guessing (T1110.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.239554",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-07: Local Admin Credential Guessing (T1110.001)"
+  },
+  {
+    "id": "8",
+    "bulletin_id": "8",
+    "title": "TB-2026-08: Service Account Compromise (T1078.001)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.242546",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-08: Service Account Compromise (T1078.001)"
+  },
+  {
+    "id": "9",
+    "bulletin_id": "9",
+    "title": "TB-2026-09: Phishing Link credential harvest (T1566.002)",
+    "content": "",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:06:00.245150",
+    "impact_rating": "HIGH",
+    "summary": "TB-2026-09: Phishing Link credential harvest (T1566.002)"
+  },
+  {
+    "id": "TB-2026-0008",
+    "bulletin_id": "TB-2026-0008",
+    "title": "BULLETIN ID: TB-2026-0008",
+    "content": "BULLETIN ID: TB-2026-0008\nTITLE: Service Account Logins from Anomalous Geographies\nTHREAT ACTORS: Lazarus\nIMPACT: HIGH\n\nAn administrative service account (Valid Accounts: Service Accounts, T1078.001) was detected logging in outside of core scheduling windows and from non-standard subnets. The threat actor, Lazarus Group, utilized these hardcoded credentials to gain initial access to API endpoints, executing PowerShell queries (T1059.001) to harvest connection strings.",
+    "actors": "[\"Lazarus\"]",
+    "created_at": "2026-07-27T10:08:03.000324",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0008\nTITLE: Service Account Logins from Anomalous Geographies\nTHREAT ACTORS: Lazarus\nIMPACT: HIGH\n\nAn administrative service account (Valid Accounts: Service Accounts, T1078.001) was detected logging in outside of core scheduling windows and from non-standard subnets. The threat..."
+  },
+  {
+    "id": "TB-2026-0009",
+    "bulletin_id": "TB-2026-0009",
+    "title": "BULLETIN ID: TB-2026-0009",
+    "content": "BULLETIN ID: TB-2026-0009\nTITLE: Spearphishing Link Credential Harvesting Campaign\nTHREAT ACTORS: Scattered Spider\nIMPACT: HIGH\n\nEmployees received SMS messages containing phishing links (T1566.002) mimicking Okta authentication portals. Several users entered active directory credentials. The attacker used these valid credentials (T1078.004) to access corporate cloud platforms and initiate data exfiltration (T1020).",
+    "actors": "[\"Scattered Spider\"]",
+    "created_at": "2026-07-27T10:17:15.657744",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0009\nTITLE: Spearphishing Link Credential Harvesting Campaign\nTHREAT ACTORS: Scattered Spider\nIMPACT: HIGH\n\nEmployees received SMS messages containing phishing links (T1566.002) mimicking Okta authentication portals. Several users entered active directory credentials. The attack..."
+  },
+  {
+    "id": "TB-2026-0010",
+    "bulletin_id": "TB-2026-0010",
+    "title": "BULLETIN ID: TB-2026-0010",
+    "content": "BULLETIN ID: TB-2026-0010\nTITLE: Automated Egress Exfiltration of Transaction Logs\nTHREAT ACTORS: LockBit\nIMPACT: HIGH\n\nAn attacker compromised an internal application server via stolen service credentials (T1078.001). They deployed an automated script that compiled database transaction files and exfiltrated them (Automated Exfiltration, T1020) to an external FTP server. Command line logging showed extensive PowerShell (T1059.001) script usage.",
+    "actors": "[\"LockBit\"]",
+    "created_at": "2026-07-28T04:52:09.040516",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0010\nTITLE: Automated Egress Exfiltration of Transaction Logs\nTHREAT ACTORS: LockBit\nIMPACT: HIGH\n\nAn attacker compromised an internal application server via stolen service credentials (T1078.001). They deployed an automated script that compiled database transaction files and ex..."
+  },
+  {
+    "id": "TB-2026-0011",
+    "bulletin_id": "TB-2026-0011",
+    "title": "BULLETIN ID: TB-2026-0011",
+    "content": "BULLETIN ID: TB-2026-0011\nTITLE: APT41 Persistence on Windows Domain Controllers\nTHREAT ACTORS: APT41\nIMPACT: CRITICAL\n\nFollowing domain credential theft (T1078), threat actor APT41 gained administrative rights. They deployed scheduled tasks (T1053) configured to run daily script updates. These scheduled jobs run PowerShell (T1059.001) commands to open backdoors, ensuring long-term persistence in the bank environment.",
+    "actors": "[\"APT41\"]",
+    "created_at": "2026-07-28T13:12:34.753378",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0011\nTITLE: APT41 Persistence on Windows Domain Controllers\nTHREAT ACTORS: APT41\nIMPACT: CRITICAL\n\nFollowing domain credential theft (T1078), threat actor APT41 gained administrative rights. They deployed scheduled tasks (T1053) configured to run daily script updates. These sche..."
+  },
+  {
+    "id": "TB-2026-0012",
+    "bulletin_id": "TB-2026-0012",
+    "title": "BULLETIN ID: TB-2026-0012",
+    "content": "BULLETIN ID: TB-2026-0012\nTITLE: Exfiltration of Core Banking Database Snapshots\nTHREAT ACTORS: Cozy Bear\nIMPACT: CRITICAL\n\nCozy Bear operators hijacked high-privileged cloud service credentials (T1078.004). They initiated database backup commands and transferred the resulting database snapshots directly to an external attacker-controlled S3 cloud account (T1537) to bypass egress log monitors.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:42:43.519644",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0012\nTITLE: Exfiltration of Core Banking Database Snapshots\nTHREAT ACTORS: Cozy Bear\nIMPACT: CRITICAL\n\nCozy Bear operators hijacked high-privileged cloud service credentials (T1078.004). They initiated database backup commands and transferred the resulting database snapshots dir..."
+  },
+  {
+    "id": "TB-2026-0015",
+    "bulletin_id": "TB-2026-0015",
+    "title": "BULLETIN ID: TB-2026-0015",
+    "content": "BULLETIN ID: TB-2026-0015\nTITLE: Cozy Bear Command execution via PowerShell\nTHREAT ACTORS: Cozy Bear\nIMPACT: HIGH\n\nAdversary Cozy Bear utilized heavily obfuscated PowerShell scripts (T1059.001) executed via remote registry modifications. The scripts bypassed system AMSI scanners, harvested local credentials (T1110), and established communication channels with external command servers.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:26:46.854568",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0015\nTITLE: Cozy Bear Command execution via PowerShell\nTHREAT ACTORS: Cozy Bear\nIMPACT: HIGH\n\nAdversary Cozy Bear utilized heavily obfuscated PowerShell scripts (T1059.001) executed via remote registry modifications. The scripts bypassed system AMSI scanners, harvested local cre..."
+  },
+  {
+    "id": "TB-2026-0017",
+    "bulletin_id": "TB-2026-0017",
+    "title": "BULLETIN ID: TB-2026-0017",
+    "content": "BULLETIN ID: TB-2026-0017\nTITLE: AWS IAM Administrative Key Theft\nTHREAT ACTORS: Unknown Adversary\nIMPACT: CRITICAL\n\nAn unknown attacker harvested AWS access keys from a public code repository. The keys mapped to a high-privileged Cloud Role (T1078.004). The attacker configured automated scripts to decrypt local secure databases and exfiltrate customer records to external storage (T1537).",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-25T09:43:09.810368",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0017\nTITLE: AWS IAM Administrative Key Theft\nTHREAT ACTORS: Unknown Adversary\nIMPACT: CRITICAL\n\nAn unknown attacker harvested AWS access keys from a public code repository. The keys mapped to a high-privileged Cloud Role (T1078.004). The attacker configured automated scripts to ..."
+  },
+  {
+    "id": "TB-2026-0018",
+    "bulletin_id": "TB-2026-0018",
+    "title": "BULLETIN ID: TB-2026-0018",
+    "content": "BULLETIN ID: TB-2026-0018\nTITLE: Lazarus Group Automated Sweep and Exfiltration\nTHREAT ACTORS: Lazarus\nIMPACT: CRITICAL\n\nLazarus Group malware compromised payment gateways. The malware parsed logs for transaction strings, compiled files, and executed automated exfiltration (T1020) over secure TLS ports. Attack operators used scheduled tasks (T1053) to execute maintenance shell commands.",
+    "actors": "[\"Lazarus\"]",
+    "created_at": "2026-07-28T09:31:37.914849",
+    "impact_rating": "HIGH",
+    "summary": "BULLETIN ID: TB-2026-0018\nTITLE: Lazarus Group Automated Sweep and Exfiltration\nTHREAT ACTORS: Lazarus\nIMPACT: CRITICAL\n\nLazarus Group malware compromised payment gateways. The malware parsed logs for transaction strings, compiled files, and executed automated exfiltration (T1020) over secure TLS po..."
+  },
+  {
+    "id": "TB-2026-0271",
+    "bulletin_id": "TB-2026-0271",
+    "title": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed...",
+    "content": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:17:51.374992",
+    "impact_rating": "HIGH",
+    "summary": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001."
+  },
+  {
+    "id": "TB-2026-0291",
+    "bulletin_id": "TB-2026-0291",
+    "title": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed...",
+    "content": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:18:11.662502",
+    "impact_rating": "HIGH",
+    "summary": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001."
+  },
+  {
+    "id": "TB-2026-0307",
+    "bulletin_id": "TB-2026-0307",
+    "title": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed...",
+    "content": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:18:27.032472",
+    "impact_rating": "HIGH",
+    "summary": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001."
+  },
+  {
+    "id": "TB-2026-0347",
+    "bulletin_id": "TB-2026-0347",
+    "title": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed...",
+    "content": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:19:07.692766",
+    "impact_rating": "HIGH",
+    "summary": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001 to dump LSASS memory T1003.001."
+  },
+  {
+    "id": "TB-2026-0355",
+    "bulletin_id": "TB-2026-0355",
+    "title": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed...",
+    "content": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:19:15.870118",
+    "impact_rating": "HIGH",
+    "summary": "Adversary APT29 targeted bank cloud accounts T1078.004 using compromised credentials and executed obfuscated PowerShell scripts T1059.001."
+  },
+  {
+    "id": "TB-2026-1383",
+    "bulletin_id": "TB-2026-1383",
+    "title": "Security Operations Bulletin",
+    "content": "Security Operations Bulletin\nReport date: 2026-08-02\nSeverity: High\nCategory: Phishing / Credential Theft\nScope: Users accessing email, cloud apps, and internal portals\n\nExecutive Summary\nA phishing campaign is currently targeting users with fake login prompts that imitate trusted services. If a user enters credentials on the fake page, attackers may gain access to email, files, and connected business systems. The primary risk is account compromise, followed by data exposure and unauthorized message sending from the victim\u2019s account.\n\nIncident Details\nWhat is happening:\nUsers receive urgent messages asking them to verify accounts, reset passwords, or review a shared document. These messages often contain links to lookalike sign-in pages designed to capture usernames, passwords, and MFA codes.\n\nWho is affected:\nAny user who interacts with the message, especially those with access to email, cloud storage, finance systems, or administrative tools.\n\nImpact:\n\nAccount takeover.\n\nUnauthorized access to mailboxes and files.\n\nPossible lateral movement into internal systems.\n\nBusiness email compromise or fraud attempts.\n\nIndicators to Watch\nUnexpected login prompts or MFA requests.\n\nEmails with urgency, threats, or password-expiry language.\n\nSuspicious domains that resemble legitimate services.\n\nUnusual sign-in alerts from unfamiliar locations or devices.\n\nContainment Actions\nBlock or quarantine the phishing message across mail channels.\n\nForce password reset for any user who submitted credentials.\n\nReview sign-in logs for anomalous access and impossible travel.\n\nRevoke active sessions and tokens for affected accounts.\n\nAlert users to report similar emails immediately.\n\nUser Guidance\nUsers should not click links or open attachments from suspicious messages. They should verify requests through a trusted channel, report suspicious emails to security, and change passwords immediately if they suspect exposure.\n\nEscalation Status\nThis event should be escalated if any user credentials were entered, MFA prompts were approved unexpectedly, or suspicious sign-ins are detected in account logs.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-08-02T00:43:03.759557",
+    "impact_rating": "HIGH",
+    "summary": "Security Operations Bulletin\nReport date: 2026-08-02\nSeverity: High\nCategory: Phishing / Credential Theft\nScope: Users accessing email, cloud apps, and internal portals\n\nExecutive Summary\nA phishing campaign is currently targeting users with fake login prompts that imitate trusted services. If a user enters credentials on the fake page, attackers m..."
+  },
+  {
+    "id": "TB-2026-2382",
+    "bulletin_id": "TB-2026-2382",
+    "title": "THREAT BULLETIN: Black Basta RansomwareDate: July 22, 2026Threat Actor: Black Basta Operators / A...",
+    "content": "THREAT BULLETIN: Black Basta RansomwareDate: July 22, 2026Threat Actor: Black Basta Operators / AffiliatesThreat Type: Ransomware-as-a-Service (RaaS)Target Sectors: Global Critical Infrastructure, Healthcare, Manufacturing, and Enterprise NetworksExecutive SummaryBlack Basta is a highly active Ransomware-as-a-Service (RaaS) platform written in C++. In development since February 2022 and deployed in the field since April 2022, the group utilizes a aggressive double-extortion model. Affiliates encrypt operational data and simultaneously exfiltrate sensitive information, leveraging the threat of public data leaks to force cryptocurrency payments.Technical Profile & Tactics1. Initial Access & Lateral MovementInitial Vectors: Exploitation of known vulnerabilities (e.g., ConnectWise, Fortinet), malicious phishing campaigns (Qakbot, DarkGate), and compromised Remote Desktop Protocol (RDP) credentials.Reconnaissance: Deploys tools like SoftPerfect Network Scanner and Advanced IP Scanner to map corporate environments.Lateral Movement: Utilizes native administrative tools (Living off the Land) such as PsExec, Remote Desktop, and Windows Management Instrumentation (WMI).2. Evasion & Defense DisruptionSecurity Disabling: Terminates Endpoint Detection and Response (EDR) agents, antivirus software, and Windows Defender services prior to payload execution.Shadow Copy Deletion: Executes PowerShell and vssadmin commands to wipe volume shadow copies, preventing local system recovery.Safe Mode Booting: Configures compromised systems to boot into Safe Mode with Networking to bypass active security monitoring tools during encryption.3. Data Exfiltration & EncryptionExfiltration: Uses tools like Rclone to upload vast amounts of corporate data to cloud storage providers (e.g., Mega) before launching encryption.Encryption Engine: Implements a fast, multi-threaded C++ encryption routine targeting local drives, network shares, and VMware ESXi environments.Extortion: Appends a randomized extension to encrypted files and drops a readme.txt ransom note detailing communication instructions via a Tor negotiation portal.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T15:59:42.829825",
+    "impact_rating": "HIGH",
+    "summary": "THREAT BULLETIN: Black Basta RansomwareDate: July 22, 2026Threat Actor: Black Basta Operators / AffiliatesThreat Type: Ransomware-as-a-Service (RaaS)Target Sectors: Global Critical Infrastructure, Healthcare, Manufacturing, and Enterprise NetworksExecutive SummaryBlack Basta is a highly active Ranso..."
+  },
+  {
+    "id": "TB-2026-3757",
+    "bulletin_id": "TB-2026-3757",
+    "title": "THREAT BULLETIN: Adversary X targeting Entra ID cloud accounts using stolen credentials, executin...",
+    "content": "THREAT BULLETIN: Adversary X targeting Entra ID cloud accounts using stolen credentials, executing PowerShell scripts and exfiltrating data via S3.",
+    "actors": "[\"Adversary X\"]",
+    "created_at": "2026-07-23T13:35:57.919054",
+    "impact_rating": "HIGH",
+    "summary": "THREAT BULLETIN: Adversary X targeting Entra ID cloud accounts using stolen credentials, executing PowerShell scripts and exfiltrating data via S3."
+  },
+  {
+    "id": "TB-2026-4030",
+    "bulletin_id": "TB-2026-4030",
+    "title": "THREAT BULLETIN [25]: TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)",
+    "content": "THREAT BULLETIN [25]: TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)\n\nTB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)\n\nImpact Rating: HIGH\nActors: [\"APT29\"]",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T13:40:30.575433",
+    "impact_rating": "HIGH",
+    "summary": "THREAT BULLETIN [25]: TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)\n\nTB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)\n\nImpact Rating: HIGH\nActors: [\"APT29\"]"
+  },
+  {
+    "id": "TB-2026-4101",
+    "bulletin_id": "TB-2026-4101",
+    "title": "ADVISORY: Threat Scenario TB-RSS-1785210045.407661-1 - [Wiz.io Cloud Tenant Identity Vulnerabilit...",
+    "content": "ADVISORY: Threat Scenario TB-RSS-1785210045.407661-1 - [Wiz.io Cloud Tenant Identity Vulnerability Log] Advisory: Active Password Spraying targeting Cloud Tenants. Target accounts T1078, Remote Services T1021, and LSASS Memory Dump T1081.006.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T15:55:01.602078",
+    "impact_rating": "HIGH",
+    "summary": "ADVISORY: Threat Scenario TB-RSS-1785210045.407661-1 - [Wiz.io Cloud Tenant Identity Vulnerability Log] Advisory: Active Password Spraying targeting Cloud Tenants. Target accounts T1078, Remote Services T1021, and LSASS Memory Dump T1081.006."
+  },
+  {
+    "id": "TB-2026-4160",
+    "bulletin_id": "TB-2026-4160",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T07:49:20.931898",
+    "impact_rating": "HIGH",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they ..."
+  },
+  {
+    "id": "TB-2026-4472",
+    "bulletin_id": "TB-2026-4472",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T07:54:32.295486",
+    "impact_rating": "HIGH",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they ..."
+  },
+  {
+    "id": "TB-2026-4485",
+    "bulletin_id": "TB-2026-4485",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T07:54:45.792744",
+    "impact_rating": "HIGH",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they ..."
+  },
+  {
+    "id": "TB-2026-4532",
+    "bulletin_id": "TB-2026-4532",
+    "title": "{",
+    "content": "{\n  \"bulletin_id\": \"TB-2026-45321\",\n  \"cve_id\": \"CVE-2026-45321\",\n  \"ghsa_id\": \"GHSA-g7cv-rxg3-hmpx\",\n  \"title\": \"TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\",\n  \"threat_actors\": [\n    \"TeamPCP\"\n  ],\n  \"impact_rating\": \"CRITICAL\",\n  \"summary\": \"Threat group TeamPCP hijacked TanStack's legitimate CI/CD build runner mid-workflow using OIDC trusted identity. The attackers published 84 malicious npm artifacts across 42 packages under the @tanstack namespace carrying valid Sigstore SLSA provenance certificates, impacting millions of downstream environments including Mistral AI and UiPath.\",\n  \"observed_behaviors\": [\n    {\n      \"description\": \"Software Supply Chain Compromise via hijacking of CI/CD build runner workflows and OIDC token misuse.\",\n      \"mitre_techniques\": [\n        \"T1195.002\",\n        \"T1195.001\"\n      ]\n    },\n    {\n      \"description\": \"Abuse of trusted identity tokens (OIDC) and cryptographic SLSA provenance certificates to sign malicious build artifacts.\",\n      \"mitre_techniques\": [\n        \"T1078.004\",\n        \"T1553.002\"\n      ]\n    },\n    {\n      \"description\": \"Execution of malicious dependency installation scripts harvesting environment secrets and host credentials.\",\n      \"mitre_techniques\": [\n        \"T1059.001\",\n        \"T1552.001\"\n      ]\n    }\n  ],\n  \"affected_packages\": [\n    \"@tanstack/react-router\",\n    \"@tanstack/react-query\",\n    \"@tanstack/table\"\n  ],\n  \"llm_used\": true,\n  \"model\": \"llama3\"\n}\n",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T08:06:59.220795",
+    "impact_rating": "HIGH",
+    "summary": "{\n  \"bulletin_id\": \"TB-2026-45321\",\n  \"cve_id\": \"CVE-2026-45321\",\n  \"ghsa_id\": \"GHSA-g7cv-rxg3-hmpx\",\n  \"title\": \"TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\",\n  \"threat_actors\": [\n    \"TeamPCP\"\n  ],\n  \"impact_rating\": \"CRITICAL\",\n  \"summary\": \"Threat group Team..."
+  },
+  {
+    "id": "TB-2026-45321",
+    "bulletin_id": "TB-2026-45321",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "\nBULLETIN ID: TB-2026-45321\nTITLE: TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nTHREAT ACTORS: TeamPCP\nSEVERITY: CRITICAL\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx\n\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were published by TanStack's legitimate release pipeline using its trusted OIDC identity after attacker-controlled code hijacked the runner mid-workflow (T1195.002, T1195.001). The worm produced valid SLSA provenance certificates (T1553.002) signed via Sigstore because the runner itself was hijacked. Malicious postinstall scripts harvested host environment secrets and cloud access tokens (T1552.001, T1078.004).\n",
+    "actors": "TeamPCP",
+    "created_at": "Jul 31 2026  4:12PM",
+    "impact_rating": "CRITICAL",
+    "summary": "\nBULLETIN ID: TB-2026-45321\nTITLE: TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nTHREAT ACTORS: TeamPCP\nSEVERITY: CRITICAL\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx\n\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were publis"
+  },
+  {
+    "id": "TB-2026-5404",
+    "bulletin_id": "TB-2026-5404",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T08:10:04.843527",
+    "impact_rating": "HIGH",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they ..."
+  },
+  {
+    "id": "TB-2026-5446",
+    "bulletin_id": "TB-2026-5446",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-31T08:10:46.528589",
+    "impact_rating": "HIGH",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they ..."
+  },
+  {
+    "id": "TB-2026-5890",
+    "bulletin_id": "TB-2026-5890",
+    "title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+    "content": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pipeline, using its trusted OIDC identity, after attacker-controlled code hijacked the runner mid-workflow. The malicious versions spread to Mistral AI, UiPath, and dozens of other maintainers within hours. @tanstack/react-router alone receives over 12.7 million weekly downloads (npm API).\n\nThe incident is attributed by StepSecurity to the threat group known as TeamPCP, and it is also the first documented case of a malicious npm package carrying valid SLSA provenance. SLSA provenance is a cryptographic certificate, generated by Sigstore, that is meant to verify a package was built from a trusted source. The worm was able to produce these certificates because it hijacked the legitimate build pipeline itself; Sigstore verified the build process correctly. What SLSA does not guarantee is that the code being built was safe.\n\nIf your team installed any affected @tanstack/* version on May 11, treat the install environment as compromised and rotate every secret accessible from that host. Keep reading for the full package list, technical breakdown, and step-by-step remediation.\n\nCVE: CVE-2026-45321 | GHSA: GHSA-g7cv-rxg3-hmpx | Severity: Critical",
+    "actors": "[\"TeamPCP\"]",
+    "created_at": "2026-07-31T08:18:10.274391",
+    "impact_rating": "CRITICAL",
+    "summary": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack\nOn May 11, 2026, between 19:20 and 19:26 UTC, 84 malicious npm package artifacts were published across 42 packages in the @tanstack namespace. The packages were not published by an attacker who stole credentials; they were published by TanStack's legitimate release pi..."
+  },
+  {
+    "id": "TB-2026-6404",
+    "bulletin_id": "TB-2026-6404",
+    "title": "THREAT BULLETIN [15]: TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)",
+    "content": "THREAT BULLETIN [15]: TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)\n\nTB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)\n\nImpact Rating: HIGH\nActors: [\"APT29\"]",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-23T14:20:04.477872",
+    "impact_rating": "HIGH",
+    "summary": "THREAT BULLETIN [15]: TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)\n\nTB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)\n\nImpact Rating: HIGH\nActors: [\"APT29\"]"
+  },
+  {
+    "id": "TB-2026-8412",
+    "bulletin_id": "TB-2026-8412",
+    "title": "ITDR Threat Bulletin Example",
+    "content": "ITDR Threat Bulletin Example\nTitle: ITDR Threat Bulletin \u2014 Suspicious Identity Activity Detected\nSeverity: High\nDate/Time: 2026-07-28 13:58 SGT\nScope: Corporate Entra ID, VPN, and privileged admin accounts\n\nSummary\nSecurity monitoring detected behavior consistent with a possible account compromise, including unusual sign-in geography, repeated MFA prompts, and privilege escalation attempts. This type of identity-centric activity is a core ITDR use case because ITDR focuses on detecting and responding to attacks that abuse identities.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T06:00:12.372500",
+    "impact_rating": "HIGH",
+    "summary": "ITDR Threat Bulletin Example\nTitle: ITDR Threat Bulletin \u2014 Suspicious Identity Activity Detected\nSeverity: High\nDate/Time: 2026-07-28 13:58 SGT\nScope: Corporate Entra ID, VPN, and privileged admin accounts\n\nSummary\nSecurity monitoring detected behavior consistent with a possible account compromise, ..."
+  },
+  {
+    "id": "TB-2026-9090",
+    "bulletin_id": "TB-2026-9090",
+    "title": "ADVISORY: TB-2026-9090 Password spraying on Entra ID T1110.003 and administrative credential thef...",
+    "content": "ADVISORY: TB-2026-9090 Password spraying on Entra ID T1110.003 and administrative credential theft T1078.004 observed by APT29.",
+    "actors": "[\"APT29\"]",
+    "created_at": "2026-07-28T09:54:41.536796",
+    "impact_rating": "HIGH",
+    "summary": "ADVISORY: TB-2026-9090 Password spraying on Entra ID T1110.003 and administrative credential theft T1078.004 observed by APT29."
+  },
+  {
+    "id": "TB-RSS-1784943764.023184-0",
+    "bulletin_id": "TB-RSS-1784943764.023184-0",
+    "title": "[Active Directory Security Event Log] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:42:44.023184",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1784943764.086631-1",
+    "bulletin_id": "TB-RSS-1784943764.086631-1",
+    "title": "[Active Directory Security Event Log] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:42:44.086631",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1784944066.976058-0",
+    "bulletin_id": "TB-RSS-1784944066.976058-0",
+    "title": "[AWS IAM CloudTrail Activity Logs] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:47:46.976058",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1784944067.002914-1",
+    "bulletin_id": "TB-RSS-1784944067.002914-1",
+    "title": "[AWS IAM CloudTrail Activity Logs] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:47:47.002914",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1784944081.991006-0",
+    "bulletin_id": "TB-RSS-1784944081.991006-0",
+    "title": "[Azure Subscription RBAC Activity Logs] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:48:01.991006",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1784944082.010857-1",
+    "bulletin_id": "TB-RSS-1784944082.010857-1",
+    "title": "[Azure Subscription RBAC Activity Logs] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:48:02.010857",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1784944093.47684-0",
+    "bulletin_id": "TB-RSS-1784944093.47684-0",
+    "title": "[HashiCorp Vault Access Audit Log] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:48:13.476840",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1784944093.498911-1",
+    "bulletin_id": "TB-RSS-1784944093.498911-1",
+    "title": "[HashiCorp Vault Access Audit Log] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-25T09:48:13.498911",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1785189984.503904-0",
+    "bulletin_id": "TB-RSS-1785189984.503904-0",
+    "title": "[BeyondTrust PAM Session Audit Log] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T06:06:24.503904",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1785189984.528968-1",
+    "bulletin_id": "TB-RSS-1785189984.528968-1",
+    "title": "[BeyondTrust PAM Session Audit Log] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T06:06:24.528968",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1785190133.463018-0",
+    "bulletin_id": "TB-RSS-1785190133.463018-0",
+    "title": "[Microsoft Entra ID Authentication Sign-in Logs] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T06:08:53.463018",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1785190133.512868-1",
+    "bulletin_id": "TB-RSS-1785190133.512868-1",
+    "title": "[Microsoft Entra ID Authentication Sign-in Logs] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T06:08:53.512868",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1785210025.666806-0",
+    "bulletin_id": "TB-RSS-1785210025.666806-0",
+    "title": "[Microsoft Defender for Identity Alerts Log] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T11:40:25.666806",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1785210025.702094-1",
+    "bulletin_id": "TB-RSS-1785210025.702094-1",
+    "title": "[Microsoft Defender for Identity Alerts Log] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T11:40:25.702094",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  },
+  {
+    "id": "TB-RSS-1785210045.373441-0",
+    "bulletin_id": "TB-RSS-1785210045.373441-0",
+    "title": "[Wiz.io Cloud Tenant Identity Vulnerability Log] Critical Vulnerability Disclosure targeting Identity Infrastructure",
+    "content": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T11:40:45.374157",
+    "impact_rating": "HIGH",
+    "summary": "Adversary exploiting authentication bypass vulnerabilities in domain controllers to harvest Kerberos tickets and elevate privileges."
+  },
+  {
+    "id": "TB-RSS-1785210045.407661-1",
+    "bulletin_id": "TB-RSS-1785210045.407661-1",
+    "title": "[Wiz.io Cloud Tenant Identity Vulnerability Log] Advisory: Active Password Spraying targeting Cloud Tenants",
+    "content": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons.",
+    "actors": "[\"APT29\", \"UNC2452\"]",
+    "created_at": "2026-07-28T11:40:45.407661",
+    "impact_rating": "MEDIUM",
+    "summary": "Widespread password spray campaigns detected originating from proxy networks targeting Microsoft Entra ID and AWS console logons."
+  }
+]

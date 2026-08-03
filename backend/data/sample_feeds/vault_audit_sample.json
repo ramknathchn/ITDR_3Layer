@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "vlt-ev-001",
+    "timestamp": "2026-07-27T06:00:00Z",
+    "event_type": "TOKEN_CREATE",
+    "identity": "vault-admin-service",
+    "identity_type": "service_account",
+    "source_ip": "10.147.2.11",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 10.0
+  },
+  {
+    "event_id": "vlt-ev-002",
+    "timestamp": "2026-07-27T06:05:00Z",
+    "event_type": "SECRET_READ_DENIED",
+    "identity": "analyst.jdoe@scb.com",
+    "identity_type": "employee",
+    "source_ip": "198.51.100.82",
+    "geo_location": "Moscow, Russia",
+    "success": false,
+    "risk_score": 85.0
+  }
+]

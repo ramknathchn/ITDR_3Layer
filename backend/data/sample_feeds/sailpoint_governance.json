@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "sp-gov-001",
+    "feed_id": "sailpoint",
+    "title": "Access Certification Campaign Flag: Orphan Accounts Identified",
+    "content": "A quarterly user access review certification detected 3 orphan administrative accounts in the Core Banking AD domain containing active credentials but no active employee owner assignment.",
+    "severity": "HIGH",
+    "source": "SailPoint IdentityIQ",
+    "raw_json": "{\"certificationId\": \"cert-2026-q3\", \"campaignName\": \"Privileged Domain Access Certification\", \"violatorId\": \"scb\\\\svc_temp_dev\", \"status\": \"orphaned\", \"actionRequired\": \"Revoke access immediately\", \"complianceFrameworks\": [\"SOX\", \"MAS-TRM\"]}"
+  },
+  {
+    "entry_id": "sp-gov-002",
+    "feed_id": "sailpoint",
+    "title": "Policy Violation: Toxic Combination Group Memberships",
+    "content": "SailPoint Identity Governance detected a Separation of Duties (SoD) violation for user 'scb\\\\trader_msmith' - trader possesses both Swift payment creation and approval role profiles.",
+    "severity": "CRITICAL",
+    "source": "SailPoint IdentityIQ",
+    "raw_json": "{\"policyId\": \"sod-swift-01\", \"policyName\": \"Swift Creator vs Approver segregation\", \"identity\": \"trader_msmith\", \"roles\": [\"Swift_Maker\", \"Swift_Checker\"], \"status\": \"unapproved_override\"}"
+  }
+]

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITDR 3-Layer Platform: Blast Radius Engines & Architectural Specification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #050811;
+      --bg-card: #0a0e17;
+      --bg-card-alt: #0e1524;
+      --border-color: #1e2638;
+      --border-cyan: #00e5ff;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #38bdf8;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .doc-header {
+      background: linear-gradient(135deg, rgba(14, 21, 36, 0.95), rgba(5, 8, 17, 0.98));
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid;
+    }
+
+    .badge-cyan { background: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+    .badge-blue { background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); border-color: var(--accent-blue); }
+    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border-color: var(--accent-amber); }
+    .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); border-color: var(--accent-green); }
+
+    .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .doc-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 980px;
+    }
+
+    /* Section Styling */
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    .section-title i { color: var(--accent-cyan); }
+
+    .subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      margin: 28px 0 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Comparison Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    th {
+      background: #090d16;
+      color: var(--accent-cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background: rgba(14, 21, 36, 0.6);
+    }
+
+    /* Cards Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .engine-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .engine-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .engine-card.e1 { border-top: 4px solid var(--accent-blue); }
+    .engine-card.e2 { border-top: 4px solid var(--accent-cyan); }
+    .engine-card.e3 { border-top: 4px solid var(--accent-amber); }
+
+    .engine-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .engine-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .engine-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .feature-list {
+      list-style: none;
+      font-size: 12.5px;
+    }
+
+    .feature-list li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      color: #cbd5e1;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-weight: 800;
+    }
+
+    /* Formula Box */
+    .formula-box {
+      background: #050811;
+      border: 1px solid var(--border-cyan);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent-cyan);
+      font-size: 13.5px;
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.1);
+    }
+
+    /* Code Block */
+    pre {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: #e2e8f0;
+      margin: 16px 0;
+    }
+
+    .sql-keyword { color: #f43f5e; font-weight: bold; }
+    .sql-function { color: #38bdf8; }
+    .sql-table { color: #00e5ff; font-weight: bold; }
+    .sql-comment { color: #64748b; font-style: italic; }
+    .sql-string { color: #f59e0b; }
+
+    /* Flow Diagram Box */
+    .diagram-card {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .node-pill {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      margin: 6px;
+      border: 1px solid;
+    }
+
+    .np-entry { background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+    .np-entitlement { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: var(--accent-blue); }
+    .np-role { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border-color: var(--accent-amber); }
+    .np-vault { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border-color: var(--accent-purple); }
+    .np-target { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-color: var(--accent-red); }
+
+    .arrow-icon { color: var(--text-muted); margin: 0 6px; }
+
+    .step-box {
+      background: #090d16;
+      border: 1px solid #1e2638;
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .step-header {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .step-body {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- DOCUMENT HEADER -->
+  <header class="doc-header">
+    <div class="badge-bar">
+      <span class="badge badge-cyan"><i class="fa-solid fa-shield-halved"></i> ITDR Shield Platform</span>
+      <span class="badge badge-blue"><i class="fa-solid fa-diagram-project"></i> 3 Graph Engines Architecture</span>
+      <span class="badge badge-amber"><i class="fa-solid fa-code-branch"></i> T-SQL 5-Hop Recursive CTE</span>
+      <span class="badge badge-green"><i class="fa-solid fa-database"></i> 2,078 Executable Rules</span>
+    </div>
+    <h1 class="doc-title">Blast Radius Engines: Technical Implementation & Traversal Specification</h1>
+    <p class="doc-subtitle">
+      Deep-dive architectural documentation detailing the technical implementation, backend services, T-SQL graph algorithms, dataset schemas, and full traversal walkthroughs for the three distinct Blast Radius engines in the ITDR 3-Layer Platform.
+    </p>
+  </header>
+
+  <!-- SECTION 1: ARCHITECTURAL OVERVIEW -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> 1. Architectural Overview of the Three Engines</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      The ITDR 3-Layer Platform separates blast radius calculations into three purpose-built engines to address identity hygiene, single-entity infrastructure exposure, and threat-wide cumulative blast radius.
+    </p>
+
+    <div class="grid-3">
+      <!-- ENGINE 1 -->
+      <div class="engine-card e1">
+        <div class="engine-header">
+          <span class="engine-name">1. Standard Graph Blast</span>
+          <span class="badge badge-blue">Identity Focus</span>
+        </div>
+        <p class="engine-desc">
+          User identity-centric graph engine measuring direct and inherited privilege accumulation across Active Directory groups and Entra ID cloud roles.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Backend Service:</strong> <code>backend/services/graph_service.py</code></li>
+          <li><strong>Frontend View:</strong> <code>&lt;graph-screen&gt;</code></li>
+          <li><strong>Target Scope:</strong> Single User Identity (e.g. <code>USER_AMILLER</code>)</li>
+          <li><strong>Traversal Method:</strong> In-Memory BFS & Neo4j Cypher</li>
+        </ul>
+      </div>
+
+      <!-- ENGINE 2 -->
+      <div class="engine-card e2">
+        <div class="engine-header">
+          <span class="engine-name">2. 3-Layer Rule Engine Blast</span>
+          <span class="badge badge-cyan">Single Entry Focus</span>
+        </div>
+        <p class="engine-desc">
+          System-level graph engine executing a 5-hop recursive T-SQL CTE traversal across hybrid infrastructure starting from a single compromised entry entity.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Backend Service:</strong> <code>backend/services/blast_radius_rule_engine.py</code></li>
+          <li><strong>Frontend View:</strong> <code>&lt;rule-engine-blast-screen&gt;</code></li>
+          <li><strong>Target Scope:</strong> Single Asset Entity (e.g. <code>EC2-APP-01</code>)</li>
+          <li><strong>Traversal Method:</strong> T-SQL 5-Hop Recursive CTE</li>
+        </ul>
+      </div>
+
+      <!-- ENGINE 3 -->
+      <div class="engine-card e3">
+        <div class="engine-header">
+          <span class="engine-name">3. Threat Bulletin All-Entry Blast</span>
+          <span class="badge badge-amber">Multi-Entry Focus</span>
+        </div>
+        <p class="engine-desc">
+          Multi-entry threat engine resolving all compromised entry vectors for a CTI bulletin and executing parallel 5-hop CTE traversals to compute cumulative risk.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Backend Service:</strong> <code>backend/services/blast_radius_rule_engine.py</code></li>
+          <li><strong>Frontend View:</strong> <code>&lt;threat-bulletin-blast-screen&gt;</code></li>
+          <li><strong>Target Scope:</strong> Threat Bulletin ID (e.g. <code>TB-2026-4472</code>)</li>
+          <li><strong>Traversal Method:</strong> Parallel Multi-Entry CTE & Merged Graph</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: MASTER COMPARISON MATRIX -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-table"></i> 2. Master Technical Comparison Matrix</h2>
+    <p style="color: var(--text-muted); margin-bottom: 16px;">
+      This table outlines exactly where each of the three Blast Radius engines differs across input parameters, traversal mechanics, backend implementation, data tables, and UI capabilities:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feature Dimension</th>
+          <th>1. Standard Graph Blast Radius</th>
+          <th>2. 3-Layer Engine Blast Radius</th>
+          <th>3. Threat Bulletin All-Entry Blast</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Core Objective</strong></td>
+          <td>Identity Hygiene & User Privilege Accumulation</td>
+          <td>Transitive Infrastructure Impact of 1 Compromised Asset</td>
+          <td>Cumulative Blast Radius of ALL Entry Points for 1 Threat</td>
+        </tr>
+        <tr>
+          <td><strong>Primary Input Parameter</strong></td>
+          <td><code>identity_user</code> (e.g., <code>USER_AMILLER</code>)</td>
+          <td><code>entry_entity</code> (e.g., <code>EC2-APP-01</code>)</td>
+          <td><code>bulletin_id</code> (e.g., <code>TB-2026-4472</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>Backend File Path</strong></td>
+          <td><code>backend/services/graph_service.py</code></td>
+          <td><code>backend/services/blast_radius_rule_engine.py</code></td>
+          <td><code>backend/services/blast_radius_rule_engine.py</code></td>
+        </tr>
+        <tr>
+          <td><strong>Frontend File Path</strong></td>
+          <td><code>frontend/src/components/graph-screen.js</code></td>
+          <td><code>frontend/src/components/rule-engine-blast-screen.js</code></td>
+          <td><code>frontend/src/components/threat-bulletin-blast-screen.js</code></td>
+        </tr>
+        <tr>
+          <td><strong>API Endpoint Route</strong></td>
+          <td><code>GET /api/graph/blast-radius</code></td>
+          <td><code>POST /api/blast-radius/calculate</code></td>
+          <td><code>POST /api/blast-radius/calculate-bulletin</code></td>
+        </tr>
+        <tr>
+          <td><strong>Database Source Tables</strong></td>
+          <td><code>identity_profiles</code>, <code>identity_events</code></td>
+          <td><code>security_blast_radius_edges</code></td>
+          <td><code>threat_bulletins</code>, <code>security_blast_radius_edges</code></td>
+        </tr>
+        <tr>
+          <td><strong>Graph Engine & Traversal</strong></td>
+          <td>In-Memory BFS / Neo4j Cypher Traversal</td>
+          <td>Single-Origin 5-Hop Recursive T-SQL CTE</td>
+          <td>Multi-Origin Parallel 5-Hop T-SQL CTE</td>
+        </tr>
+        <tr>
+          <td><strong>Hop Limit & Depth</strong></td>
+          <td>3-4 Hops (User &rarr; Group &rarr; Role)</td>
+          <td>Strict 5 Hops (Depth 1 to 5)</td>
+          <td>Strict 5 Hops per Entry Point (Merged Result)</td>
+        </tr>
+        <tr>
+          <td><strong>Risk Scoring Model</strong></td>
+          <td>Entitlement Weight Sum</td>
+          <td>$$\sum \left( \text{Crit} \times \text{Sens} \times \frac{1}{\text{Depth}} \right)$$</td>
+          <td>$$\sum_{k=1}^{M} \text{Individual Entry Score}_k$$</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-Entry Overlap Handling</strong></td>
+          <td>Not Applicable (Single User)</td>
+          <td>Not Applicable (Single Asset)</td>
+          <td>Merges Reachable Assets & Highlights Red Overlap Nodes</td>
+        </tr>
+        <tr>
+          <td><strong>Interactive UI Filtering</strong></td>
+          <td>User Dropdown & Safe Node Toggle</td>
+          <td>Entry Entity Dropdown & 5-Hop Tree Columns</td>
+          <td>Interactive Entry Point Card Matrix Filter</td>
+        </tr>
+        <tr>
+          <td><strong>D3FEND Countermeasures Audit</strong></td>
+          <td>Static Baseline Policy</td>
+          <td>Audited against 13 Telemetry Tables</td>
+          <td>Audited against 13 Telemetry Tables</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 3: TECHNICAL IMPLEMENTATION & TRAVERSAL DETAILS FOR EACH ENGINE -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-code"></i> 3. Technical Implementation & Full Traversal Details</h2>
+
+    <!-- 3.1 STANDARD GRAPH BLAST RADIUS -->
+    <div class="subsection-title"><i class="fa-solid fa-network-wired" style="color: var(--accent-blue);"></i> 3.1 Engine 1: Standard Graph Blast Radius Engine</div>
+    
+    <div class="step-box" style="border-left-color: var(--accent-blue);">
+      <div class="step-header">
+        <span>Architecture & Service Implementation</span>
+        <span class="badge badge-blue">backend/services/graph_service.py</span>
+      </div>
+      <div class="step-body">
+        The Standard Graph Blast Radius engine focuses on identity-centric entitlement analysis. It queries identity profiles and event logs to trace how privileges accumulate from a user account to groups, administrative roles, and subscribed cloud applications.
+      </div>
+    </div>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">API Endpoint Specification:</h4>
+    <pre><code>GET /api/graph/blast-radius?identity_user=USER_AMILLER&bulletin_id=TB-2026-LIVE
+
+Response Payload:
+{
+  "user": "USER_AMILLER",
+  "blast_radius_score": 84.5,
+  "direct_entitlements": ["Domain Users", "Cloud Contributors"],
+  "reachable_nodes": [
+    { "id": "ROLE_AZURE_CONTRIBUTOR", "type": "AZURE_ROLE", "depth": 1 },
+    { "id": "APP_FINANCE_PROD", "type": "ENTERPRISE_APP", "depth": 2 }
+  ]
+}</code></pre>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">Full Traversal Step-by-Step Walkthrough:</h4>
+    <div class="diagram-card">
+      <span class="node-pill np-entry">USER_AMILLER (User Identity)</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-entitlement">GRP_FINANCE_ADMINS (AD Group)</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-role">Azure Contributor Role</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-target">APP_FINANCE_PROD</span>
+    </div>
+
+    <ul class="feature-list" style="margin-bottom: 20px;">
+      <li><strong>Step 1 (User Root):</strong> Starts at <code>identity_user = 'USER_AMILLER'</code> in <code>identity_profiles</code>.</li>
+      <li><strong>Step 2 (Group Membership):</strong> Traverses <code>MEMBER_OF</code> edges to fetch Active Directory security groups (e.g. <code>GRP_FINANCE_ADMINS</code>).</li>
+      <li><strong>Step 3 (Role Inheritance):</strong> Traverses <code>ASSIGNED_ROLE</code> edges to fetch assigned Azure RBAC / Entra ID Directory Roles.</li>
+      <li><strong>Step 4 (Application Reach):</strong> Identifies all enterprise applications and subsystems accessible via inherited roles.</li>
+    </ul>
+
+    <!-- 3.2 3-LAYER RULE ENGINE BLAST RADIUS -->
+    <div class="subsection-title"><i class="fa-solid fa-burst" style="color: var(--accent-cyan);"></i> 3.2 Engine 2: 3-Layer Rule Engine Blast Radius Engine</div>
+
+    <div class="step-box" style="border-left-color: var(--accent-cyan);">
+      <div class="step-header">
+        <span>Architecture & Service Implementation</span>
+        <span class="badge badge-cyan">backend/services/blast_radius_rule_engine.py</span>
+      </div>
+      <div class="step-body">
+        The 3-Layer Rule Engine Blast Radius computes transitive system-level exposure across 5 topological hops. It executes a 5-hop recursive T-SQL Common Table Expression (CTE) query directly against Microsoft SQL Server table <code>security_blast_radius_edges</code>.
+      </div>
+    </div>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">Mathematical Risk Scoring Model:</h4>
+    <div class="formula-box">
+      $$\text{Blast Radius Score} = \sum_{i=1}^{N} \left( \text{Criticality}_i \times \text{Sensitivity}_i \times \frac{1}{\text{Hop Depth}_i} \right)$$
+    </div>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">API Endpoint Specification:</h4>
+    <pre><code>POST /api/blast-radius/calculate
+Header: Content-Type: application/json
+Payload: { "entry_entity": "EC2-APP-01" }
+
+Response Payload:
+{
+  "status": "success",
+  "entry_entity": "EC2-APP-01",
+  "blast_radius_score": 127.0,
+  "total_reachable_assets": 14,
+  "max_hop_depth": 5,
+  "reachable_assets": [
+    { "entity": "iam-role-app-executor", "type": "AWS_IAM_ROLE", "hop_depth": 1, "risk_contribution": 40.0 },
+    { "entity": "AssumeRole: AWSAdministratorAccess", "type": "AWS_IAM_ROLE", "hop_depth": 2, "risk_contribution": 35.0 },
+    { "entity": "secret/data/database/prod", "type": "VAULT_MOUNT", "hop_depth": 3, "risk_contribution": 25.0 },
+    { "entity": "sys-bt-pam-bank-001", "type": "PAM_BASTION", "hop_depth": 4, "risk_contribution": 17.0 },
+    { "entity": "bank-customer-pii-vault", "type": "AWS_S3_BUCKET", "hop_depth": 5, "risk_contribution": 10.0 }
+  ]
+}</code></pre>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">Full 5-Hop Traversal Step-by-Step Walkthrough:</h4>
+    <div class="diagram-card">
+      <span class="node-pill np-entry">Hop 0: EC2-APP-01</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-entitlement">Hop 1: iam-role-app-executor</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-role">Hop 2: AWSAdministratorAccess</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-vault">Hop 3: Vault secret/data/database/prod</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-vault">Hop 4: PAM Bastion sys-bt-pam-bank-001</span>
+      <i class="fa-solid fa-arrow-right arrow-icon"></i>
+      <span class="node-pill np-target">Hop 5: S3 bank-customer-pii-vault</span>
+    </div>
+
+    <ul class="feature-list" style="margin-bottom: 20px;">
+      <li><strong>Hop 0 (Compromised Entry Point):</strong> Attacker gains initial access to <code>EC2-APP-01</code> via SSRF or IMDSv1 exploitation.</li>
+      <li><strong>Hop 1 (Direct IAM Role Binding):</strong> <code>EC2-APP-01</code> holds attached instance profile <code>iam-role-app-executor</code>.</li>
+      <li><strong>Hop 2 (Cloud Role Assumption):</strong> Attacker uses stolen temporary STS credentials to call <code>sts:AssumeRole</code> for <code>AWSAdministratorAccess</code>.</li>
+      <li><strong>Hop 3 (Vault Secret Retrieval):</strong> Administrator access allows fetching root credentials from HashiCorp Vault mount <code>secret/data/database/prod</code>.</li>
+      <li><strong>Hop 4 (PAM Bastion Checkout):</strong> Stolen database credentials allow un-ticketed session checkout on BeyondTrust PAM bastion <code>sys-bt-pam-bank-001</code>.</li>
+      <li><strong>Hop 5 (Target Exfiltration):</strong> Attacker accesses unencrypted S3 bucket <code>bank-customer-pii-vault</code> and exfiltrates 1.2M customer PII records.</li>
+    </ul>
+
+    <!-- 3.3 THREAT BULLETIN ALL-ENTRY BLAST RADIUS -->
+    <div class="subsection-title"><i class="fa-solid fa-layer-group" style="color: var(--accent-amber);"></i> 3.3 Engine 3: Threat Bulletin All-Entry Blast Radius Engine</div>
+
+    <div class="step-box" style="border-left-color: var(--accent-amber);">
+      <div class="step-header">
+        <span>Architecture & Service Implementation</span>
+        <span class="badge badge-amber">backend/services/blast_radius_rule_engine.py</span>
+      </div>
+      <div class="step-body">
+        The Threat Bulletin All-Entry Blast Radius engine resolves ALL entry vectors belonging to a Threat Bulletin and executes parallel 5-hop CTE graph traversals for each entry point. It merges overlapping target assets and calculates the cumulative threat blast radius.
+      </div>
+    </div>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">Cumulative Risk Scoring Formula:</h4>
+    <div class="formula-box">
+      $$\text{Cumulative Risk Score} = \sum_{k=1}^{M} \text{Individual Entry Score}_k$$
+    </div>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">API Endpoint Specification:</h4>
+    <pre><code>POST /api/blast-radius/calculate-bulletin
+Header: Content-Type: application/json
+Payload: { "bulletin_id": "TB-2026-4472" }
+
+Response Payload:
+{
+  "status": "success",
+  "bulletin_id": "TB-2026-4472",
+  "bulletin_title": "TanStack npm packages compromised: inside the Mini Shai-Hulud supply chain attack",
+  "threat_actors": "TeamPCP",
+  "impact_rating": "CRITICAL",
+  "cumulative_score": 508.0,
+  "total_entry_points": 4,
+  "entry_points_summary": [
+    { "entry_id": "APP-REG-001", "entry_type": "SERVICE_PRINCIPAL", "individual_score": 127.0, "reachable_count": 14 },
+    { "entry_id": "secret/data/database/prod", "entry_type": "VAULT_MOUNT", "individual_score": 127.0, "reachable_count": 14 },
+    { "entry_id": "EC2-APP-01", "entry_type": "AWS_EC2", "individual_score": 127.0, "reachable_count": 14 },
+    { "entry_id": "bank-customer-pii-vault", "entry_type": "AWS_S3_BUCKET", "individual_score": 127.0, "reachable_count": 14 }
+  ],
+  "total_combined_reachable_assets": 14,
+  "max_hop_depth": 5,
+  "reachable_assets": [ ... ],
+  "defense_gaps": [ ... ]
+}</code></pre>
+
+    <h4 style="color: #ffffff; font-size: 14px; margin: 14px 0 8px 0;">Full Multi-Entry Traversal Step-by-Step Walkthrough:</h4>
+    <div class="diagram-card">
+      <div style="margin-bottom: 12px;">
+        <span class="node-pill np-entry">Entry 1: APP-REG-001 (OIDC)</span>
+        <span class="node-pill np-entry">Entry 2: Vault secret/prod</span>
+        <span class="node-pill np-entry">Entry 3: EC2-APP-01</span>
+        <span class="node-pill np-entry">Entry 4: S3 PII Vault</span>
+      </div>
+      <i class="fa-solid fa-diagram-next arrow-icon" style="font-size: 20px; color: var(--accent-cyan);"></i>
+      <div style="margin-top: 12px;">
+        <span class="node-pill np-target" style="border-width: 2px; box-shadow: 0 0 12px #ef4444;">Merged Target Assets (14 Unique Impacted Assets)</span>
+      </div>
+    </div>
+
+    <ul class="feature-list" style="margin-bottom: 20px;">
+      <li><strong>Step 1 (Threat Resolution):</strong> Queries <code>threat_bulletins</code> for <code>bulletin_id = 'TB-2026-4472'</code> and extracts threat keywords and technique IDs (e.g. <code>T1195.002</code>, <code>T1553.002</code>).</li>
+      <li><strong>Step 2 (Entry Points Resolution):</strong> Dynamically resolves all entry vectors linked to the threat: <code>APP-REG-001</code> (Service Principal), <code>secret/data/database/prod</code> (Vault Mount), <code>EC2-APP-01</code> (Cloud Host), <code>bank-customer-pii-vault</code> (S3 Bucket).</li>
+      <li><strong>Step 3 (Parallel 5-Hop CTE Execution):</strong> Executes parallel T-SQL CTE graph traversals for each entry vector against <code>security_blast_radius_edges</code>.</li>
+      <li><strong>Step 4 (Graph Merging & Overlap Detection):</strong> Merges target assets, computes individual risk scores, flags multi-entry overlap nodes in red (<code>#ef4444</code>), and calculates the cumulative threat score (<code>508.0</code>).</li>
+      <li><strong>Step 5 (D3FEND Posture Audit):</strong> Audits countermeasures against 13 telemetry tables to calculate defense gap counts.</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-note">
+    <p>ITDR Shield Platform Technical Architectural Document &bull; 3 Blast Radius Engines Specification &bull; August 2026</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

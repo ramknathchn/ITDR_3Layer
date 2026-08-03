@@ -1,0 +1,38 @@
+[
+  {
+    "identity_id": "sp-usr-active-vp",
+    "name": "Sarah Connor",
+    "email": "sarah.connor@scb.com",
+    "lifecycle_state": "Active",
+    "title": "VP Infrastructure",
+    "entitlements": "[\"AWS-Admin\", \"Azure-Owner\"]",
+    "last_certification_date": "2026-07-23T09:17:30.554542",
+    "manager_id": null,
+    "direct_reports": null,
+    "risk_score": null
+  },
+  {
+    "identity_id": "sp-usr-contractor-expired",
+    "name": "Mike Vance (Contractor)",
+    "email": "mike.vance@external.scb.com",
+    "lifecycle_state": "Terminated",
+    "title": "External Consultant",
+    "entitlements": "[\"Vault-Sudo\", \"Domain-Admin\"]",
+    "last_certification_date": "2026-05-29T09:17:30.554542",
+    "manager_id": null,
+    "direct_reports": null,
+    "risk_score": null
+  },
+  {
+    "identity_id": "sp-usr-terminated-admin",
+    "name": "John Doe (Terminated Admin)",
+    "email": "john.doe@scb.com",
+    "lifecycle_state": "Terminated",
+    "title": "Former Cloud Architect",
+    "entitlements": "[\"AWS-Admin\", \"Domain-Admin\"]",
+    "last_certification_date": "2026-04-29T09:17:30.554542",
+    "manager_id": null,
+    "direct_reports": null,
+    "risk_score": null
+  }
+]

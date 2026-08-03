@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "aws-ev-001",
+    "timestamp": "2026-07-13T06:30:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "arn:aws:iam::112233445566:user/cloud-ops-admin",
+    "identity_type": "admin",
+    "source_ip": "54.210.12.89",
+    "geo_location": "Ashburn, US",
+    "identity_provider": "AWS_IAM",
+    "success": true,
+    "risk_score": 10.0,
+    "raw_data": "{\"eventVersion\": \"1.08\", \"userIdentity\": {\"type\": \"IAMUser\", \"arn\": \"arn:aws:iam::112233445566:user/cloud-ops-admin\", \"userName\": \"cloud-ops-admin\"}, \"eventTime\": \"2026-07-13T06:30:00Z\", \"eventName\": \"ConsoleLogin\", \"sourceIPAddress\": \"54.210.12.89\"}"
+  },
+  {
+    "event_id": "aws-ev-002",
+    "timestamp": "2026-07-13T06:35:00Z",
+    "event_type": "SERVICE_ACCOUNT_USAGE",
+    "identity": "arn:aws:iam::112233445566:user/backup-agent-svc",
+    "identity_type": "service_account",
+    "source_ip": "198.51.100.12",
+    "geo_location": "Lagos, NG",
+    "identity_provider": "AWS_IAM",
+    "success": true,
+    "risk_score": 90.0,
+    "raw_data": "{\"userIdentity\": {\"type\": \"IAMUser\", \"arn\": \"arn:aws:iam::112233445566:user/backup-agent-svc\"}, \"eventTime\": \"2026-07-13T06:35:00Z\", \"eventName\": \"AttachUserPolicy\", \"sourceIPAddress\": \"198.51.100.12\"}"
+  }
+]

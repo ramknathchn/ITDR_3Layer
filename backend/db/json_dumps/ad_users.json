@@ -1,0 +1,41 @@
+[
+  {
+    "sam_account_name": "johndoe",
+    "dn": "CN=John Doe,OU=Terminated,DC=scb,DC=com",
+    "enabled": 1,
+    "password_last_set": "2024-01-01T00:00:00",
+    "password_never_expires": 1,
+    "last_logon_date": "2026-07-20T10:00:00",
+    "member_of": "[\"Domain Admins\", \"Schema Admins\"]",
+    "uac_flags": 512,
+    "admin_count": null,
+    "sid_history": null,
+    "spns": null
+  },
+  {
+    "sam_account_name": "sconnor",
+    "dn": "CN=Sarah Connor,OU=Execs,DC=scb,DC=com",
+    "enabled": 1,
+    "password_last_set": "2026-06-01T00:00:00",
+    "password_never_expires": 0,
+    "last_logon_date": "2026-07-28T08:00:00",
+    "member_of": "[\"Domain Admins\"]",
+    "uac_flags": 512,
+    "admin_count": null,
+    "sid_history": null,
+    "spns": null
+  },
+  {
+    "sam_account_name": "staleadmin",
+    "dn": "CN=Stale Admin,OU=IT,DC=scb,DC=com",
+    "enabled": 1,
+    "password_last_set": "2022-01-01T00:00:00",
+    "password_never_expires": 1,
+    "last_logon_date": "2023-01-01T00:00:00",
+    "member_of": "[\"Enterprise Admins\"]",
+    "uac_flags": 66048,
+    "admin_count": null,
+    "sid_history": null,
+    "spns": null
+  }
+]

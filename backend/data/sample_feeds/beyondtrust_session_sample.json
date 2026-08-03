@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "bt-ev-001",
+    "timestamp": "2026-07-27T06:10:00Z",
+    "event_type": "SESSION_START",
+    "identity": "bt-admin-proxy",
+    "identity_type": "admin",
+    "source_ip": "10.147.2.15",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 12.0
+  },
+  {
+    "event_id": "bt-ev-002",
+    "timestamp": "2026-07-27T06:12:00Z",
+    "event_type": "SESSION_REJECTED",
+    "identity": "contractor.user@scb.com",
+    "identity_type": "contractor",
+    "source_ip": "198.51.100.83",
+    "geo_location": "Moscow, Russia",
+    "success": false,
+    "risk_score": 90.0
+  }
+]

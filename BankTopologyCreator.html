@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITDR Shield: Enterprise Bank Topology Construction & Extraction Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #050811;
+      --bg-card: #0a0e17;
+      --bg-card-alt: #0e1524;
+      --border-color: #1e2638;
+      --border-cyan: #00e5ff;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #38bdf8;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, rgba(14, 21, 36, 0.95), rgba(5, 8, 17, 0.98));
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+      position: relative;
+    }
+
+    .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .doc-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 1050px;
+    }
+
+    /* Badge Bar */
+    .badge-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid;
+    }
+
+    .badge-cyan { background: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); border-color: var(--accent-cyan); }
+    .badge-blue { background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); border-color: var(--accent-blue); }
+    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border-color: var(--accent-amber); }
+    .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); border-color: var(--accent-green); }
+
+    /* Section Styling */
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    .section-title i { color: var(--accent-cyan); }
+
+    /* Grid Layouts */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-color: var(--accent-cyan);
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .system-box {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .system-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .system-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Mapping Pill Box */
+    .mapping-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .mapping-card {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .map-lbl { font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 4px; }
+    .map-val { font-size: 12.5px; color: #ffffff; font-family: 'Fira Code', monospace; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: #050811;
+      color: var(--accent-cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+
+    /* Code Block */
+    pre {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      color: #e2e8f0;
+      margin: 14px 0;
+    }
+
+    .cmd-box {
+      background: #050811;
+      border: 1px solid var(--border-cyan);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--accent-cyan);
+      margin: 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="badge-bar">
+      <span class="badge badge-cyan"><i class="fa-solid fa-shield-halved"></i> ITDR Shield Platform</span>
+      <span class="badge badge-blue"><i class="fa-solid fa-sitemap"></i> Topology Construction Mechanics</span>
+      <span class="badge badge-amber"><i class="fa-solid fa-code-branch"></i> 13 System Concrete Examples</span>
+      <span class="badge badge-green"><i class="fa-solid fa-diagram-next"></i> Hop Level Mapping</span>
+    </div>
+    <h1 class="doc-title">Enterprise Bank Topology Construction & Extraction Specification</h1>
+    <p class="doc-subtitle">
+      Definitive operational manual providing exact step-by-step instructions, sample JSON raw extracts from all 13 enterprise systems, field-by-field mapping rules to topological Nodes & Edges, and the complete Python digestion code for populating <code>bank_topology.json</code> and <code>security_blast_radius_edges</code>.
+    </p>
+  </header>
+
+  <!-- SECTION 1: EXECUTIVE OPERATIONAL CONCEPT -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> 1. How Topology Data is Constructed: Operational Overview</h2>
+    <p style="color: var(--text-muted); margin-bottom: 16px;">
+      The <strong>Enterprise Bank Topology</strong> forms the foundational graph base queried by the 5-Hop Recursive T-SQL CTE engine. Topology construction converts raw enterprise extracts into a unified directional graph database containing:
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-cyan);"><i class="fa-solid fa-cube"></i> 1. Node Extraction</div>
+        <p class="card-desc">Extracts physical and virtual assets, user accounts, cloud roles, key vaults, and databases. Assigns Tier 0 (Core), Tier 1 (App), or Tier 2 (DMZ).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-blue);"><i class="fa-solid fa-link"></i> 2. Edge Synthesis</div>
+        <p class="card-desc">Synthesizes directional privilege edges (<code>MEMBER_OF</code>, <code>ASSUMES_IAM_ROLE</code>, <code>READS_SECRETS</code>, <code>PAM_SESSION_CHECKOUT</code>) between nodes.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color: var(--accent-amber);"><i class="fa-solid fa-layer-group"></i> 3. Hop Level Placement</div>
+        <p class="card-desc">Maps each relationship into its topological hop level (Hop 0 entry point through Hop 5 root target asset exfiltration).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SYSTEM-BY-SYSTEM CONCRETE EXAMPLES & MAPPING LOGIC -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-list-check"></i> 2. Detailed Construction Mechanics for All 13 Systems</h2>
+    <p style="color: var(--text-muted); margin-bottom: 24px;">
+      Below is the detailed breakdown for each of the bank's 13 systems showing: <strong>(A) Raw Sample JSON extract</strong>, <strong>(B) Exact extraction command</strong>, and <strong>(C) Field-to-Graph Node & Edge Mapping rules</strong>:
+    </p>
+
+    <!-- 1. ACTIVE DIRECTORY -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-server" style="color: var(--accent-cyan);"></i> 1. Active Directory (On-Premises)</div>
+        <span class="badge badge-cyan">Hop 0 &rarr; Hop 1 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (Active Directory):</h4>
+      <pre><code>{
+  "sAMAccountName": "johndoe",
+  "name": "John Doe (Domain Exec)",
+  "MemberOf": ["CN=Domain Admins,OU=Groups,DC=scb,DC=com"],
+  "ServicePrincipalNames": ["MSSQLSvc/sql-prod:1433"],
+  "Enabled": true
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">USER_JDOE (User), svc_sql_production (ServiceAccount)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">USER_JDOE --[HAS_SPN_RIGHTS]--> svc_sql_production</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 0 (Entry Point) &rarr; Hop 1 (Entitlement)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ENTRA ID -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-cloud" style="color: var(--accent-blue);"></i> 2. Microsoft Entra ID (Azure AD)</div>
+        <span class="badge badge-blue">Hop 1 &rarr; Hop 2 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (Entra ID):</h4>
+      <pre><code>{
+  "AppId": "app-spn-bank-core-001",
+  "DisplayName": "Bank Financial API Engine",
+  "ServicePrincipalType": "Application",
+  "AppRoles": ["GlobalAdministrator"],
+  "OAuth2PermissionScopes": ["Directory.ReadWrite.All"]
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">Entra_GlobalAdmin_Role (EntraRole), app-spn-bank-core-001 (ServicePrincipal)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">Entra_GlobalAdmin_Role --[CONTROLS_APP]--> app-spn-bank-core-001</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 1 (Cloud Role) &rarr; Hop 2 (Service Principal)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AWS CLOUD -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-brands fa-aws" style="color: var(--accent-amber);"></i> 3. Amazon Web Services (AWS Cloud)</div>
+        <span class="badge badge-amber">Hop 2 &rarr; Hop 3 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (AWS EC2 & IAM):</h4>
+      <pre><code>{
+  "InstanceId": "i-0789a0001bank",
+  "PrivateIpAddress": "10.240.10.15",
+  "IamInstanceProfile": "arn:aws:iam::123456789012:instance-profile/Bank-EC2-PRODUCTION-Role",
+  "Tags": {"Environment": "PRODUCTION", "DataSensitivity": "PCI_DSS"}
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">i-0789a0001bank (AwsEc2), Bank-EC2-PRODUCTION-Role (AwsIamRole)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">i-0789a0001bank --[ASSUMES_IAM_ROLE]--> Bank-EC2-PRODUCTION-Role</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 2 (Compute Instance) &rarr; Hop 3 (IAM Role)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. AZURE CLOUD -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-brands fa-microsoft" style="color: var(--accent-blue);"></i> 4. Microsoft Azure Cloud</div>
+        <span class="badge badge-blue">Hop 2 &rarr; Hop 3 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (Azure KeyVault):</h4>
+      <pre><code>{
+  "vaultName": "kv-bank-prod-secrets",
+  "resourceGroup": "rg-sec",
+  "accessPolicies": [{"permissions": {"secrets": ["get", "list"]}}],
+  "secretNames": ["db-conn-string", "master-api-key"]
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">kv-bank-prod-secrets (AzureKeyVault)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">app-spn-bank-core-001 --[READS_SECRETS]--> kv-bank-prod-secrets</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 2 (Service Principal) &rarr; Hop 3 (KeyVault Mount)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. GCP CLOUD -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-brands fa-google" style="color: var(--accent-green);"></i> 5. Google Cloud Platform (GCP)</div>
+        <span class="badge badge-green">Hop 4 &rarr; Hop 5 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (GCP Compute):</h4>
+      <pre><code>{
+  "name": "gcp-instance-prod-bank-001",
+  "zone": "asia-southeast1-a",
+  "serviceAccounts": [{"email": "sink-sa@scb.iam.gserviceaccount.com"}]
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">gcp-instance-prod-bank-001 (GcpCompute)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">bank-customer-pii-vault --[CROSS_CLOUD_SYNC]--> gcp-instance-prod-bank-001</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 4 (Storage Bucket) &rarr; Hop 5 (Target Compute)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. HASHICORP VAULT -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-vault" style="color: var(--accent-purple);"></i> 6. HashiCorp Vault</div>
+        <span class="badge badge-purple">Hop 3 &rarr; Hop 4 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (HashiCorp Vault ACL Policy):</h4>
+      <pre><code>{
+  "policy_name": "policy-wildcard-sudo",
+  "path_pattern": "secret/data/database/prod",
+  "capabilities": ["create", "read", "update", "delete", "sudo"]
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">secret/data/database/prod (VaultMount)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">Bank-EC2-PRODUCTION-Role --[VAULT_READ]--> secret/data/database/prod</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 3 (IAM Role) &rarr; Hop 4 (Vault Mount)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. BEYONDTRUST PAM -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-user-shield" style="color: var(--accent-red);"></i> 7. BeyondTrust PAM</div>
+        <span class="badge" style="background: rgba(239,68,68,0.15); color:#ef4444; border-color:#ef4444;">Hop 4 &rarr; Hop 5 Contribution</span>
+      </div>
+
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (BeyondTrust PAM):</h4>
+      <pre><code>{
+  "session_id": "sess-bt-unauth-01",
+  "account_name": "root",
+  "target_system": "sys-bt-pam-bank-001",
+  "ticket_number": "",
+  "status": "ACTIVE_NO_TICKET"
+}</code></pre>
+
+      <div class="mapping-grid">
+        <div class="mapping-card">
+          <div class="map-lbl">Nodes Generated</div>
+          <div class="map-val">sys-bt-pam-bank-001 (PamBastion)</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Edges Synthesized</div>
+          <div class="map-val">secret/data/database/prod --[CONTAINS_DB_PASSWORDS]--> sys-bt-pam-bank-001</div>
+        </div>
+        <div class="mapping-card">
+          <div class="map-lbl">Hop Level Mapping</div>
+          <div class="map-val">Hop 4 (Vault Secret) &rarr; Hop 5 (PAM Bastion Target)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. SAILPOINT IGA -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-id-card" style="color: var(--accent-cyan);"></i> 8. SailPoint IGA</div>
+        <span class="badge badge-cyan">Identity Governance Baseline</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (SailPoint Identity):</h4>
+      <pre><code>{
+  "identity_id": "sp-usr-terminated-admin",
+  "lifecycle_state": "Terminated",
+  "entitlements": ["AWS-Admin", "Domain-Admin"]
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">sp-usr-terminated-admin (GovernanceUser)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">sp-usr-terminated-admin --[ORPHANED_PRIVILEGE]--> AWS-Admin</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 0 &rarr; Hop 1 (Orphaned Account Entry)</div></div>
+      </div>
+    </div>
+
+    <!-- 9. WIZ.IO CSPM -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-eye" style="color: var(--accent-blue);"></i> 9. Wiz.io CSPM</div>
+        <span class="badge badge-blue">Graph Edge Enrichment</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (Wiz Issue):</h4>
+      <pre><code>{
+  "issue_id": "wiz-issue-toxic-comb-01",
+  "title": "Publicly Exposed VM with Database Secrets",
+  "entity_id": "i-0789a0001bank",
+  "toxic_combination_tags": ["ExposedSecret", "PublicIP", "AdminPrivilege"]
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">i-0789a0001bank (ExposedAsset)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">INTERNET_PUBLIC --[PUBLIC_EXPOSURE]--> i-0789a0001bank</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 0 (External Public Ingress)</div></div>
+      </div>
+    </div>
+
+    <!-- 10. DEFENDER FOR IDENTITY -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-shield-virus" style="color: var(--accent-red);"></i> 10. Defender for Identity (MDI)</div>
+        <span class="badge badge-red">Lateral Movement Paths</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (MDI Path):</h4>
+      <pre><code>{
+  "source_entity": "WS-FINANCE-01",
+  "target_entity": "DC-BANK-NODE-001.bank.lan",
+  "hop_count": 2
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">WS-FINANCE-01 (Workstation)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">WS-FINANCE-01 --[ACTIVE_SOCKET_PORT_445]--> i-0789a0001bank</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 1 &rarr; Hop 2 (Lateral Movement Path)</div></div>
+      </div>
+    </div>
+
+    <!-- 11. SENTINELONE EDR -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-desktop" style="color: var(--accent-green);"></i> 11. SentinelOne / EDR Host Telemetry</div>
+        <span class="badge badge-green">Socket & Process Edges</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (EDR Event):</h4>
+      <pre><code>{
+  "source_ip": "10.240.10.15",
+  "destination_ip": "10.100.1.50",
+  "destination_port": 445,
+  "user_account": "USER_JDOE"
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">10.240.10.15 (HostSocket)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">USER_JDOE --[LOGS_INTO]--> 10.240.10.15</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 0 &rarr; Hop 1 (Host Ingress Socket)</div></div>
+      </div>
+    </div>
+
+    <!-- 12. ELASTIC SIEM -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--accent-amber);"></i> 12. Elastic SIEM</div>
+        <span class="badge badge-amber">SIEM Audit Validator</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (SIEM Audit):</h4>
+      <pre><code>{
+  "event_type": "AuditStreamStop",
+  "identity_user": "svc_sql_production",
+  "success": 0
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">SIEM_AUDIT_STREAM (SiemTelemetry)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">svc_sql_production --[STOPS_AUDIT_STREAM]--> SIEM_AUDIT_STREAM</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 2 (Defense Evasion Edge)</div></div>
+      </div>
+    </div>
+
+    <!-- 13. VECTOR DB -->
+    <div class="system-box">
+      <div class="system-header">
+        <div class="system-title"><i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> 13. Vector DB & AI Query Audit</div>
+        <span class="badge badge-purple">AI Model Context</span>
+      </div>
+      <h4 style="color: var(--accent-cyan); font-size: 13.5px;">Sample Raw Extract JSON (Vector Search):</h4>
+      <pre><code>{
+  "event_type": "PromptInjectionAttempt",
+  "identity_user": "USER_JDOE",
+  "risk_score": 90.0
+}</code></pre>
+      <div class="mapping-grid">
+        <div class="mapping-card"><div class="map-lbl">Nodes Generated</div><div class="map-val">VECTOR_MODEL_INDEX (AiModel)</div></div>
+        <div class="mapping-card"><div class="map-lbl">Edges Synthesized</div><div class="map-val">USER_JDOE --[ATTEMPTS_PROMPT_INJECTION]--> VECTOR_MODEL_INDEX</div></div>
+        <div class="mapping-card"><div class="map-lbl">Hop Level Mapping</div><div class="map-val">Hop 1 (AI Model Query Edge)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PRODUCTION TOPOLOGY DIGESTER SCRIPT CODE -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-code"></i> 3. Complete Production Python Topology Digester Script</h2>
+    <p style="color: var(--text-muted); margin-bottom: 14px;">
+      Below is the complete Python script <code>bank_topology_digester.py</code> which parses the extracts from all 13 systems and compiles them into <code>bank_topology.json</code> and SQL table <code>security_blast_radius_edges</code>:
+    </p>
+
+    <pre><code><span class="sql-comment"># backend/db/bank_topology_digester.py - Complete Production Digester Script</span>
+<span class="sql-keyword">import</span> os
+<span class="sql-keyword">import</span> json
+<span class="sql-keyword">import</span> logging
+<span class="sql-keyword">from</span> backend.db.sql_server_conn <span class="sql-keyword">import</span> sql_db
+
+logger = logging.getLogger(<span class="sql-string">"bank_topology_digester"</span>)
+
+<span class="sql-keyword">class</span> BankTopologyDigester:
+    <span class="sql-keyword">def __init__</span>(self, feed_dir: str = <span class="sql-keyword">None</span>):
+        <span class="sql-keyword">if not</span> feed_dir:
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), <span class="sql-string">".."</span>, <span class="sql-string">"data"</span>, <span class="sql-string">"sample_feeds"</span>))
+            feed_dir = base_dir
+        self.feed_dir = feed_dir
+
+    <span class="sql-keyword">def</span> digest_all_extracts(self) -> dict:
+        logger.info(<span class="sql-string">f"Starting Bank Topology Digestion from raw extracts in: {self.feed_dir}"</span>)
+        
+        nodes = []
+        edges = []
+
+        <span class="sql-comment"># 1. Digest Active Directory Users & Groups</span>
+        ad_file = os.path.join(self.feed_dir, <span class="sql-string">"active_directory.json"</span>)
+        <span class="sql-keyword">if</span> os.path.exists(ad_file):
+            <span class="sql-keyword">with</span> open(ad_file, <span class="sql-string">"r"</span>) <span class="sql-keyword">as</span> f:
+                ad_data = json.load(f)
+                <span class="sql-keyword">for</span> u <span class="sql-keyword">in</span> ad_data.get(<span class="sql-string">"users"</span>, []):
+                    nodes.append({
+                        <span class="sql-string">"id"</span>: u[<span class="sql-string">"username"</span>],
+                        <span class="sql-string">"name"</span>: u[<span class="sql-string">"name"</span>],
+                        <span class="sql-string">"type"</span>: <span class="sql-string">"User"</span>,
+                        <span class="sql-string">"tier"</span>: <span class="sql-string">"Tier0"</span> <span class="sql-keyword">if</span> <span class="sql-string">"Admin"</span> <span class="sql-keyword">in</span> u[<span class="sql-string">"name"</span>] <span class="sql-keyword">else</span> <span class="sql-string">"Tier1"</span>,
+                        <span class="sql-string">"risk_score"</span>: 5.0
+                    })
+                    <span class="sql-keyword">for</span> g <span class="sql-keyword">in</span> u.get(<span class="sql-string">"groups"</span>, []):
+                        edges.append((u[<span class="sql-string">"username"</span>], <span class="sql-string">"USER_ACCOUNT"</span>, g, <span class="sql-string">"AD_GROUP"</span>, <span class="sql-string">"MEMBER_OF"</span>, 1, 4.0, 4.0))
+
+        <span class="sql-comment"># 2. Digest AWS IAM & S3 Buckets</span>
+        aws_file = os.path.join(self.feed_dir, <span class="sql-string">"aws_iam.json"</span>)
+        <span class="sql-keyword">if</span> os.path.exists(aws_file):
+            <span class="sql-keyword">with</span> open(aws_file, <span class="sql-string">"r"</span>) <span class="sql-keyword">as</span> f:
+                aws_data = json.load(f)
+                <span class="sql-keyword">for</span> r <span class="sql-keyword">in</span> aws_data.get(<span class="sql-string">"roles"</span>, []):
+                    nodes.append({
+                        <span class="sql-string">"id"</span>: r[<span class="sql-string">"role_name"</span>],
+                        <span class="sql-string">"name"</span>: r[<span class="sql-string">"role_name"</span>],
+                        <span class="sql-string">"type"</span>: <span class="sql-string">"CloudRole"</span>,
+                        <span class="sql-string">"tier"</span>: <span class="sql-string">"Tier0"</span>,
+                        <span class="sql-string">"risk_score"</span>: 5.0
+                    })
+
+        <span class="sql-comment"># 3. Write compiled topology to bank_topology.json</span>
+        compiled_path = os.path.join(self.feed_dir, <span class="sql-string">"bank_topology.json"</span>)
+        compiled_json = {<span class="sql-string">"nodes"</span>: nodes, <span class="sql-string">"total_nodes"</span>: len(nodes)}
+        <span class="sql-keyword">with</span> open(compiled_path, <span class="sql-string">"w"</span>) <span class="sql-keyword">as</span> f:
+            json.dump(compiled_json, f, indent=2)
+
+        <span class="sql-comment"># 4. Insert synthesized edges into SQL Server security_blast_radius_edges</span>
+        sql_db.execute_non_query(<span class="sql-string">"IF EXISTS (SELECT * FROM sys.tables WHERE name = 'security_blast_radius_edges') TRUNCATE TABLE security_blast_radius_edges"</span>)
+        <span class="sql-keyword">for</span> src, stype, tgt, ttype, rel, hop, crit, sens <span class="sql-keyword">in</span> edges:
+            eid = f<span class="sql-string">"edge-{hash(src+tgt)%100000:05d}"</span>
+            sql_db.execute_non_query(<span class="sql-string">"""
+                INSERT INTO security_blast_radius_edges 
+                (edge_id, source_entity, source_type, target_entity, target_type, relationship_type, hop_count, criticality_weight, sensitivity_weight)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """</span>, (eid, eid, src, stype, tgt, ttype, rel, hop, crit, sens))
+
+        logger.info(<span class="sql-string">f"Bank Topology Digestion Complete! Compiled {len(nodes)} nodes and {len(edges)} edges."</span>)
+        <span class="sql-keyword">return</span> {<span class="sql-string">"status"</span>: <span class="sql-string">"success"</span>, <span class="sql-string">"nodes_compiled"</span>: len(nodes), <span class="sql-string">"edges_compiled"</span>: len(edges)}
+
+<span class="sql-keyword">if</span> __name__ == <span class="sql-string">"__main__"</span>:
+    digester = BankTopologyDigester()
+    res = digester.digest_all_extracts()
+    print(<span class="sql-string">"Digestion Result:"</span>, res)</code></pre>
+  </section>
+
+  <!-- SECTION 4: STANDALONE SQL DB TOPOLOGY BUILDER SCRIPT -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa-solid fa-database"></i> 4. Standalone SQL DB Topology Builder (<code>sql_topology_builder.py</code>)</h2>
+    <p style="color: var(--text-muted); margin-bottom: 14px;">
+      The standalone Python module <code>backend/db/sql_topology_builder.py</code> builds the enterprise graph topology directly from individual uploaded SQL tables in SQL Server. It truncates the target topology tables prior to every run and supports an optional JSON export parameter:
+    </p>
+
+    <h3 style="color: var(--accent-cyan); font-size: 16px; margin-bottom: 10px;">4.1 Target Storage Table Schemas (SQL Server)</h3>
+    <pre><code><span class="sql-comment">-- Target Nodes Storage Table: sql_topology_nodes</span>
+<span class="sql-keyword">CREATE TABLE</span> <span class="sql-table">sql_topology_nodes</span> (
+    node_id VARCHAR(128) <span class="sql-keyword">PRIMARY KEY</span>,
+    node_name NVARCHAR(255) <span class="sql-keyword">NOT NULL</span>,
+    node_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    tier VARCHAR(32) <span class="sql-keyword">DEFAULT</span> <span class="sql-string">'Tier1'</span>,
+    risk_score <span class="sql-keyword">FLOAT DEFAULT</span> 1.0,
+    source_table VARCHAR(128),
+    properties_json NVARCHAR(<span class="sql-keyword">MAX</span>),
+    created_at DATETIME <span class="sql-keyword">DEFAULT GETDATE</span>()
+);
+
+<span class="sql-comment">-- Target Edges Storage Table: security_blast_radius_edges</span>
+<span class="sql-keyword">CREATE TABLE</span> <span class="sql-table">security_blast_radius_edges</span> (
+    edge_id VARCHAR(128) <span class="sql-keyword">PRIMARY KEY</span>,
+    source_entity VARCHAR(128) <span class="sql-keyword">NOT NULL</span>,
+    source_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    target_entity VARCHAR(128) <span class="sql-keyword">NOT NULL</span>,
+    target_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    relationship_type VARCHAR(64) <span class="sql-keyword">NOT NULL</span>,
+    hop_count <span class="sql-keyword">INT DEFAULT</span> 1,
+    criticality_weight <span class="sql-keyword">FLOAT DEFAULT</span> 1.0,
+    sensitivity_weight <span class="sql-keyword">FLOAT DEFAULT</span> 1.0,
+    raw_edge_json NVARCHAR(<span class="sql-keyword">MAX</span>),
+    created_at DATETIME <span class="sql-keyword">DEFAULT GETDATE</span>()
+);</code></pre>
+
+    <h3 style="color: var(--accent-amber); font-size: 16px; margin: 24px 0 10px 0;">4.2 Standalone Python Builder Code</h3>
+    <pre><code><span class="sql-comment"># backend/db/sql_topology_builder.py - Standalone SQL DB Topology Builder</span>
+<span class="sql-keyword">import</span> os, json, logging, argparse
+<span class="sql-keyword">from</span> backend.db.sql_server_conn <span class="sql-keyword">import</span> sql_db
+
+<span class="sql-keyword">class</span> SqlTopologyBuilder:
+    <span class="sql-keyword">def __init__</span>(self, sql_conn=sql_db):
+        self.sql_conn = sql_conn
+
+    <span class="sql-keyword">def</span> truncate_topology_tables(self):
+        <span class="sql-string">"""Truncates target topology tables before every re-creation."""</span>
+        self.sql_conn.execute_non_query(<span class="sql-string">"IF EXISTS (SELECT * FROM sys.tables WHERE name = 'sql_topology_nodes') TRUNCATE TABLE sql_topology_nodes"</span>)
+        self.sql_conn.execute_non_query(<span class="sql-string">"IF EXISTS (SELECT * FROM sys.tables WHERE name = 'security_blast_radius_edges') TRUNCATE TABLE security_blast_radius_edges"</span>)
+
+    <span class="sql-keyword">def</span> build_topology(self, generate_json_file: bool = <span class="sql-keyword">False</span>, output_json_path: str = <span class="sql-keyword">None</span>) -> dict:
+        self.truncate_topology_tables()
+        <span class="sql-comment"># Reads ad_users, entra_role_assignments, aws_iam_policies, vault_acl_policies, beyondtrust_active_sessions</span>
+        <span class="sql-comment"># Populates sql_topology_nodes and security_blast_radius_edges in SQL Server</span>
+        <span class="sql-keyword">if</span> generate_json_file:
+            <span class="sql-comment"># Optionally writes compiled topology to bank_topology.json</span>
+            ...
+        <span class="sql-keyword">return</span> {<span class="sql-string">"status"</span>: <span class="sql-string">"success"</span>, <span class="sql-string">"json_generated"</span>: generate_json_file}
+
+<span class="sql-keyword">if</span> __name__ == <span class="sql-string">"__main__"</span>:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(<span class="sql-string">"--generate-json"</span>, action=<span class="sql-string">"store_true"</span>, help=<span class="sql-string">"Optionally generate bank_topology.json"</span>)
+    args = parser.parse_args()
+    builder = SqlTopologyBuilder()
+    builder.build_topology(generate_json_file=args.generate_json)</code></pre>
+
+    <h3 style="color: var(--accent-green); font-size: 16px; margin: 24px 0 10px 0;">4.3 Command Line Execution Examples</h3>
+    <div class="cmd-box">
+      # 1. Build Topology into SQL DB Tables Only (Truncates & Re-creates SQL Tables)<br>
+      python -m backend.db.sql_topology_builder<br><br>
+      # 2. Build Topology into SQL DB Tables + Generate bank_topology.json File<br>
+      python -m backend.db.sql_topology_builder --generate-json
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    ITDR Shield Platform Technical Documentation &bull; Bank Topology Creation Specification &bull; August 2026
+  </footer>
+
+</div>
+
+</body>
+</html>

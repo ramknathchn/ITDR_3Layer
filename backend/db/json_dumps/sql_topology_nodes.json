@@ -1,0 +1,312 @@
+[
+  {
+    "node_id": "admin-john",
+    "node_name": "admin-john",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{\"policy_id\": \"pol-bank-admin-001\", \"policy_name\": \"AdministratorAccessPolicy\", \"entity_type\": \"User\", \"entity_name\": \"admin-john\", \"is_attached\": 1, \"document_json\": \"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Effect\\\": \\\"Allow\\\", \\\"Action\\\": \\\"*\\\", \\\"Resource\\\": \\\"*\\\"}]}\", \"created_at\": \"2026-07-28T09:17:30.554542\", \"trust_relationships\": null, \"cross_account_arns\": null, \"transitive_permissions\": null}",
+    "created_at": "2026-08-02T17:03:41.020000"
+  },
+  {
+    "node_id": "AdministratorAccessPolicy",
+    "node_name": "AdministratorAccessPolicy",
+    "node_type": "AwsIamPolicy",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.023000"
+  },
+  {
+    "node_id": "bastion-aws-01",
+    "node_name": "bastion-aws-01",
+    "node_type": "PamBastion",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{\"session_id\": \"sess-bt-exceeded-03\", \"user_id\": \"usr-mike-44\", \"account_name\": \"aws_admin\", \"target_system\": \"bastion-aws-01\", \"protocol\": \"SSH\", \"start_time\": \"2026-07-28T04:17:30.554542\", \"max_duration_mins\": 120, \"ticket_number\": \"CHG-10293\", \"status\": \"EXCEEDED_TIMEOUT\", \"target_ip\": null, \"checked_out_password_id\": null, \"downstream_hosts\": null}",
+    "created_at": "2026-08-02T17:03:41.057000"
+  },
+  {
+    "node_id": "dc-01.scb.com",
+    "node_name": "dc-01.scb.com",
+    "node_type": "PamBastion",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{\"session_id\": \"sess-bt-auth-02\", \"user_id\": \"usr-sarah-12\", \"account_name\": \"domain_admin\", \"target_system\": \"dc-01.scb.com\", \"protocol\": \"RDP\", \"start_time\": \"2026-07-28T08:47:30.554542\", \"max_duration_mins\": 120, \"ticket_number\": \"INC-982341\", \"status\": \"ACTIVE_APPROVED\", \"target_ip\": null, \"checked_out_password_id\": null, \"downstream_hosts\": null}",
+    "created_at": "2026-08-02T17:03:41.050000"
+  },
+  {
+    "node_id": "DevOps-Group",
+    "node_name": "DevOps-Group",
+    "node_type": "Group",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{\"policy_id\": \"pol-bank-ec2-003\", \"policy_name\": \"EC2ReadOnlyProd\", \"entity_type\": \"Group\", \"entity_name\": \"DevOps-Group\", \"is_attached\": 1, \"document_json\": \"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Effect\\\": \\\"Allow\\\", \\\"Action\\\": \\\"ec2:Describe*\\\", \\\"Resource\\\": \\\"*\\\"}]}\", \"created_at\": \"2026-07-28T09:17:30.554542\", \"trust_relationships\": null, \"cross_account_arns\": null, \"transitive_permissions\": null}",
+    "created_at": "2026-08-02T17:03:41.027000"
+  },
+  {
+    "node_id": "Domain Admins",
+    "node_name": "Domain Admins",
+    "node_type": "ADGroup",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "ad_users",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41"
+  },
+  {
+    "node_id": "EC2ReadOnlyProd",
+    "node_name": "EC2ReadOnlyProd",
+    "node_type": "AwsIamPolicy",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.027000"
+  },
+  {
+    "node_id": "Enterprise Admins",
+    "node_name": "Enterprise Admins",
+    "node_type": "ADGroup",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "ad_users",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.010000"
+  },
+  {
+    "node_id": "external.vendor@gmail.com",
+    "node_name": "external.vendor@gmail.com",
+    "node_type": "Guest",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "entra_role_assignments",
+    "properties_json": "{\"assignment_id\": \"assign-entra-globaladmin-guest\", \"role_definition_id\": \"role-def-ga\", \"role_name\": \"Global Administrator\", \"principal_id\": \"princ-guest-99\", \"principal_name\": \"external.vendor@gmail.com\", \"principal_type\": \"Guest\", \"is_guest\": 1, \"is_pim_eligible\": null, \"transitive_member_ids\": null}",
+    "created_at": "2026-08-02T17:03:41.010000"
+  },
+  {
+    "node_id": "Global Administrator",
+    "node_name": "Global Administrator",
+    "node_type": "EntraRole",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "entra_role_assignments",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.013000"
+  },
+  {
+    "node_id": "HardenedSecurityAudit",
+    "node_name": "HardenedSecurityAudit",
+    "node_type": "AwsIamPolicy",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.043000"
+  },
+  {
+    "node_id": "helpdesk.tier1@scb.com",
+    "node_name": "helpdesk.tier1@scb.com",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "entra_role_assignments",
+    "properties_json": "{\"assignment_id\": \"assign-entra-useradmin\", \"role_definition_id\": \"role-def-ua\", \"role_name\": \"User Administrator\", \"principal_id\": \"princ-helpdesk\", \"principal_name\": \"helpdesk.tier1@scb.com\", \"principal_type\": \"User\", \"is_guest\": 0, \"is_pim_eligible\": null, \"transitive_member_ids\": null}",
+    "created_at": "2026-08-02T17:03:41.020000"
+  },
+  {
+    "node_id": "IAMPassRoleWildcard",
+    "node_name": "IAMPassRoleWildcard",
+    "node_type": "AwsIamPolicy",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.033000"
+  },
+  {
+    "node_id": "johndoe",
+    "node_name": "johndoe",
+    "node_type": "User",
+    "tier": "Tier1",
+    "risk_score": 2.0,
+    "source_table": "ad_users",
+    "properties_json": "{\"sam_account_name\": \"johndoe\", \"dn\": \"CN=John Doe,OU=Terminated,DC=scb,DC=com\", \"enabled\": 1, \"password_last_set\": \"2024-01-01T00:00:00\", \"password_never_expires\": 1, \"last_logon_date\": \"2026-07-20T10:00:00\", \"member_of\": \"[\\\"Domain Admins\\\", \\\"Schema Admins\\\"]\", \"uac_flags\": 512, \"admin_count\": null, \"sid_history\": null, \"spns\": null}",
+    "created_at": "2026-08-02T17:03:40.993000"
+  },
+  {
+    "node_id": "policy-read-only",
+    "node_name": "policy-read-only",
+    "node_type": "VaultPolicy",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "vault_acl_policies",
+    "properties_json": "{\"policy_name\": \"policy-read-only\", \"path_pattern\": \"secret/data/finance/*\", \"capabilities\": \"[\\\"read\\\", \\\"list\\\"]\", \"allowed_parameters\": \"[]\", \"raw_hcl\": \"path \\\"secret/data/finance/*\\\" { capabilities = [\\\"read\\\", \\\"list\\\"] }\", \"cross_mount_paths\": null}",
+    "created_at": "2026-08-02T17:03:41.043000"
+  },
+  {
+    "node_id": "policy-wildcard-sudo",
+    "node_name": "policy-wildcard-sudo",
+    "node_type": "VaultPolicy",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "vault_acl_policies",
+    "properties_json": "{\"policy_name\": \"policy-wildcard-sudo\", \"path_pattern\": \"secret/data/*\", \"capabilities\": \"[\\\"create\\\", \\\"read\\\", \\\"update\\\", \\\"delete\\\", \\\"sudo\\\"]\", \"allowed_parameters\": \"[\\\"*\\\"]\", \"raw_hcl\": \"path \\\"secret/data/*\\\" { capabilities = [\\\"create\\\", \\\"read\\\", \\\"update\\\", \\\"delete\\\", \\\"sudo\\\"] }\", \"cross_mount_paths\": null}",
+    "created_at": "2026-08-02T17:03:41.047000"
+  },
+  {
+    "node_id": "Role-S3-Export",
+    "node_name": "Role-S3-Export",
+    "node_type": "Role",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{\"policy_id\": \"pol-bank-s3-002\", \"policy_name\": \"S3FullAccessCustomerData\", \"entity_type\": \"Role\", \"entity_name\": \"Role-S3-Export\", \"is_attached\": 1, \"document_json\": \"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Effect\\\": \\\"Allow\\\", \\\"Action\\\": \\\"s3:*\\\", \\\"Resource\\\": \\\"*\\\"}]}\", \"created_at\": \"2026-07-28T09:17:30.554542\", \"trust_relationships\": null, \"cross_account_arns\": null, \"transitive_permissions\": null}",
+    "created_at": "2026-08-02T17:03:41.037000"
+  },
+  {
+    "node_id": "S3FullAccessCustomerData",
+    "node_name": "S3FullAccessCustomerData",
+    "node_type": "AwsIamPolicy",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.037000"
+  },
+  {
+    "node_id": "sarah.connor@scb.com",
+    "node_name": "sarah.connor@scb.com",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "entra_role_assignments",
+    "properties_json": "{\"assignment_id\": \"assign-entra-globaladmin-user\", \"role_definition_id\": \"role-def-ga\", \"role_name\": \"Global Administrator\", \"principal_id\": \"princ-sconnor\", \"principal_name\": \"sarah.connor@scb.com\", \"principal_type\": \"User\", \"is_guest\": 0, \"is_pim_eligible\": null, \"transitive_member_ids\": null}",
+    "created_at": "2026-08-02T17:03:41.017000"
+  },
+  {
+    "node_id": "Schema Admins",
+    "node_name": "Schema Admins",
+    "node_type": "ADGroup",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "ad_users",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41"
+  },
+  {
+    "node_id": "sconnor",
+    "node_name": "sconnor",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "ad_users",
+    "properties_json": "{\"sam_account_name\": \"sconnor\", \"dn\": \"CN=Sarah Connor,OU=Execs,DC=scb,DC=com\", \"enabled\": 1, \"password_last_set\": \"2026-06-01T00:00:00\", \"password_never_expires\": 0, \"last_logon_date\": \"2026-07-28T08:00:00\", \"member_of\": \"[\\\"Domain Admins\\\"]\", \"uac_flags\": 512, \"admin_count\": null, \"sid_history\": null, \"spns\": null}",
+    "created_at": "2026-08-02T17:03:41"
+  },
+  {
+    "node_id": "SecOps-Role",
+    "node_name": "SecOps-Role",
+    "node_type": "Role",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{\"policy_id\": \"pol-bank-sec-005\", \"policy_name\": \"HardenedSecurityAudit\", \"entity_type\": \"Role\", \"entity_name\": \"SecOps-Role\", \"is_attached\": 1, \"document_json\": \"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Effect\\\": \\\"Allow\\\", \\\"Action\\\": \\\"cloudwatch:Get*\\\", \\\"Resource\\\": \\\"arn:aws:cloudwatch:us-east-1:123456789012:log-group:*\\\"}]}\", \"created_at\": \"2026-07-28T09:17:30.554542\", \"trust_relationships\": null, \"cross_account_arns\": null, \"transitive_permissions\": null}",
+    "created_at": "2026-08-02T17:03:41.040000"
+  },
+  {
+    "node_id": "secret/data/*",
+    "node_name": "secret/data/*",
+    "node_type": "VaultMount",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "vault_acl_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.050000"
+  },
+  {
+    "node_id": "secret/data/finance/*",
+    "node_name": "secret/data/finance/*",
+    "node_type": "VaultMount",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "vault_acl_policies",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.047000"
+  },
+  {
+    "node_id": "service-deployer",
+    "node_name": "service-deployer",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 4.0,
+    "source_table": "aws_iam_policies",
+    "properties_json": "{\"policy_id\": \"pol-bank-iam-004\", \"policy_name\": \"IAMPassRoleWildcard\", \"entity_type\": \"User\", \"entity_name\": \"service-deployer\", \"is_attached\": 1, \"document_json\": \"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\": [{\\\"Effect\\\": \\\"Allow\\\", \\\"Action\\\": \\\"iam:PassRole\\\", \\\"Resource\\\": \\\"*\\\"}]}\", \"created_at\": \"2026-07-28T09:17:30.554542\", \"trust_relationships\": null, \"cross_account_arns\": null, \"transitive_permissions\": null}",
+    "created_at": "2026-08-02T17:03:41.030000"
+  },
+  {
+    "node_id": "srv-db-prod-01.scb.com",
+    "node_name": "srv-db-prod-01.scb.com",
+    "node_type": "PamBastion",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{\"session_id\": \"sess-bt-unauth-01\", \"user_id\": \"usr-john-99\", \"account_name\": \"root\", \"target_system\": \"srv-db-prod-01.scb.com\", \"protocol\": \"SSH\", \"start_time\": \"2026-07-28T05:17:30.554542\", \"max_duration_mins\": 60, \"ticket_number\": \"\", \"status\": \"ACTIVE_NO_TICKET\", \"target_ip\": null, \"checked_out_password_id\": null, \"downstream_hosts\": null}",
+    "created_at": "2026-08-02T17:03:41.057000"
+  },
+  {
+    "node_id": "staleadmin",
+    "node_name": "staleadmin",
+    "node_type": "User",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "ad_users",
+    "properties_json": "{\"sam_account_name\": \"staleadmin\", \"dn\": \"CN=Stale Admin,OU=IT,DC=scb,DC=com\", \"enabled\": 1, \"password_last_set\": \"2022-01-01T00:00:00\", \"password_never_expires\": 1, \"last_logon_date\": \"2023-01-01T00:00:00\", \"member_of\": \"[\\\"Enterprise Admins\\\"]\", \"uac_flags\": 66048, \"admin_count\": null, \"sid_history\": null, \"spns\": null}",
+    "created_at": "2026-08-02T17:03:41.003000"
+  },
+  {
+    "node_id": "User Administrator",
+    "node_name": "User Administrator",
+    "node_type": "EntraRole",
+    "tier": "Tier0",
+    "risk_score": 5.0,
+    "source_table": "entra_role_assignments",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.020000"
+  },
+  {
+    "node_id": "usr-john-99",
+    "node_name": "usr-john-99",
+    "node_type": "PamUser",
+    "tier": "Tier1",
+    "risk_score": 3.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.057000"
+  },
+  {
+    "node_id": "usr-mike-44",
+    "node_name": "usr-mike-44",
+    "node_type": "PamUser",
+    "tier": "Tier1",
+    "risk_score": 3.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.053000"
+  },
+  {
+    "node_id": "usr-sarah-12",
+    "node_name": "usr-sarah-12",
+    "node_type": "PamUser",
+    "tier": "Tier1",
+    "risk_score": 3.0,
+    "source_table": "beyondtrust_active_sessions",
+    "properties_json": "{}",
+    "created_at": "2026-08-02T17:03:41.050000"
+  }
+]

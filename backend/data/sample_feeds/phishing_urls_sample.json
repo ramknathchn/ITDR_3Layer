@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "phish-url-001",
+    "feed_id": "urlhaus",
+    "title": "Microsoft 365 Fake Portal Alert",
+    "content": "A newly registered credential harvesting URL has been detected impersonating Standard Chartered's Microsoft 365 login portal to steal active session tokens and passwords.",
+    "severity": "HIGH",
+    "source": "Abuse.ch URLhaus Feed",
+    "raw_json": "{\"url\": \"http://scb-security-portal-verify.cloud/login\", \"url_status\": \"online\", \"threat\": \"credential_harvesting\", \"reporter\": \"scb_threat_intel\", \"date_added\": \"2026-07-13T04:15:00Z\"}"
+  },
+  {
+    "entry_id": "phish-url-002",
+    "feed_id": "urlhaus",
+    "title": "Okta Single Sign-On Phishing Portal Alert",
+    "content": "A phishing site targeting Okta users has been reported, featuring a duplicated SCB branding layout to trick internal admins.",
+    "severity": "HIGH",
+    "source": "PhishTank Active List",
+    "raw_json": "{\"phish_id\": \"8459201\", \"url\": \"https://scb-okta-auth.net/sso/login\", \"verified\": \"yes\", \"verification_time\": \"2026-07-13T05:30:00Z\"}"
+  }
+]

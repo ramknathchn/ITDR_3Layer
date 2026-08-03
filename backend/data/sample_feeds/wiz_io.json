@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "wiz-iss-001",
+    "feed_id": "wiz",
+    "title": "Wiz.io: Plaintext AWS Credentials Leak on Public S3 Bucket",
+    "content": "Wiz Security Scanner detected a publicly readable AWS S3 bucket ('scb-dev-backups-temp') containing a credentials file with raw plaintext access keys for 'backup-agent-svc'.",
+    "severity": "CRITICAL",
+    "source": "Wiz.io Cloud Guard",
+    "raw_json": "{\"issueId\": \"wiz-s3-leak-084\", \"resourceId\": \"arn:aws:s3:::scb-dev-backups-temp\", \"findingType\": \"Secret Leaked in Public Storage\", \"leakedAsset\": \"backup-agent-svc API keys\", \"impactRating\": \"Critical\"}"
+  },
+  {
+    "entry_id": "wiz-iss-002",
+    "feed_id": "wiz",
+    "title": "Wiz.io: Excessive IAM Permissions / Privilege Escalation Risk",
+    "content": "IAM Policy Configuration Gap: Service Principal 'entra-azure-sync-principal' contains wild-card write permissions ('iam:*', 's3:*') that allow self-elevation to AdministratorAccess.",
+    "severity": "HIGH",
+    "source": "Wiz.io Cloud Guard",
+    "raw_json": "{\"issueId\": \"wiz-iam-policy-842\", \"resourceId\": \"arn:aws:iam::112233445566:policy/SyncAgentInlinePolicy\", \"findingType\": \"Over-privileged Role Profile\", \"escalationVector\": \"Policy contains wildcard credentials write actions\"}"
+  }
+]

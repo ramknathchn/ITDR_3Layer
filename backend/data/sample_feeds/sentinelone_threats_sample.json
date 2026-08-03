@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "s1-ev-001",
+    "timestamp": "2026-07-27T06:45:00Z",
+    "event_type": "THREAT_BLOCKED",
+    "identity": "s1-agent-linux",
+    "identity_type": "service_account",
+    "source_ip": "10.147.2.80",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 15.0
+  },
+  {
+    "event_id": "s1-ev-002",
+    "timestamp": "2026-07-27T06:47:00Z",
+    "event_type": "REVERSE_SHELL_DETECTED",
+    "identity": "system.user@scb.com",
+    "identity_type": "employee",
+    "source_ip": "198.51.100.90",
+    "geo_location": "Volgograd, RU",
+    "success": false,
+    "risk_score": 95.0
+  }
+]

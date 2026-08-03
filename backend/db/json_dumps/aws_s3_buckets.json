@@ -1,0 +1,47 @@
+[
+  {
+    "bucket_name": "bank-analytics-lake",
+    "vpc_restriction_id": "vpc-0e5f6g7h_pci_core",
+    "is_public": false,
+    "bucket_policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\"}]}",
+    "kms_key_id": "arn:aws:kms:us-east-1:123456789012:key/bank-s3-key",
+    "tags": "{\"Compliance\": \"PCI-DSS\"}",
+    "data_classification": "RESTRICTED"
+  },
+  {
+    "bucket_name": "bank-backups-archive",
+    "vpc_restriction_id": "vpc-0e5f6g7h_pci_core",
+    "is_public": false,
+    "bucket_policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\"}]}",
+    "kms_key_id": "arn:aws:kms:us-east-1:123456789012:key/bank-s3-key",
+    "tags": "{\"Compliance\": \"PCI-DSS\"}",
+    "data_classification": "RESTRICTED"
+  },
+  {
+    "bucket_name": "bank-cardholder-pci-data",
+    "vpc_restriction_id": "vpc-0e5f6g7h_pci_core",
+    "is_public": false,
+    "bucket_policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\"}]}",
+    "kms_key_id": "arn:aws:kms:us-east-1:123456789012:key/bank-s3-key",
+    "tags": "{\"Compliance\": \"PCI-DSS\"}",
+    "data_classification": "RESTRICTED"
+  },
+  {
+    "bucket_name": "bank-customer-pii-vault",
+    "vpc_restriction_id": "vpc-0e5f6g7h_pci_core",
+    "is_public": false,
+    "bucket_policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\"}]}",
+    "kms_key_id": "arn:aws:kms:us-east-1:123456789012:key/bank-s3-key",
+    "tags": "{\"Compliance\": \"PCI-DSS\"}",
+    "data_classification": "RESTRICTED"
+  },
+  {
+    "bucket_name": "bank-swift-transaction-logs",
+    "vpc_restriction_id": "vpc-0e5f6g7h_pci_core",
+    "is_public": false,
+    "bucket_policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\"}]}",
+    "kms_key_id": "arn:aws:kms:us-east-1:123456789012:key/bank-s3-key",
+    "tags": "{\"Compliance\": \"PCI-DSS\"}",
+    "data_classification": "RESTRICTED"
+  }
+]

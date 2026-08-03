@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "mdi-ev-001",
+    "timestamp": "2026-07-27T06:30:00Z",
+    "event_type": "DCSYNC_ALERT",
+    "identity": "scb\\svc-sync",
+    "identity_type": "service_account",
+    "source_ip": "10.147.2.55",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 95.0
+  },
+  {
+    "event_id": "mdi-ev-002",
+    "timestamp": "2026-07-27T06:32:00Z",
+    "event_type": "PASS_THE_HASH_ALERT",
+    "identity": "scb\\admin-helper",
+    "identity_type": "admin",
+    "source_ip": "198.51.100.87",
+    "geo_location": "Moscow, Russia",
+    "success": false,
+    "risk_score": 90.0
+  }
+]

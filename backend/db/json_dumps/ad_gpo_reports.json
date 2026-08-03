@@ -1,0 +1,32 @@
+[
+  {
+    "gpo_id": "{GPO-DEFAULT-DOMAIN-POLICY}",
+    "gpo_name": "Default Domain Policy",
+    "gpo_status": "Enforced",
+    "lsa_protection_enabled": 0,
+    "ps_transcription_enabled": 0,
+    "ps_scriptblock_logging": 0,
+    "lm_hash_level": 1,
+    "raw_xml": "<GPO><LSA>Disabled</LSA></GPO>"
+  },
+  {
+    "gpo_id": "{GPO-SECURITY-BASELINE-HARDENED}",
+    "gpo_name": "SCB Enterprise Security Baseline GPO",
+    "gpo_status": "Enforced",
+    "lsa_protection_enabled": 1,
+    "ps_transcription_enabled": 1,
+    "ps_scriptblock_logging": 1,
+    "lm_hash_level": 5,
+    "raw_xml": "<GPO><LSA>Enabled</LSA><PS>Audit</PS></GPO>"
+  },
+  {
+    "gpo_id": "{GPO-WEAK-POWERSHELL}",
+    "gpo_name": "Workstation PowerShell Legacy Policy",
+    "gpo_status": "Enforced",
+    "lsa_protection_enabled": 0,
+    "ps_transcription_enabled": 0,
+    "ps_scriptblock_logging": 0,
+    "lm_hash_level": 0,
+    "raw_xml": "<GPO><ScriptBlockLogging>Disabled</ScriptBlockLogging></GPO>"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "zs-ev-001",
+    "timestamp": "2026-07-13T06:45:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "s_jones@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "Zscaler",
+    "success": true,
+    "risk_score": 5.0,
+    "raw_data": "{\"timestamp\": \"2026-07-13T06:45:00Z\", \"eventName\": \"ZPA-USER-AUTH\", \"user\": \"s_jones@scb.com\", \"idpName\": \"ForgeRock-SSO\", \"clientIp\": \"165.225.116.14\", \"authStatus\": \"AUTHENTICATED\", \"postureStatus\": \"COMPLIANT\"}"
+  },
+  {
+    "event_id": "zs-ev-002",
+    "timestamp": "2026-07-13T06:47:00Z",
+    "event_type": "LOGIN_FAILURE",
+    "identity": "s_jones@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "Zscaler",
+    "success": false,
+    "risk_score": 50.0,
+    "raw_data": "{\"timestamp\": \"2026-07-13T06:47:00Z\", \"eventName\": \"ZPA-APP-ACCESS-BLOCKED\", \"user\": \"s_jones@scb.com\", \"appServer\": \"SG-CORE-BANKING-PRD\", \"clientIp\": \"165.225.116.14\", \"reason\": \"Posture check failed: Certificate expired\"}"
+  }
+]

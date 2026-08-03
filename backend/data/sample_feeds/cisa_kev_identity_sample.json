@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "cisa-kev-001",
+    "feed_id": "cisa_kev",
+    "title": "Active Directory Certificate Services (AD CS) Privilege Escalation Vulnerability (CVE-2022-26923)",
+    "content": "Microsoft Active Directory Certificate Services (AD CS) allows an authenticated user to escalate privileges to Domain Administrator via certificate request anomalies (ESC1/ESC8). Standard Chartered Bank AD domains should disable vulnerable templates.",
+    "severity": "CRITICAL",
+    "source": "CISA Known Exploited Vulnerabilities Catalog",
+    "raw_json": "{\"cveID\": \"CVE-2022-26923\", \"vendorProject\": \"Microsoft\", \"product\": \"Active Directory Certificate Services\", \"vulnerabilityName\": \"Active Directory Privilege Escalation Vulnerability\", \"dateAdded\": \"2022-05-10\", \"requiredAction\": \"Apply updates per Microsoft guidance.\", \"dueDate\": \"2022-05-31\"}"
+  },
+  {
+    "entry_id": "cisa-kev-002",
+    "feed_id": "cisa_kev",
+    "title": "Okta Auth Bypass Vulnerability (CVE-2024-10924)",
+    "content": "Okta AD Agent contains an authentication bypass vulnerability via input validation errors. Attackers can bypass MFA and sign-on policies.",
+    "severity": "CRITICAL",
+    "source": "CISA Known Exploited Vulnerabilities Catalog",
+    "raw_json": "{\"cveID\": \"CVE-2024-10924\", \"vendorProject\": \"Okta\", \"product\": \"AD Agent / AD Agent Manager\", \"vulnerabilityName\": \"Okta Agent Authentication Bypass Vulnerability\", \"dateAdded\": \"2024-11-01\", \"dueDate\": \"2024-11-22\"}"
+  }
+]

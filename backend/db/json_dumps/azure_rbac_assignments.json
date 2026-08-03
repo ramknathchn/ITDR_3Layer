@@ -1,0 +1,46 @@
+[
+  {
+    "assignment_id": "assign-sub-contrib-02",
+    "principal_id": "princ-user-12",
+    "principal_type": "User",
+    "principal_name": "sarah.connor@scb.com",
+    "role_name": "Contributor",
+    "scope": "/subscriptions/sub-bank-prod-01",
+    "subscription_id": "sub-bank-prod-01",
+    "is_guest": 0,
+    "group_memberships": null
+  },
+  {
+    "assignment_id": "assign-sub-guest-04",
+    "principal_id": "princ-guest-101",
+    "principal_type": "Guest",
+    "principal_name": "hacker.temp@external.com",
+    "role_name": "Contributor",
+    "scope": "/subscriptions/sub-bank-prod-02",
+    "subscription_id": "sub-bank-prod-02",
+    "is_guest": 1,
+    "group_memberships": null
+  },
+  {
+    "assignment_id": "assign-sub-owner-01",
+    "principal_id": "princ-guest-99",
+    "principal_type": "User",
+    "principal_name": "external.vendor@gmail.com",
+    "role_name": "Owner",
+    "scope": "/subscriptions/sub-bank-prod-01",
+    "subscription_id": "sub-bank-prod-01",
+    "is_guest": 1,
+    "group_memberships": null
+  },
+  {
+    "assignment_id": "assign-sub-reader-03",
+    "principal_id": "princ-user-44",
+    "principal_type": "User",
+    "principal_name": "alex.smith@scb.com",
+    "role_name": "Reader",
+    "scope": "/subscriptions/sub-bank-dev-02",
+    "subscription_id": "sub-bank-dev-02",
+    "is_guest": 0,
+    "group_memberships": null
+  }
+]

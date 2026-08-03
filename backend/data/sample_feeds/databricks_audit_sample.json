@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "db-ev-001",
+    "timestamp": "2026-07-27T06:15:00Z",
+    "event_type": "WORKSPACE_LOGIN",
+    "identity": "data.scientist@scb.com",
+    "identity_type": "employee",
+    "source_ip": "10.147.2.22",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 15.0
+  },
+  {
+    "event_id": "db-ev-002",
+    "timestamp": "2026-07-27T06:18:00Z",
+    "event_type": "METASTORE_READ_DENIED",
+    "identity": "unauthorized.analyst@scb.com",
+    "identity_type": "employee",
+    "source_ip": "198.51.100.84",
+    "geo_location": "Beijing, CN",
+    "success": false,
+    "risk_score": 75.0
+  }
+]

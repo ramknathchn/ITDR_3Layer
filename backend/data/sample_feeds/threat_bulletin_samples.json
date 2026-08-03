@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1,
+    "title": "TB-2026-01: APT41 Cloud Infrastructure Hijack (T1078.004)",
+    "text": "BULLETIN ID: TB-2026-0001\nTITLE: APT41 Cloud Infrastructure Hijack via Stolen API Keys\nTHREAT ACTORS: APT41\nIMPACT: CRITICAL\n\nAdversary activity was detected targeting internal bank staging networks. The threat actors obtained stolen cloud API keys (Valid Accounts: Cloud Accounts, T1078.004) belonging to developer roles. Using these credentials, they authenticated from several anomalous foreign IP addresses. They then executed script commands using PowerShell (T1059.001) to query local network subnets, eventually exfiltrating database snapshots by transferring data to an external cloud account (T1537)."
+  },
+  {
+    "id": 2,
+    "title": "TB-2026-02: Scattered Spider Password Spraying Campaign (T1110.003)",
+    "text": "BULLETIN ID: TB-2026-0002\nTITLE: Scattered Spider Distributed Password Spraying Campaign\nTHREAT ACTORS: Scattered Spider\nIMPACT: HIGH\n\nSecurity logs identified a coordinated brute force campaign targeting enterprise Active Directory login portals. The threat actor, Scattered Spider, conducted password spraying attacks (T1110.003) against active directory accounts from a botnet of residential proxy IPs. Following successful logon, the adversary installed scheduled tasks (T1053) on administrative workstations to maintain persistent access."
+  },
+  {
+    "id": 3,
+    "title": "TB-2026-03: Lazarus Group Spearphishing Campaign (T1566.001)",
+    "text": "BULLETIN ID: TB-2026-0003\nTITLE: Lazarus Group Spearphishing Campaign Targeting Financial Systems\nTHREAT ACTORS: Lazarus\nIMPACT: CRITICAL\n\nThreat indicators point to a spearphishing email campaign (T1566.001) targeting employees in SWIFT operations. Emails contained malicious PDF attachments that exploit system vulnerabilities. Once opened, the payload executes PowerShell commands (T1059.001) to download secondary payloads, leading to automated exfiltration of ledger data (T1020) over outbound HTTPS channels."
+  },
+  {
+    "id": 4,
+    "title": "TB-2026-04: Cozy Bear Cloud Storage Data Theft (T1537)",
+    "text": "BULLETIN ID: TB-2026-0004\nTITLE: Cozy Bear Exfiltration of Cloud Storage Backups\nTHREAT ACTORS: Cozy Bear\nIMPACT: HIGH\n\nAdversaries associated with Cozy Bear compromised an AWS developer account using stolen session tokens. The attacker navigated to sensitive S3 database buckets and transferred data to an external attacker-controlled cloud account (T1537) for extraction. PowerShell commands (T1059.001) were utilized to modify security groups to allow exfiltration traffic."
+  },
+  {
+    "id": 5,
+    "title": "TB-2026-05: LockBit Ransomware Infiltration (T1053)",
+    "text": "BULLETIN ID: TB-2026-0005\nTITLE: LockBit Persistent Access via Task Scheduler\nTHREAT ACTORS: LockBit\nIMPACT: HIGH\n\nLockBit ransomware operators compromised user workstations via a phishing link (T1566.002). The malicious code installed a persistent scheduled task (T1053) configured to trigger a system script every midnight. The script executed PowerShell commands (T1059.001) to locate backup servers, exfiltrate data (T1020), and delete shadow copies."
+  },
+  {
+    "id": 6,
+    "title": "TB-2026-06: APT29 MFA Push Fatigue Attack (T1556.006)",
+    "text": "BULLETIN ID: TB-2026-0006\nTITLE: APT29 MFA Push Fatigue and Session Bypass\nTHREAT ACTORS: Cozy Bear\nIMPACT: CRITICAL\n\nAdversary APT29 executed brute-force password spraying (T1110) against executive identities. Upon guessing credentials, they triggered massive MFA push fatigue notifications until the user approved, effectively executing an MFA bypass (T1556.006). Once authenticated, they logged into the Cloud Management Console (T1078.004) and modified administrative trust boundaries."
+  },
+  {
+    "id": 7,
+    "title": "TB-2026-07: Local Admin Credential Guessing (T1110.001)",
+    "text": "BULLETIN ID: TB-2026-0007\nTITLE: Local Admin Credential Guessing on Workstations\nTHREAT ACTORS: Unknown Adversary\nIMPACT: MEDIUM\n\nSecurity telemetry detected active brute-force password guessing (T1110) against local admin accounts (T1078.003) on internal subnets. The automated scanner targeted default local admin passwords. Upon gaining local admin privileges, the software installed a scheduled task (T1053) to download an outbound reverse shell command script."
+  },
+  {
+    "id": 8,
+    "title": "TB-2026-08: Service Account Compromise (T1078.001)",
+    "text": "BULLETIN ID: TB-2026-0008\nTITLE: Service Account Logins from Anomalous Geographies\nTHREAT ACTORS: Lazarus\nIMPACT: HIGH\n\nAn administrative service account (Valid Accounts: Service Accounts, T1078.001) was detected logging in outside of core scheduling windows and from non-standard subnets. The threat actor, Lazarus Group, utilized these hardcoded credentials to gain initial access to API endpoints, executing PowerShell queries (T1059.001) to harvest connection strings."
+  },
+  {
+    "id": 9,
+    "title": "TB-2026-09: Phishing Link credential harvest (T1566.002)",
+    "text": "BULLETIN ID: TB-2026-0009\nTITLE: Spearphishing Link Credential Harvesting Campaign\nTHREAT ACTORS: Scattered Spider\nIMPACT: HIGH\n\nEmployees received SMS messages containing phishing links (T1566.002) mimicking Okta authentication portals. Several users entered active directory credentials. The attacker used these valid credentials (T1078.004) to access corporate cloud platforms and initiate data exfiltration (T1020)."
+  },
+  {
+    "id": 10,
+    "title": "TB-2026-10: Automated Data Exfiltration via HTTPS (T1020)",
+    "text": "BULLETIN ID: TB-2026-0010\nTITLE: Automated Egress Exfiltration of Transaction Logs\nTHREAT ACTORS: LockBit\nIMPACT: HIGH\n\nAn attacker compromised an internal application server via stolen service credentials (T1078.001). They deployed an automated script that compiled database transaction files and exfiltrated them (Automated Exfiltration, T1020) to an external FTP server. Command line logging showed extensive PowerShell (T1059.001) script usage."
+  },
+  {
+    "id": 11,
+    "title": "TB-2026-11: APT41 Persistence via Scheduled Jobs (T1053)",
+    "text": "BULLETIN ID: TB-2026-0011\nTITLE: APT41 Persistence on Windows Domain Controllers\nTHREAT ACTORS: APT41\nIMPACT: CRITICAL\n\nFollowing domain credential theft (T1078), threat actor APT41 gained administrative rights. They deployed scheduled tasks (T1053) configured to run daily script updates. These scheduled jobs run PowerShell (T1059.001) commands to open backdoors, ensuring long-term persistence in the bank environment."
+  },
+  {
+    "id": 12,
+    "title": "TB-2026-12: Cloud Database Exfiltration (T1537)",
+    "text": "BULLETIN ID: TB-2026-0012\nTITLE: Exfiltration of Core Banking Database Snapshots\nTHREAT ACTORS: Cozy Bear\nIMPACT: CRITICAL\n\nCozy Bear operators hijacked high-privileged cloud service credentials (T1078.004). They initiated database backup commands and transferred the resulting database snapshots directly to an external attacker-controlled S3 cloud account (T1537) to bypass egress log monitors."
+  },
+  {
+    "id": 13,
+    "title": "TB-2026-13: Lazarus Group Password Spraying (T1110.003)",
+    "text": "BULLETIN ID: TB-2026-0013\nTITLE: Lazarus Group Distributed Password Spraying on VPNs\nTHREAT ACTORS: Lazarus\nIMPACT: HIGH\n\nLazarus Group actors launched a distributed password spray attack (T1110.003) targeting remote access VPN portals. They targeted multiple user accounts with weak password profiles. After gaining access, they ran automated commands (T1059.001) to scan active directory forests."
+  },
+  {
+    "id": 14,
+    "title": "TB-2026-14: Scattered Spider MFA Fatigue Attack (T1556.006)",
+    "text": "BULLETIN ID: TB-2026-0014\nTITLE: Scattered Spider MFA Push Bombing and Session Hijack\nTHREAT ACTORS: Scattered Spider\nIMPACT: CRITICAL\n\nScattered Spider targeted a network administrator account. After obtaining the password via phishing (T1566), they initiated multiple MFA approval prompts (Push Fatigue, T1556.006) until the admin approved. The attacker gained full active directory management capabilities (T1078.004)."
+  },
+  {
+    "id": 15,
+    "title": "TB-2026-15: Cozy Bear PowerShell Scripting Abuse (T1059.001)",
+    "text": "BULLETIN ID: TB-2026-0015\nTITLE: Cozy Bear Command execution via PowerShell\nTHREAT ACTORS: Cozy Bear\nIMPACT: HIGH\n\nAdversary Cozy Bear utilized heavily obfuscated PowerShell scripts (T1059.001) executed via remote registry modifications. The scripts bypassed system AMSI scanners, harvested local credentials (T1110), and established communication channels with external command servers."
+  },
+  {
+    "id": 16,
+    "title": "TB-2026-16: Phishing Attachment Spearhead (T1566.001)",
+    "text": "BULLETIN ID: TB-2026-0016\nTITLE: Phishing Email Campaign with Malicious Zip Attachments\nTHREAT ACTORS: LockBit\nIMPACT: MEDIUM\n\nLockBit actors sent targeted spearphishing emails containing malicious ZIP files (T1566.001) to billing employees. Once downloaded, the embedded script executed PowerShell commands (T1059.001) to catalog network endpoints and install a startup scheduled task (T1053)."
+  },
+  {
+    "id": 17,
+    "title": "TB-2026-17: Cloud Infrastructure API Hijacking (T1078.004)",
+    "text": "BULLETIN ID: TB-2026-0017\nTITLE: AWS IAM Administrative Key Theft\nTHREAT ACTORS: Unknown Adversary\nIMPACT: CRITICAL\n\nAn unknown attacker harvested AWS access keys from a public code repository. The keys mapped to a high-privileged Cloud Role (T1078.004). The attacker configured automated scripts to decrypt local secure databases and exfiltrate customer records to external storage (T1537)."
+  },
+  {
+    "id": 18,
+    "title": "TB-2026-18: Lazarus automated bank exfiltration (T1020)",
+    "text": "BULLETIN ID: TB-2026-0018\nTITLE: Lazarus Group Automated Sweep and Exfiltration\nTHREAT ACTORS: Lazarus\nIMPACT: CRITICAL\n\nLazarus Group malware compromised payment gateways. The malware parsed logs for transaction strings, compiled files, and executed automated exfiltration (T1020) over secure TLS ports. Attack operators used scheduled tasks (T1053) to execute maintenance shell commands."
+  },
+  {
+    "id": 19,
+    "title": "TB-2026-19: Local Service Account Spray (T1110.003)",
+    "text": "BULLETIN ID: TB-2026-0019\nTITLE: Active Directory Service Account Spraying\nTHREAT ACTORS: APT41\nIMPACT: HIGH\n\nAPT41 actors executed local password spraying (T1110.003) against Active Directory service accounts (T1078.001). They targeted accounts configured with non-expiring passwords, gaining domain authentication. They then executed PowerShell scripts (T1059.001) to scan network borders."
+  },
+  {
+    "id": 20,
+    "title": "TB-2026-20: Cozy Bear Persistence via Cron (T1053)",
+    "text": "BULLETIN ID: TB-2026-0020\nTITLE: Cozy Bear Linux Persistence via Scheduled Cron Jobs\nTHREAT ACTORS: Cozy Bear\nIMPACT: HIGH\n\nCozy Bear compromised Linux web proxy instances. They installed malicious cron jobs (T1053) configured to download and run weekly command scripts. The scripts utilized valid service accounts (T1078.001) to query local databases and compile automated exfiltration packages (T1020)."
+  },
+  {
+    "id": 21,
+    "title": "TB-2026-21: Scattered Spider Phishing Link (T1566.002)",
+    "text": "BULLETIN ID: TB-2026-0021\nTITLE: Scattered Spider Phishing Links targeting Cloud Helpdesks\nTHREAT ACTORS: Scattered Spider\nIMPACT: HIGH\n\nScattered Spider sent phishing SMS messages (T1566.002) containing redirects to helpdesk staff. They captured cloud administration credentials, allowing them to assume privileged roles (T1078.004) and transfer sensitive S3 databases to external storage accounts (T1537)."
+  },
+  {
+    "id": 22,
+    "title": "TB-2026-22: APT41 PowerShell Backdoor Execution (T1059.001)",
+    "text": "BULLETIN ID: TB-2026-0022\nTITLE: APT41 Obfuscated PowerShell Command execution\nTHREAT ACTORS: APT41\nIMPACT: HIGH\n\nAPT41 leveraged encoded PowerShell commands (T1059.001) to bypass host event logs. The commands executed fileless malware payloads in memory, which queried domain configurations using administrative service credentials (T1078.001) and established backup backdoors."
+  },
+  {
+    "id": 23,
+    "title": "TB-2026-23: Lazarus Group Automated Database Theft (T1020)",
+    "text": "BULLETIN ID: TB-2026-0023\nTITLE: Lazarus Automated Banking Data Exfiltration\nTHREAT ACTORS: Lazarus\nIMPACT: CRITICAL\n\nLazarus Group automated databases exfiltration tools (T1020) inside core server subnets. The malware compiled daily customer transactions and uploaded the data encrypted to cloud storage. They utilized administrative credentials (T1078) and persistent scheduled tasks (T1053) to maintain the sync script."
+  },
+  {
+    "id": 24,
+    "title": "TB-2026-24: Scattered Spider MFA Bombing Attack (T1556.006)",
+    "text": "BULLETIN ID: TB-2026-0024\nTITLE: Scattered Spider MFA Push Fatigue on Cloud Admins\nTHREAT ACTORS: Scattered Spider\nIMPACT: CRITICAL\n\nScattered Spider targeted a database administrator. After harvesting credentials via a malicious phishing link (T1566.002), they initiated multiple MFA approval prompts (Push Fatigue, T1556.006) until the administrator approved. The attacker gained cloud database snapshot access (T1537)."
+  },
+  {
+    "id": 25,
+    "title": "TB-2026-25: Cozy Bear AWS Credentials Theft (T1078.004)",
+    "text": "BULLETIN ID: TB-2026-0025\nTITLE: Cozy Bear Cloud Credential Abuse on S3 Buckets\nTHREAT ACTORS: Cozy Bear\nIMPACT: CRITICAL\n\nCozy Bear compromised cloud deployment pipelines to extract AWS access keys. These valid cloud credentials (T1078.004) allowed direct read/write permissions on core S3 backup storage. The attackers exfiltrated data by transferring buckets to an external account (T1537) under their control."
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "gn-scan-001",
+    "feed_id": "greynoise",
+    "title": "LDAP Port Scanning Activity (Port 389)",
+    "content": "An active IP address has been observed scanning the internet for exposed LDAP service endpoints, potentially looking for anonymous binds or misconfigured directory servers.",
+    "severity": "LOW",
+    "source": "GreyNoise Community API",
+    "raw_json": "{\"ip\": \"185.220.101.5\", \"seen\": true, \"classification\": \"malicious\", \"tags\": [\"LDAP scanner\", \"Tor exit node\", \"active scanner\"], \"port\": 389, \"protocol\": \"tcp\"}"
+  },
+  {
+    "entry_id": "gn-scan-002",
+    "feed_id": "greynoise",
+    "title": "Kerberos Port Probing Activity (Port 88)",
+    "content": "An active IP address has been observed probing for Kerberos authentication service endpoints (Port 88), which can lead to Kerberoasting or AS-REP roasting.",
+    "severity": "MEDIUM",
+    "source": "GreyNoise Community API",
+    "raw_json": "{\"ip\": \"45.83.67.12\", \"seen\": true, \"classification\": \"malicious\", \"tags\": [\"Kerberos scanner\", \"Active Directory scanner\"], \"port\": 88, \"protocol\": \"tcp\"}"
+  }
+]

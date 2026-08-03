@@ -1,0 +1,38 @@
+[
+  {
+    "binding_id": "bind-gcp-editor-02",
+    "project_id": "proj-bank-core-prod",
+    "role": "roles/editor",
+    "member_type": "user",
+    "member_email": "developer.mike@scb.com",
+    "condition": null,
+    "policy_etag": "etag-102",
+    "sa_keys": null,
+    "impersonation_roles": null,
+    "is_external_gmail": null
+  },
+  {
+    "binding_id": "bind-gcp-owner-01",
+    "project_id": "proj-bank-core-prod",
+    "role": "roles/owner",
+    "member_type": "user",
+    "member_email": "external.consultant@gmail.com",
+    "condition": null,
+    "policy_etag": "etag-101",
+    "sa_keys": null,
+    "impersonation_roles": null,
+    "is_external_gmail": null
+  },
+  {
+    "binding_id": "bind-gcp-sec-03",
+    "project_id": "proj-bank-core-prod",
+    "role": "roles/viewer",
+    "member_type": "group",
+    "member_email": "secops-team@scb.com",
+    "condition": null,
+    "policy_etag": "etag-103",
+    "sa_keys": null,
+    "impersonation_roles": null,
+    "is_external_gmail": null
+  }
+]

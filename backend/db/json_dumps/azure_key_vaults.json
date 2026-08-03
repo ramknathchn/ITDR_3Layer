@@ -1,0 +1,29 @@
+[
+  {
+    "vault_id": "/subscriptions/sub-az-bank-01/resourceGroups/rg-sec/providers/Microsoft.KeyVault/vaults/kv-bank-api-tokens",
+    "vault_name": "kv-bank-api-tokens",
+    "resource_group": "rg-sec",
+    "access_policies": "[{\"tenantId\": \"tenant-bank-01\", \"permissions\": {\"secrets\": [\"get\", \"list\"]}}]",
+    "network_acls": "{\"defaultAction\": \"Deny\"}",
+    "secret_names": "[\"db-conn-string\", \"master-api-key\", \"hsm-root-cert\"]",
+    "is_public_access": false
+  },
+  {
+    "vault_id": "/subscriptions/sub-az-bank-01/resourceGroups/rg-sec/providers/Microsoft.KeyVault/vaults/kv-bank-pci-keys",
+    "vault_name": "kv-bank-pci-keys",
+    "resource_group": "rg-sec",
+    "access_policies": "[{\"tenantId\": \"tenant-bank-01\", \"permissions\": {\"secrets\": [\"get\", \"list\"]}}]",
+    "network_acls": "{\"defaultAction\": \"Deny\"}",
+    "secret_names": "[\"db-conn-string\", \"master-api-key\", \"hsm-root-cert\"]",
+    "is_public_access": false
+  },
+  {
+    "vault_id": "/subscriptions/sub-az-bank-01/resourceGroups/rg-sec/providers/Microsoft.KeyVault/vaults/kv-bank-prod-secrets",
+    "vault_name": "kv-bank-prod-secrets",
+    "resource_group": "rg-sec",
+    "access_policies": "[{\"tenantId\": \"tenant-bank-01\", \"permissions\": {\"secrets\": [\"get\", \"list\"]}}]",
+    "network_acls": "{\"defaultAction\": \"Deny\"}",
+    "secret_names": "[\"db-conn-string\", \"master-api-key\", \"hsm-root-cert\"]",
+    "is_public_access": false
+  }
+]

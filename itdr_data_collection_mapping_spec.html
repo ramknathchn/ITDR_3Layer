@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITDR Data Collection & Mapping Specification</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #060b13;
+      --bg-card: rgba(13, 27, 42, 0.4);
+      --bg-card-hover: rgba(22, 42, 73, 0.6);
+      --border-color: rgba(0, 229, 255, 0.15);
+      --border-color-active: rgba(0, 229, 255, 0.4);
+      --text-primary: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-accent: #00e5ff;
+      --color-pass: #10b981;
+      --color-fail: #ef4444;
+      --color-warning: #f59e0b;
+      --shadow-accent: 0 0 15px rgba(0, 229, 255, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060b13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-accent);
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 320px;
+      background: rgba(8, 16, 28, 0.95);
+      border-right: 1px solid var(--border-color);
+      padding: 24px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .brand i {
+      font-size: 24px;
+      color: var(--text-accent);
+      text-shadow: var(--shadow-accent);
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #fff 30%, var(--text-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .nav-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .nav-item {
+      margin-bottom: 6px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-primary);
+      background: var(--bg-card-hover);
+      border-left: 3px solid var(--text-accent);
+    }
+
+    /* Main Content Area */
+    .content-area {
+      margin-left: 320px;
+      flex: 1;
+      padding: 40px 60px;
+      max-width: 1200px;
+    }
+
+    header {
+      margin-bottom: 35px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+    }
+
+    h1.main-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Content Typography */
+    h2.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 10px;
+    }
+
+    h3.system-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 25px 0 12px;
+      color: var(--text-accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    /* Metadata Table styling */
+    .metadata-table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(12px);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-color-active);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+
+    ul.bullet-list li {
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: start;
+      gap: 8px;
+    }
+
+    ul.bullet-list li::before {
+      content: "\f054";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 9px;
+      color: var(--text-accent);
+      margin-top: 5px;
+    }
+
+    /* Collapse Containers for guides */
+    .collapse-btn {
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      width: 100%;
+      text-align: left;
+      padding: 14px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .collapse-btn:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--text-accent);
+    }
+
+    .collapse-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 12px;
+    }
+
+    .collapse-content.open {
+      padding: 20px;
+      border-color: var(--border-color);
+      background: rgba(4, 8, 15, 0.4);
+      max-height: 2000px;
+    }
+
+    /* Code Blocks */
+    pre {
+      background: #04080f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 14px;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--text-accent);
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 11px;
+      transition: color 0.15s;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+    }
+
+    /* Tab Selector for Alignment Tables */
+    .tab-container {
+      margin-top: 30px;
+    }
+
+    .tab-headers {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      color: var(--text-accent);
+      border-bottom-color: var(--text-accent);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Grid & Tables formatting */
+    .table-responsive {
+      overflow-x: auto;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: rgba(8, 16, 28, 0.95);
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.5px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(0, 229, 255, 0.03);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-must {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--color-fail);
+      border: 1px solid var(--color-fail);
+    }
+
+    .badge-good {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--color-warning);
+      border: 1px solid var(--color-warning);
+    }
+
+    .badge-secured {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--color-pass);
+      border: 1px solid var(--color-pass);
+    }
+
+    /* Custom inline code */
+    span.inline-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--text-accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <div class="sidebar">
+    <div class="brand">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span class="brand-title">ITDR Shield Spec</span>
+    </div>
+
+    <div class="nav-title">Sections</div>
+    <ul class="nav-list">
+      <li class="nav-item"><a class="nav-link active" onclick="scrollToId('sec-overview')"><i class="fa-solid fa-server"></i> Platform Scope</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToId('sec-extraction')"><i class="fa-solid fa-download"></i> Extraction Guide</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToId('sec-metadata')"><i class="fa-solid fa-code"></i> Metadata Standard</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToId('sec-tables')"><i class="fa-solid fa-table"></i> Correlation Matrix</a></li>
+    </ul>
+
+    <div class="nav-title">In-Scope Systems</div>
+    <ul class="nav-list" style="margin-bottom: 0;">
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-hashicorp')"><i class="fa-solid fa-circle-notch"></i> HashiCorp Suite</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-beyondtrust')"><i class="fa-solid fa-key"></i> BeyondTrust</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-databricks')"><i class="fa-solid fa-database"></i> Databricks</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-elastic')"><i class="fa-solid fa-search"></i> Elastic</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-vector')"><i class="fa-solid fa-network-wired"></i> Vector DB</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-mdi')"><i class="fa-solid fa-shield-halved"></i> Microsoft MDI</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-entra-protection')"><i class="fa-solid fa-user-shield"></i> Entra Protection</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-wiz')"><i class="fa-solid fa-eye"></i> Wiz.io</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-s1')"><i class="fa-solid fa-crosshairs"></i> SentinelOne</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-ad')"><i class="fa-solid fa-users-gear"></i> Active Directory</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-entra')"><i class="fa-solid fa-cloud"></i> Entra ID (Cloud)</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-aws')"><i class="fa-brands fa-aws"></i> AWS Cloud</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="scrollToGuide('guide-azure')"><i class="fa-solid fa-windows"></i> Azure Platform</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="content-area">
+    <header>
+      <h1 class="main-title">ITDR Phase 1 Data Collection &amp; Mapping Specification</h1>
+      <p class="subtitle">Ingest threat bulletins from email &amp; RSS feeds, map techniques to MITRE ATT&amp;CK, and run dynamic verification checks across 13 enterprise ecosystems.</p>
+    </header>
+
+    <!-- SECTION 1: SYSTEM SCOPE -->
+    <div id="sec-overview">
+      <h2 class="section-title"><i class="fa-solid fa-server"></i> 1. Original Baseline: Systems Data Scope</h2>
+      
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-circle-notch"></i> 1. HashiCorp Suite (Vault, Consul, Terraform Cloud)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Vault Auditing Log (JSON client access accessor path); Consul ACL Token State; Terraform Cloud Organization Audit Trail.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1078 (Valid Accounts) misusing static admin tokens; T1556 (Modify Auth Process) altering authentication backends; T1578 modifying infrastructure via state.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-JUAC (Just-in-time Privilege Access) expiration of short-lived dynamic credentials; D3-CH (Credential Hardening) policy secret lifecycle enforcement.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-key"></i> 2. BeyondTrust (PAM / EPM)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Privileged session keystroke and command audit logs; Endpoint Privilege Management administrative elevation logs.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1548.002 (Bypass UAC) local administrator app controls; T1021.001 (RDP) attacking hosts from jump proxies.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-JUAC (Just-In-Time Privilege Access) role approval elevation checks; D3-PCSM (Protocol Segment Monitoring) jump session gateway auditer.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-database"></i> 3. Data Lake (Databricks)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Diagnostics workspace access queries; Unity Catalog metastore reads data lineage.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1537 (Transfer Data to Cloud) exfiltrating dataset structures; T1078.004 hijacking Databricks user tokens.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-CSA (Cloud Storage Auditing) metastore object access logging; D3-AL (Authentication Audit Logging) workspace logon audits.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-search"></i> 4. Elastic</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Elasticsearch index cluster auditing trails; Kibana console endpoint access and security keys.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1562.001 (Impair Defenses) disabling alerting rules or index lifecycles; T1005 (Data from Local System) mining SIEM indexes.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-AL (Authentication Audit Logging) console logs tracking; D3-PCSM (Protocol Segment Monitoring) API endpoint security query limits.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-network-wired"></i> 5. AI Vector Database (Pinecone, Weaviate, Milvus, pgvector)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Semantic search input query metrics; Namespace authorization API keys write transactions.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1114 (Email Collection / Data Scraping) similarity scrapers pulling document embeddings; T1078 (Valid Accounts) namespace token takeover.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-CSA (Cloud Storage Auditing) vector indexes operations checks; D3-PCSM (Protocol Segment Monitoring) vector namespace query rate-limiting.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-shield-halved"></i> 6. Microsoft Defender for Identity (MDI)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Domain controller threat security alerts; Identity lateral movement paths.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1003.001 (OS Credential Dumping: LSASS) DCSync/DCShadow indicators; T1550 Golden/Silver Ticket Kerberos replays.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-PCSM (Protocol Segment Monitoring) Active Directory domain controller authentication traffic filters; D3-UBA (User Behavioral Analytics) directory logins profiling.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-user-shield"></i> 7. Entra ID Protection</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Risky users status; Anomaly risk detections alerts logs (impossible travel, proxy IPs).</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1556.006 registering additional MFA mechanisms; T1078.004 valid cloud accounts anomalies.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-MFA (Multi-Factor Authentication) step-up authentications; D3-AL (Authentication Audit Logging) sign-in failures logs.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-eye"></i> 8. Wiz.io</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> VM instance package vulnerability issues; Identity graph roles permissions metrics.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1078 valid accounts traversing service roles; T1578.002 creating container environments.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-CSA (Cloud Storage Auditing) cloud assets vulnerability scans; D3-PCSM (Protocol Segment Monitoring) perimeter exposed node audits.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-crosshairs"></i> 9. SentinelOne (Linux / macOS focus)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Agent process logs; Host quarantine status alerts.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1059.004 (Unix Shell) executing remote scripts; T1548.001 Setuid/Setgid elevations.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-EI (Endpoint Isolation) host blocking; D3-PLA (Process Lineage Analysis) script process hierarchy audits.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-users-gear"></i> 10. Active Directory (On-Prem)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Domain Controller Security Event logs; ntds.dit database changes.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1078.002 (Domain Accounts) administrative logon abuse; T1484.001 modifying Group Policies for task persistence.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-AL (Authentication Audit Logging) domain controllers events logs; D3-JUAC (Just-In-Time Privilege Access) privileged group tracking.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-cloud"></i> 11. Entra ID (Cloud Azure AD)</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Tenant audit logs; Non-interactive and interactive sign-in records.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1098.001 adding Oauth app keys; T1556.006 authentication bypass via MFA manipulation.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-MFA (Multi-Factor Authentication) FIDO2 registration audits; D3-AL (Authentication Audit Logging) tenant-wide directory logons.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-brands fa-aws"></i> 12. AWS</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> CloudTrail API logs; IAM credentials report sheet.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1537 exfiltrating databases via bucket syncs; T1078.004 AWS Access Keys creation.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-CSA (Cloud Storage Auditing) S3 access logging; D3-JUAC (Just-In-Time Privilege Access) STS AssumeRole controls.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="system-title"><i class="fa-solid fa-windows"></i> 13. Azure Platform</h3>
+        <ul class="bullet-list">
+          <li><strong>Export Datasets:</strong> Activity logs management operations; Defender for Cloud alerts logs.</li>
+          <li><strong>ATT&amp;CK Mapping Areas:</strong> T1578.002 VM resource adjustments; T1098 adding subscriptions rights.</li>
+          <li><strong>D3FEND Mapping Areas:</strong> D3-AL (Authentication Audit Logging) Resource Manager events; D3-MFA (Multi-Factor Authentication) management console MFA.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 2: EXTRACTION GUIDE -->
+    <div id="sec-extraction">
+      <h2 class="section-title"><i class="fa-solid fa-download"></i> 2. Practical Data Extraction Guide</h2>
+      <p style="margin-bottom: 20px;">Use the collapsible cards below to review exact extraction pathways, REST API calls, and CLI queries for each system.</p>
+
+      <!-- HASHICORP -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-hashicorp')">
+        <span><i class="fa-solid fa-circle-notch" style="margin-right:8px;color:var(--text-accent);"></i> 1. HashiCorp Suite (Vault, Consul, Terraform)</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-hashicorp" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Vault -> Access -> Audit Devices; Terraform Cloud -> Organization Settings -> Audit Trail.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-hashi-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-hashi-api"># Vault Audit configuration
+curl -H "X-Vault-Token: $VAULT_TOKEN" http://127.0.0.1:8200/v1/sys/audit
+
+# Terraform Cloud audit trails
+curl -H "Authorization: Bearer $TFC_TOKEN" \
+  -H "Content-Type: application/vnd.api+json" \
+  "https://app.terraform.io/api/v2/organizations/SCB-Org/audit-trail?page%5Bsize%5D=100"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-hashi-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-hashi-cli">vault audit enable file file_path=/var/log/vault_audit.log</code></pre>
+        <p><strong>Native Download:</strong> Yes (JSON file export). <strong>Ingest Fields:</strong> <span class="inline-code">time</span>, <span class="inline-code">type</span>, <span class="inline-code">request.path</span>, <span class="inline-code">request.auth.token_policies</span>, <span class="inline-code">request.auth.accessor</span>, <span class="inline-code">error</span>.</p>
+      </div>
+
+      <!-- BEYONDTRUST -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-beyondtrust')">
+        <span><i class="fa-solid fa-key" style="margin-right:8px;color:var(--text-accent);"></i> 2. BeyondTrust</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-beyondtrust" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Appliance Console -> Reports -> Session Reports -> Choose dates -> Export CSV.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-bt-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-bt-api"># Oauth Token
+curl -u "$CLIENT_ID:$CLIENT_SECRET" -d "grant_type=client_credentials" https://beyondtrust.example.com/api/config/v1/oauth
+
+# Fetch logs
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+  "https://beyondtrust.example.com/api/config/v1/session-monitoring?limit=50"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-bt-powershell')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-bt-powershell">$headers = @{ "Authorization" = "Bearer $ACCESS_TOKEN" }
+$response = Invoke-RestMethod -Uri "https://beyondtrust.example.com/api/config/v1/session-monitoring" -Headers $headers
+$response.items | Export-Csv -Path "C:\beyondtrust_sessions.csv"</code></pre>
+        <p><strong>Native Download:</strong> Yes (CSV Reports). <strong>Ingest Fields:</strong> <span class="inline-code">SessionID</span>, <span class="inline-code">User</span>, <span class="inline-code">TargetHost</span>, <span class="inline-code">Duration</span>, <span class="inline-code">KeystrokeCount</span>, <span class="inline-code">ExecutedCommands</span>, <span class="inline-code">Status</span>.</p>
+      </div>
+
+      <!-- DATABRICKS -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-databricks')">
+        <span><i class="fa-solid fa-database" style="margin-right:8px;color:var(--text-accent);"></i> 3. Data Lake (Databricks)</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-databricks" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Databricks Console -> Diagnostic Logs Settings -> Route output to Cloud Storage (S3/ADLS).</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-db-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-db-api">curl -H "Authorization: Bearer $DATABRICKS_TOKEN" \
+  https://adb-12345.azuredatabricks.net/api/2.0/clusters/list</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-db-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-db-cli">databricks fs cp dbfs:/cluster-logs/ /local/logs -r</code></pre>
+        <p><strong>Native Download:</strong> Yes (S3/Blob). <strong>Ingest Fields:</strong> <span class="inline-code">time</span>, <span class="inline-code">workspaceId</span>, <span class="inline-code">userId</span>, <span class="inline-code">actionName</span>, <span class="inline-code">response</span>, <span class="inline-code">requestParams</span>.</p>
+      </div>
+
+      <!-- ELASTIC -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-elastic')">
+        <span><i class="fa-solid fa-search" style="margin-right:8px;color:var(--text-accent);"></i> 4. Elastic</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-elastic" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Kibana Stack Management -> Index Management -> Select Index -> Export.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-es-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-es-api">curl -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/_security/api_key?owner=true"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-es-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-es-cli">tail -f /var/log/elasticsearch/elasticsearch_audit.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (Kibana dashboard export). <strong>Ingest Fields:</strong> <span class="inline-code">timestamp</span>, <span class="inline-code">event.type</span>, <span class="inline-code">user.name</span>, <span class="inline-code">elasticsearch.audit.layer</span>, <span class="inline-code">action</span>, <span class="inline-code">origin.address</span>.</p>
+      </div>
+
+      <!-- VECTOR DB -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-vector')">
+        <span><i class="fa-solid fa-network-wired" style="margin-right:8px;color:var(--text-accent);"></i> 5. AI Vector Database (pgvector / Pinecone)</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-vector" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Pinecone UI shows namespaces metrics charts; no native query logs download button.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-vec-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-vec-api">curl -H "Api-Key: $PINECONE_API_KEY" https://controller.us-east1-gcp.pinecone.io/databases</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-vec-sql')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-vec-sql">psql -h localhost -U postgres -d vector_db -c "
+SELECT query, calls, total_exec_time 
+FROM pg_stat_statements 
+WHERE query LIKE '%<=>%' OR query LIKE '%<->%' OR query LIKE '%<#>%';
+" -o pgvector_audit.txt</code></pre>
+        <p><strong>Native Download:</strong> No. <strong>Ingest Fields:</strong> <span class="inline-code">timestamp</span>, <span class="inline-code">namespace</span>, <span class="inline-code">api_key_id</span>, <span class="inline-code">operation_type</span>, <span class="inline-code">top_k</span>, <span class="inline-code">query_vector_hash</span>.</p>
+      </div>
+
+      <!-- DEFENDER MDI -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-mdi')">
+        <span><i class="fa-solid fa-shield-halved" style="margin-right:8px;color:var(--text-accent);"></i> 6. Microsoft Defender for Identity</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-mdi" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Defender portal -> Settings -> Identities -> Security Alerts -> Click Export alerts CSV.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-mdi-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-mdi-api">curl -H "Authorization: Bearer $MS_GRAPH_TOKEN" \
+  "https://graph.microsoft.com/v1.0/security/alerts?\$filter=vendorInformation/provider+eq+'Defender+for+Identity'"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-mdi-powershell')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-mdi-powershell">Get-MgSecurityAlert -Filter "vendorInformation/provider eq 'Defender for Identity'" -Property "id,title,severity,createdDateTime,compromisedEntity" | ConvertTo-Json > mdi_alerts.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (CSV Alert lists). <strong>Ingest Fields:</strong> <span class="inline-code">AlertId</span>, <span class="inline-code">Title</span>, <span class="inline-code">Severity</span>, <span class="inline-code">CompromisedEntity</span>, <span class="inline-code">Classification</span>, <span class="inline-code">Evidence</span>, <span class="inline-code">CreatedTime</span>.</p>
+      </div>
+
+      <!-- ENTRA ID PROTECTION -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-entra-protection')">
+        <span><i class="fa-solid fa-user-shield" style="margin-right:8px;color:var(--text-accent);"></i> 7. Entra ID Protection</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-entra-protection" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Entra admin center -> Protection -> Identity Protection -> Risky Users -> Click Export.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-entra-prot-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-entra-prot-api">curl -H "Authorization: Bearer $MS_GRAPH_TOKEN" \
+  "https://graph.microsoft.com/v1.0/identityProtection/riskDetections?\$filter=riskLevel+eq+'high'"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-entra-prot-powershell')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-entra-prot-powershell">Get-MgIdentityProtectionRiskDetection -Filter "riskLevel eq 'high' and riskState eq 'atRisk'" -All | ConvertTo-Json > risky_detections.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (CSV). <strong>Ingest Fields:</strong> <span class="inline-code">id</span>, <span class="inline-code">riskState</span>, <span class="inline-code">riskLevel</span>, <span class="inline-code">riskDetail</span>, <span class="inline-code">userDisplayName</span>, <span class="inline-code">ipAddress</span>, <span class="inline-code">location</span>.</p>
+      </div>
+
+      <!-- WIZ -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-wiz')">
+        <span><i class="fa-solid fa-eye" style="margin-right:8px;color:var(--text-accent);"></i> 8. Wiz.io</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-wiz" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Wiz Dashboard -> Issues -> Select Identity Risks -> Export Issue spreadsheet as CSV.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-wiz-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-wiz-api">curl -X POST -H "Authorization: Bearer $WIZ_TOKEN" -H "Content-Type: application/json" \
+  -d '{"query": "query { issues(first: 50) { nodes { id title severity status } } }"}' \
+  https://api.us12.wiz.io/graphql</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-wiz-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-wiz-cli">wizcli auth login --client-id $WIZ_ID --client-secret $WIZ_SECRET
+wizcli issue list --format json > wiz_issues.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (CSV). <strong>Ingest Fields:</strong> <span class="inline-code">id</span>, <span class="inline-code">name</span>, <span class="inline-code">status</span>, <span class="inline-code">severity</span>, <span class="inline-code">resourceType</span>, <span class="inline-code">targetEntity</span>, <span class="inline-code">effectivePermissions</span>.</p>
+      </div>
+
+      <!-- SENTINELONE -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-s1')">
+        <span><i class="fa-solid fa-crosshairs" style="margin-right:8px;color:var(--text-accent);"></i> 9. SentinelOne</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-s1" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Sentinels -> Endpoints -> Filter by OS -> Actions -> Export CSV.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-s1-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-s1-api">curl -H "Authorization: ApiToken $S1_TOKEN" \
+  https://console.sentinelone.net/web/api/v2.1/threats?limit=50</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-s1-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-s1-cli">sentinelone-cli threat query --status active --output json > s1_threats.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (CSV/JSON). <strong>Ingest Fields:</strong> <span class="inline-code">threatId</span>, <span class="inline-code">createdAt</span>, <span class="inline-code">agentName</span>, <span class="inline-code">filePath</span>, <span class="inline-code">commandLine</span>, <span class="inline-code">threatName</span>, <span class="inline-code">resolved</span>.</p>
+      </div>
+
+      <!-- ON-PREM AD -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-ad')">
+        <span><i class="fa-solid fa-users-gear" style="margin-right:8px;color:var(--text-accent);"></i> 10. Active Directory (On-Prem)</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-ad" class="collapse-content">
+        <p><strong>UI Export Path:</strong> DC -> Event Viewer -> Windows Logs -> Security -> Save All Events As EVTX.</p>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-ad-powershell')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-ad-powershell">Get-WinEvent -FilterHashtable @{LogName='Security'; ID=@(4624,4720)} -MaxEvents 100 | 
+  Select-Object TimeCreated, Id, MachineName, Message | 
+  Export-Csv -Path "C:\ad_security_events.csv" -NoTypeInformation</code></pre>
+        <p><strong>Native Download:</strong> Yes (EVTX files). <strong>Ingest Fields:</strong> <span class="inline-code">EventID</span>, <span class="inline-code">TimeCreated</span>, <span class="inline-code">TargetUserName</span>, <span class="inline-code">TargetDomainName</span>, <span class="inline-code">IpAddress</span>, <span class="inline-code">LogonType</span>, <span class="inline-code">Status</span>.</p>
+      </div>
+
+      <!-- ENTRA ID -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-entra')">
+        <span><i class="fa-solid fa-cloud" style="margin-right:8px;color:var(--text-accent);"></i> 11. Entra ID (Cloud Azure AD)</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-entra" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Entra admin center -> Monitoring &amp; health -> Sign-in logs -> Download JSON.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-entra-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-entra-api">curl -H "Authorization: Bearer $MS_GRAPH_TOKEN" \
+  "https://graph.microsoft.com/v1.0/auditLogs/signIns?\$filter=createdDateTime+ge+2026-07-27T00:00:00Z"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-entra-powershell')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-entra-powershell">Get-MgAuditLogSignIn -Filter "createdDateTime ge 2026-07-27T00:00:00Z" -All | ConvertTo-Json > entra_signins.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (JSON/CSV). <strong>Ingest Fields:</strong> <span class="inline-code">id</span>, <span class="inline-code">createdDateTime</span>, <span class="inline-code">userPrincipalName</span>, <span class="inline-code">appDisplayName</span>, <span class="inline-code">clientAppUsed</span>, <span class="inline-code">ipAddress</span>, <span class="inline-code">status</span>.</p>
+      </div>
+
+      <!-- AWS -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-aws')">
+        <span><i class="fa-brands fa-aws" style="margin-right:8px;color:var(--text-accent);"></i> 12. AWS</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-aws" class="collapse-content">
+        <p><strong>UI Export Path:</strong> AWS Console -> CloudTrail -> Event history -> Download JSON.</p>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-aws-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-aws-cli">aws cloudtrail lookup-events \
+  --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin \
+  --max-results 50 --output json > aws_logins.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (JSON). <strong>Ingest Fields:</strong> <span class="inline-code">eventID</span>, <span class="inline-code">eventTime</span>, <span class="inline-code">userIdentity.arn</span>, <span class="inline-code">eventName</span>, <span class="inline-code">sourceIPAddress</span>, <span class="inline-code">requestParameters</span>.</p>
+      </div>
+
+      <!-- AZURE -->
+      <button class="collapse-btn" onclick="toggleCollapse('guide-azure')">
+        <span><i class="fa-solid fa-windows" style="margin-right:8px;color:var(--text-accent);"></i> 13. Azure Platform</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="guide-azure" class="collapse-content">
+        <p><strong>UI Export Path:</strong> Subscription Monitor Portal -> Activity Log -> Download as JSON.</p>
+        <div class="code-header">REST API Query <button class="copy-btn" onclick="copyCode('code-az-api')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-az-api">curl -H "Authorization: Bearer $AZ_TOKEN" \
+  "https://management.azure.com/subscriptions/$SUB_ID/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01"</code></pre>
+        <div class="code-header">CLI / SDK Command <button class="copy-btn" onclick="copyCode('code-az-cli')"><i class="fa-regular fa-copy"></i> Copy</button></div>
+        <pre><code id="code-az-cli">az monitor activity-log list --offset 2h --output json > azure_activity.json</code></pre>
+        <p><strong>Native Download:</strong> Yes (JSON). <strong>Ingest Fields:</strong> <span class="inline-code">eventId</span>, <span class="inline-code">eventTimestamp</span>, <span class="inline-code">caller</span>, <span class="inline-code">operationName.value</span>, <span class="inline-code">status.value</span>, <span class="inline-code">resourceId</span>.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 3: METADATA -->
+    <div id="sec-metadata">
+      <h2 class="section-title"><i class="fa-solid fa-code"></i> 3. Minimum Record Metadata Standard</h2>
+      <p style="margin-bottom: 20px;">All data ingestion endpoints must validate and append these 12 metadata headers to ensure data lineage audit integrity.</p>
+      
+      <div class="metadata-table-container">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Metadata Field</th>
+                <th>Data Type</th>
+                <th>Mapping Description</th>
+                <th>Example Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">tenant_or_org_id</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Unique ID of the tenant or organization.</td>
+                <td>T-US-SCB-098</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">platform_name</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Name of the source platform.</td>
+                <td>HashiCorp_Vault</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">source_table_or_endpoint</span></td>
+                <td>VARCHAR(250)</td>
+                <td>Source log table or API endpoint path.</td>
+                <td>vault.audit.logs</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">record_primary_key</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Unique record key inside the system.</td>
+                <td>EVT-09876-2026</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">record_version_or_etag</span></td>
+                <td>VARCHAR(50)</td>
+                <td>Record revision tracking hash.</td>
+                <td>W/"123-abc"</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">event_or_config_timestamp</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Time the actual security event occurred (ISO 8601).</td>
+                <td>2026-07-27T16:30:00Z</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">collector_timestamp_utc</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Time the collector harvested this record.</td>
+                <td>2026-07-27T16:35:10Z</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">collector_method</span></td>
+                <td>VARCHAR(50)</td>
+                <td>Collection route (e.g. API, CLI, manual download).</td>
+                <td>API_Graph</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">data_owner</span></td>
+                <td>VARCHAR(100)</td>
+                <td>Department or security owner responsible for the dataset.</td>
+                <td>Identity_SOC_Group</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">environment_tag</span></td>
+                <td>VARCHAR(50)</td>
+                <td>Targeted environment marker (Production, Staging).</td>
+                <td>Production</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">region</span></td>
+                <td>VARCHAR(50)</td>
+                <td>Geographic data center location.</td>
+                <td>us-east-1</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">integrity_hash</span></td>
+                <td>VARCHAR(64)</td>
+                <td>SHA-256 validation hash of the record data.</td>
+                <td>f2ca1a6136e259e2...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: CORRELATION MATRIX TABLES -->
+    <div id="sec-tables">
+      <h2 class="section-title"><i class="fa-solid fa-table"></i> 4. ITDR Alignment Tables</h2>
+      
+      <div class="tab-container">
+        <div class="tab-headers">
+          <button id="btn-tab-a" class="tab-btn active" onclick="switchTab('tab-a')">Table A: normalized Threat bulletin</button>
+          <button id="btn-tab-b" class="tab-btn" onclick="switchTab('tab-b')">Table B: ATT&amp;CK &amp; D3FEND Matrix</button>
+          <button id="btn-tab-c" class="tab-btn" onclick="switchTab('tab-c')">Table C: Ingestion Checks Catalogue</button>
+          <button id="btn-tab-d" class="tab-btn" onclick="switchTab('tab-d')">Table D: Onboarding Priority</button>
+        </div>
+
+        <!-- TABLE A -->
+        <div id="tab-a" class="tab-panel active">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Column Name</th>
+                  <th>SQL Data Type</th>
+                  <th>Primary Source</th>
+                  <th>Normalization Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="inline-code">bulletin_id</span></td>
+                  <td>VARCHAR(100) PRIMARY KEY</td>
+                  <td>Feed metadata / MD5 hash</td>
+                  <td>Unique ID. Maps to RSS GUID or generated mail ID hash.</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">title</span></td>
+                  <td>NVARCHAR(500)</td>
+                  <td>Title header</td>
+                  <td>Clean threat title (strips HTML, brackets, and extra spaces).</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">actors</span></td>
+                  <td>NVARCHAR(MAX)</td>
+                  <td>Body parser</td>
+                  <td>JSON array of parsed threat actors (e.g. <code>["APT29", "Cozy Bear"]</code>).</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">mitre_techniques</span></td>
+                  <td>NVARCHAR(MAX)</td>
+                  <td>Context parser</td>
+                  <td>JSON array of extracted ATT&amp;CK technique IDs (e.g. <code>["T1078.004"]</code>).</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">d3fend_defenses</span></td>
+                  <td>NVARCHAR(MAX)</td>
+                  <td>Mapper output</td>
+                  <td>JSON array of mapped D3FEND countermeasure IDs (e.g. <code>["D3-MFA"]</code>).</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">published_date</span></td>
+                  <td>VARCHAR(100)</td>
+                  <td>RSS publish tag</td>
+                  <td>Threat alert generation time formatted as ISO 8601.</td>
+                </tr>
+                <tr>
+                  <td><span class="inline-code">summary_analysis</span></td>
+                  <td>NVARCHAR(MAX)</td>
+                  <td>LLM Parser output</td>
+                  <td>Clean text summary explaining the threat impact.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLE B -->
+        <div id="tab-b" class="tab-panel">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Source System</th>
+                  <th>Record Set</th>
+                  <th>Field List</th>
+                  <th>Priority</th>
+                  <th>ATT&amp;CK Checks</th>
+                  <th>D3FEND Checks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>HashiCorp</strong></td>
+                  <td>Vault Audit Logs</td>
+                  <td>time, request.path, accessor, error</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Identify requests to admin token paths (T1078).</td>
+                  <td>Verify client token rotation cycles (D3-CH).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Terraform Cloud Logs</td>
+                  <td>actor.username, action, workspace.id</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Detect unauthorized infra changes (T1578).</td>
+                  <td>Verify state file permissions (D3-JUAC).</td>
+                </tr>
+                <tr>
+                  <td><strong>BeyondTrust</strong></td>
+                  <td>Remote Session Audit</td>
+                  <td>User, TargetHost, ExecutedCommands, Duration</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Monitor administrative proxy sessions commands (T1021.001).</td>
+                  <td>Check session durations and activity (D3-PCSM).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>EPM Elevation logs</td>
+                  <td>User, Application, ElevationReason, ExitCode</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Detect local admin UAC bypasses (T1548.002).</td>
+                  <td>Verify app elevation limits (D3-JUAC).</td>
+                </tr>
+                <tr>
+                  <td><strong>Data Lake</strong></td>
+                  <td>Databricks Audits</td>
+                  <td>workspaceId, userId, actionName, requestParams</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Trace data exports to external storage (T1537).</td>
+                  <td>Audit Unity Catalog table access profiles (D3-CSA).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Unity Catalog</td>
+                  <td>userId, metastoreId, securable, privileges</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Detect over-privileged token operations (T1078.004).</td>
+                  <td>Confirm workspace log auditing (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td><strong>Elastic</strong></td>
+                  <td>ES Audit Trails</td>
+                  <td>timestamp, event.type, user.name, action</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Detect modifications of alerting rules (T1562.001).</td>
+                  <td>Audit SIEM console logons (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Kibana Access Logs</td>
+                  <td>user.name, kibana.space, request.url</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Check index queries mining logs (T1005).</td>
+                  <td>Verify dashboard API calls (D3-PCSM).</td>
+                </tr>
+                <tr>
+                  <td><strong>AI Vector DB</strong></td>
+                  <td>Search Query Logs</td>
+                  <td>timestamp, namespace, api_key_id, top_k</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Detect scraping patterns via vectors query (T1114).</td>
+                  <td>Query namespaces rate-limiting (D3-PCSM).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Vector API Audits</td>
+                  <td>api_key_id, operation_type, ipAddress</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Detect operations altering indexes (T1078).</td>
+                  <td>Verify index storage auditing (D3-CSA).</td>
+                </tr>
+                <tr>
+                  <td><strong>Defender Identity</strong></td>
+                  <td>AD Alerts</td>
+                  <td>AlertId, Title, Severity, CompromisedEntity</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Track Golden Ticket or DCSync (T1003.001).</td>
+                  <td>Domain controller Kerberos filters (D3-PCSM).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Entity Health</td>
+                  <td>EntityId, LateralMovementPaths</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Identify users on lateral pathways (T1550).</td>
+                  <td>Behavior anomaly analytics (D3-UBA).</td>
+                </tr>
+                <tr>
+                  <td><strong>Entra ID Protect</strong></td>
+                  <td>Risk Detections</td>
+                  <td>id, riskState, riskLevel, userDisplayName</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Flag anomalous cloud sign-ins (T1078.004).</td>
+                  <td>Verify step-up MFA challenge logs (D3-MFA).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Risky Users</td>
+                  <td>id, riskLevel, riskyUserDetails</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Trace changes to MFA options (T1556.006).</td>
+                  <td>Audit log sign-in details (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td><strong>Wiz.io</strong></td>
+                  <td>Identity Graph</td>
+                  <td>resourceType, targetEntity, effectivePermissions</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Identify service roles with management rights (T1078).</td>
+                  <td>Verify cloud resources vulnerability vectors (D3-CSA).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Vulnerabilities</td>
+                  <td>id, name, status, severity</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Detect exposed container hosts (T1578.002).</td>
+                  <td>Exposed edge nodes diagnostics (D3-PCSM).</td>
+                </tr>
+                <tr>
+                  <td><strong>SentinelOne</strong></td>
+                  <td>EDR Agent Audits</td>
+                  <td>agentName, filePath, commandLine</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Monitor SUID shell elevations (T1059.004).</td>
+                  <td>Check host containment capability (D3-EI).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Quarantine Logs</td>
+                  <td>threatId, threatName, resolved</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Audit processes disabling sensors (T1562.001).</td>
+                  <td>Verify parent/child process paths (D3-PLA).</td>
+                </tr>
+                <tr>
+                  <td><strong>AD (On-Prem)</strong></td>
+                  <td>DC Security Logs</td>
+                  <td>EventID, TimeCreated, TargetUserName, IpAddress</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Flag unauthorized domain changes (T1078.002).</td>
+                  <td>Domain Controller logon trails (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>AD database</td>
+                  <td>ObjectGUID, GPOPath, ModifiedAttributes</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Check GPO modifications (T1484.001).</td>
+                  <td>Monitor Domain Admin assignments (D3-JUAC).</td>
+                </tr>
+                <tr>
+                  <td><strong>Entra ID</strong></td>
+                  <td>Audit Logs</td>
+                  <td>id, createdDateTime, userPrincipalName</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Track credential registration on apps (T1098.001).</td>
+                  <td>Directory authorization audits (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Sign-In Logs</td>
+                  <td>userPrincipalName, appDisplayName, ipAddress</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Flag MFA registrations changes (T1556.006).</td>
+                  <td>Check dynamic MFA challenges (D3-MFA).</td>
+                </tr>
+                <tr>
+                  <td><strong>AWS</strong></td>
+                  <td>CloudTrail Logs</td>
+                  <td>eventID, eventTime, userIdentity.arn, eventName</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Check for unauthorized DB copy downloads (T1537).</td>
+                  <td>AWS S3 bucket reads logging (D3-CSA).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>IAM Reports</td>
+                  <td>user, access_key_1_active, access_key_2_active</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Identify active keys life cycle (T1078.004).</td>
+                  <td>STS AssumeRole authorization (D3-JUAC).</td>
+                </tr>
+                <tr>
+                  <td><strong>Azure Platform</strong></td>
+                  <td>Activity Log</td>
+                  <td>eventId, eventTimestamp, caller, operationName</td>
+                  <td><span class="badge badge-must">Must Have</span></td>
+                  <td>Track VM deployments via subscription accounts (T1578.002).</td>
+                  <td>Subscription resource edits logging (D3-AL).</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Defender Cloud</td>
+                  <td>id, alertName, severity, status</td>
+                  <td><span class="badge badge-good">Good To Have</span></td>
+                  <td>Flag subscription permission shifts (T1098).</td>
+                  <td>Validate admin MFA enforcement (D3-MFA).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLE C -->
+        <div id="tab-c" class="tab-panel">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Check Target</th>
+                  <th>Verification Query / Logic</th>
+                  <th>Success Criteria (Secured)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td>Mapped Techniques</td>
+                  <td>Query <code>Attributes</code> sheet data to find tables matching the parsed technique IDs.</td>
+                  <td>Matching data columns identified.</td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td>Dynamic Auditing</td>
+                  <td>Query <code>ad_events</code> and <code>entra_signin_logs</code> for alerts on accounts with high risk score.</td>
+                  <td>No anomalous actions observed within 24h.</td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td>Control Verification</td>
+                  <td>Execute queries mapping technique indicators against the verified D3FEND countermeasure ID.</td>
+                  <td>Audit results status column returns <code>SECURED</code>.</td>
+                </tr>
+                <tr>
+                  <td><strong>4</strong></td>
+                  <td>Blast Radius Scan</td>
+                  <td>Trace network directory paths inside <code>bank_topology_edges</code> to verify Crown Jewel targets exposure.</td>
+                  <td>Path distance to Tier 0 target is zero.</td>
+                </tr>
+                <tr>
+                  <td><strong>5</strong></td>
+                  <td>Playbook Trigger</td>
+                  <td>Insert response logs into <code>response_actions</code> if user risk exceed 80 thresholds.</td>
+                  <td>Alert state marked resolved; user disabled.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLE D -->
+        <div id="tab-d" class="tab-panel">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Priority</th>
+                  <th>Source System</th>
+                  <th>Onboarding Focus</th>
+                  <th>Target Interface</th>
+                  <th>Timeline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td>Entra ID (Azure AD)</td>
+                  <td>Sign-in logs directory events.</td>
+                  <td>MS Graph SignIns API</td>
+                  <td>Week 1 - 2</td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td>Active Directory</td>
+                  <td>Domain Controller logon events.</td>
+                  <td>WEVTUTIL / Sysmon logs</td>
+                  <td>Week 2 - 3</td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td>Entra ID Protection</td>
+                  <td>Risky users indicators logs.</td>
+                  <td>MS Graph RiskDetections API</td>
+                  <td>Week 3 - 4</td>
+                </tr>
+                <tr>
+                  <td><strong>4</strong></td>
+                  <td>Microsoft Defender Identity</td>
+                  <td>AD alerts events logs.</td>
+                  <td>Defender Alert Graph API</td>
+                  <td>Week 4 - 5</td>
+                </tr>
+                <tr>
+                  <td><strong>5</strong></td>
+                  <td>AWS</td>
+                  <td>CloudTrail administrative events.</td>
+                  <td>AWS CLI lookup commands</td>
+                  <td>Week 5 - 6</td>
+                </tr>
+                <tr>
+                  <td><strong>6</strong></td>
+                  <td>SentinelOne</td>
+                  <td>Process creation commands history.</td>
+                  <td>S1 REST API endpoints</td>
+                  <td>Week 6 - 7</td>
+                </tr>
+                <tr>
+                  <td><strong>7</strong></td>
+                  <td>HashiCorp</td>
+                  <td>Vault access token audit logs.</td>
+                  <td>Vault sys/audit files</td>
+                  <td>Week 7 - 8</td>
+                </tr>
+                <tr>
+                  <td><strong>8</strong></td>
+                  <td>BeyondTrust</td>
+                  <td>Elevated commands remote session.</td>
+                  <td>BeyondTrust Reports REST API</td>
+                  <td>Week 8 - 9</td>
+                </tr>
+                <tr>
+                  <td><strong>9</strong></td>
+                  <td>Databricks</td>
+                  <td>Databricks metastore operations.</td>
+                  <td>Unity Catalog DBFS logs</td>
+                  <td>Week 9 - 10</td>
+                </tr>
+                <tr>
+                  <td><strong>10</strong></td>
+                  <td>Elastic</td>
+                  <td>Kibana workspaces query logs.</td>
+                  <td>Elasticsearch audit JSON</td>
+                  <td>Week 10 - 11</td>
+                </tr>
+                <tr>
+                  <td><strong>11</strong></td>
+                  <td>Wiz.io</td>
+                  <td>Roles permissions configurations.</td>
+                  <td>Wiz GraphQL client queries</td>
+                  <td>Week 11 - 12</td>
+                </tr>
+                <tr>
+                  <td><strong>12</strong></td>
+                  <td>Azure Platform</td>
+                  <td>Subscription activity monitor.</td>
+                  <td>Azure Monitor Activity Logs</td>
+                  <td>Week 12 - 13</td>
+                </tr>
+                <tr>
+                  <td><strong>13</strong></td>
+                  <td>AI Vector Database</td>
+                  <td>Semantic query namespaces.</td>
+                  <td>Pinecone controller database</td>
+                  <td>Week 13 - 14</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE LOGIC SCRIPT -->
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      // Hide all panels
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      // Deactivate all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Activate target
+      document.getElementById(tabId).classList.add('active');
+      document.getElementById('btn-' + tabId).classList.add('active');
+    }
+
+    // Collapse toggle logic
+    function toggleCollapse(id) {
+      const content = document.getElementById(id);
+      content.classList.toggle('open');
+      
+      // Update chevron rotation
+      const button = content.previousElementSibling;
+      const icon = button.querySelector('.fa-chevron-down');
+      if (content.classList.contains('open')) {
+        icon.style.transform = 'rotate(180deg)';
+        content.style.maxHeight = content.scrollHeight + 100 + 'px';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+        content.style.maxHeight = '0';
+      }
+    }
+
+    // Smooth Scroll navigation
+    function scrollToId(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        
+        // Highlight active link in sidebar
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        // Find exact link
+        const currentLink = Array.from(document.querySelectorAll('.nav-link')).find(el => el.getAttribute('onclick').includes(id));
+        if (currentLink) currentLink.classList.add('active');
+      }
+    }
+
+    // Scroll to specific system guide card and open it
+    function scrollToGuide(guideId) {
+      const content = document.getElementById(guideId);
+      if (content) {
+        // Open the collapse block if closed
+        if (!content.classList.contains('open')) {
+          toggleCollapse(guideId);
+        }
+        content.previousElementSibling.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Code copying logic
+    function copyCode(elementId) {
+      const codeElement = document.getElementById(elementId);
+      const range = document.createRange();
+      range.selectNode(codeElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      try {
+        document.execCommand('copy');
+        
+        // Flash success feedback
+        const btn = codeElement.previousElementSibling;
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check" style="color:var(--color-pass)"></i> Copied!';
+        setTimeout(() => {
+          btn.innerHTML = origText;
+        }, 1500);
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+</body>
+</html>

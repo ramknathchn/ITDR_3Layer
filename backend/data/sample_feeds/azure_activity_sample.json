@@ -1,0 +1,24 @@
+[
+  {
+    "event_id": "az-ev-001",
+    "timestamp": "2026-07-27T06:50:00Z",
+    "event_type": "VM_DEPLOY_SUCCESS",
+    "identity": "azure-dev-operator",
+    "identity_type": "employee",
+    "source_ip": "10.147.2.95",
+    "geo_location": "Singapore, SG",
+    "success": true,
+    "risk_score": 20.0
+  },
+  {
+    "event_id": "az-ev-002",
+    "timestamp": "2026-07-27T06:52:00Z",
+    "event_type": "ROLE_ASSIGNMENT_DENIED",
+    "identity": "compromised.admin@scb.com",
+    "identity_type": "admin",
+    "source_ip": "198.51.100.91",
+    "geo_location": "Moscow, Russia",
+    "success": false,
+    "risk_score": 85.0
+  }
+]

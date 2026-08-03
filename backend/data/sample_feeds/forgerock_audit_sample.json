@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "fr-ev-001",
+    "timestamp": "2026-07-13T06:40:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "s_jones@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "ForgeRock",
+    "success": true,
+    "risk_score": 5.0,
+    "raw_data": "{\"timestamp\": \"2026-07-13T06:40:00Z\", \"eventName\": \"AM-ACCESS-OUTCOME\", \"userId\": \"s_jones@scb.com\", \"realm\": \"/alpha\", \"result\": \"SUCCESS\", \"authLevel\": 10, \"module\": \"DataStore\", \"clientIp\": \"165.225.116.14\"}"
+  },
+  {
+    "event_id": "fr-ev-002",
+    "timestamp": "2026-07-13T06:42:15Z",
+    "event_type": "MFA_BYPASS",
+    "identity": "s_jones@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "ForgeRock",
+    "success": true,
+    "risk_score": 85.0,
+    "raw_data": "{\"timestamp\": \"2026-07-13T06:42:15Z\", \"eventName\": \"AM-MFA-DEACTIVATE\", \"userId\": \"s_jones@scb.com\", \"realm\": \"/alpha\", \"result\": \"SUCCESS\", \"deviceType\": \"ForgeRock Authenticator App Push\", \"clientIp\": \"165.225.116.14\"}"
+  }
+]

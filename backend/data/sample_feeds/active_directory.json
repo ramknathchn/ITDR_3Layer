@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "ad-ev-001",
+    "timestamp": "2026-07-13T06:00:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "scb\\admin_jdoe",
+    "identity_type": "admin",
+    "source_ip": "10.147.22.45",
+    "geo_location": "Singapore, SG",
+    "identity_provider": "ActiveDirectory",
+    "success": true,
+    "risk_score": 5.0,
+    "raw_data": "{\"EventID\": 4624, \"LogonType\": 3, \"WorkstationName\": \"SG-SRV-AD01\", \"IpAddress\": \"10.147.22.45\", \"SubjectUserName\": \"admin_jdoe\"}"
+  },
+  {
+    "event_id": "ad-ev-002",
+    "timestamp": "2026-07-13T06:01:15Z",
+    "event_type": "LOGIN_FAILURE",
+    "identity": "scb\\jsmith",
+    "identity_type": "user",
+    "source_ip": "192.168.10.112",
+    "geo_location": "Hong Kong, HK",
+    "identity_provider": "ActiveDirectory",
+    "success": false,
+    "risk_score": 10.0,
+    "raw_data": "{\"EventID\": 4625, \"LogonType\": 2, \"WorkstationName\": \"HK-LAP-4592\", \"IpAddress\": \"192.168.10.112\", \"SubjectUserName\": \"jsmith\"}"
+  }
+]

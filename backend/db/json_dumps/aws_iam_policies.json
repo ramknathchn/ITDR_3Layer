@@ -1,0 +1,62 @@
+[
+  {
+    "policy_id": "pol-bank-admin-001",
+    "policy_name": "AdministratorAccessPolicy",
+    "entity_type": "User",
+    "entity_name": "admin-john",
+    "is_attached": 1,
+    "document_json": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"*\", \"Resource\": \"*\"}]}",
+    "created_at": "2026-07-28T09:17:30.554542",
+    "trust_relationships": null,
+    "cross_account_arns": null,
+    "transitive_permissions": null
+  },
+  {
+    "policy_id": "pol-bank-ec2-003",
+    "policy_name": "EC2ReadOnlyProd",
+    "entity_type": "Group",
+    "entity_name": "DevOps-Group",
+    "is_attached": 1,
+    "document_json": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"ec2:Describe*\", \"Resource\": \"*\"}]}",
+    "created_at": "2026-07-28T09:17:30.554542",
+    "trust_relationships": null,
+    "cross_account_arns": null,
+    "transitive_permissions": null
+  },
+  {
+    "policy_id": "pol-bank-iam-004",
+    "policy_name": "IAMPassRoleWildcard",
+    "entity_type": "User",
+    "entity_name": "service-deployer",
+    "is_attached": 1,
+    "document_json": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"iam:PassRole\", \"Resource\": \"*\"}]}",
+    "created_at": "2026-07-28T09:17:30.554542",
+    "trust_relationships": null,
+    "cross_account_arns": null,
+    "transitive_permissions": null
+  },
+  {
+    "policy_id": "pol-bank-s3-002",
+    "policy_name": "S3FullAccessCustomerData",
+    "entity_type": "Role",
+    "entity_name": "Role-S3-Export",
+    "is_attached": 1,
+    "document_json": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"s3:*\", \"Resource\": \"*\"}]}",
+    "created_at": "2026-07-28T09:17:30.554542",
+    "trust_relationships": null,
+    "cross_account_arns": null,
+    "transitive_permissions": null
+  },
+  {
+    "policy_id": "pol-bank-sec-005",
+    "policy_name": "HardenedSecurityAudit",
+    "entity_type": "Role",
+    "entity_name": "SecOps-Role",
+    "is_attached": 1,
+    "document_json": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"cloudwatch:Get*\", \"Resource\": \"arn:aws:cloudwatch:us-east-1:123456789012:log-group:*\"}]}",
+    "created_at": "2026-07-28T09:17:30.554542",
+    "trust_relationships": null,
+    "cross_account_arns": null,
+    "transitive_permissions": null
+  }
+]

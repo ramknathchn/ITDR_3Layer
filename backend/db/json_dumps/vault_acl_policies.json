@@ -1,0 +1,18 @@
+[
+  {
+    "policy_name": "policy-read-only",
+    "path_pattern": "secret/data/finance/*",
+    "capabilities": "[\"read\", \"list\"]",
+    "allowed_parameters": "[]",
+    "raw_hcl": "path \"secret/data/finance/*\" { capabilities = [\"read\", \"list\"] }",
+    "cross_mount_paths": null
+  },
+  {
+    "policy_name": "policy-wildcard-sudo",
+    "path_pattern": "secret/data/*",
+    "capabilities": "[\"create\", \"read\", \"update\", \"delete\", \"sudo\"]",
+    "allowed_parameters": "[\"*\"]",
+    "raw_hcl": "path \"secret/data/*\" { capabilities = [\"create\", \"read\", \"update\", \"delete\", \"sudo\"] }",
+    "cross_mount_paths": null
+  }
+]

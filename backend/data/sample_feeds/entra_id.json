@@ -1,0 +1,28 @@
+[
+  {
+    "event_id": "entra-ev-001",
+    "timestamp": "2026-07-13T06:10:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "m_clarke@scb.com",
+    "identity_type": "user",
+    "source_ip": "165.225.116.14",
+    "geo_location": "New York, US",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 10.0,
+    "raw_data": "{\"id\": \"entra-ev-001\", \"userPrincipalName\": \"m_clarke@scb.com\", \"ipAddress\": \"165.225.116.14\", \"location\": {\"city\": \"New York\", \"countryOrRegion\": \"US\"}}"
+  },
+  {
+    "event_id": "entra-ev-002",
+    "timestamp": "2026-07-13T06:15:30Z",
+    "event_type": "IMPOSSIBLE_TRAVEL",
+    "identity": "m_clarke@scb.com",
+    "identity_type": "user",
+    "source_ip": "185.220.101.5",
+    "geo_location": "Frankfurt, DE",
+    "identity_provider": "EntraID",
+    "success": true,
+    "risk_score": 85.0,
+    "raw_data": "{\"id\": \"entra-ev-002\", \"userPrincipalName\": \"m_clarke@scb.com\", \"ipAddress\": \"185.220.101.5\", \"location\": {\"city\": \"Frankfurt\", \"countryOrRegion\": \"DE\"}, \"riskState\": \"atRisk\"}"
+  }
+]

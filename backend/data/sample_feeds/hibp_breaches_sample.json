@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "hibp-br-001",
+    "feed_id": "hibp",
+    "title": "SCB Corporate Domain Breach Alert",
+    "content": "A credential leak was detected containing 14 scb.com corporate emails, plaintext passwords, and roles. The breach appears to have originated from a compromise of a shared third-party developer forum database (DeveloperDevs.com).",
+    "severity": "HIGH",
+    "source": "Have I Been Pwned API",
+    "raw_json": "{\"BreachId\": \"DevDevs_2026\", \"BreachName\": \"DeveloperDevs.com Forum Breach\", \"BreachDate\": \"2026-07-10\", \"AddedDate\": \"2026-07-13T02:00:00Z\", \"PwnCount\": 14859, \"DataClasses\": [\"EmailAddresses\", \"Passwords\", \"Usernames\", \"Roles\"], \"AffectedDomains\": [\"scb.com\", \"scb.com.sg\"]}"
+  },
+  {
+    "entry_id": "hibp-br-002",
+    "feed_id": "hibp",
+    "title": "LinkedIn-Scrape-Combo Leak Alert",
+    "content": "A public combo list containing scraped profiles and hashed passwords was leaked, containing credentials for 8 admin-level scb.com email addresses.",
+    "severity": "MEDIUM",
+    "source": "Have I Been Pwned Domain Watch",
+    "raw_json": "{\"BreachId\": \"LInCombo_2026\", \"BreachName\": \"LinkedIn-Scrape-Combo\", \"BreachDate\": \"2026-06-25\", \"AddedDate\": \"2026-07-12T14:30:00Z\", \"PwnCount\": 8, \"DataClasses\": [\"EmailAddresses\", \"PasswordHashes\", \"JobTitles\"]}"
+  }
+]

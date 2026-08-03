@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITDR Shield: 13 Data Sources, Extract Details & Application Usage Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #050811;
+      --bg-card: #0a0e17;
+      --bg-card-alt: #0e1524;
+      --border-color: #1e2638;
+      --border-cyan: #00e5ff;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #38bdf8;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, rgba(14, 21, 36, 0.95), rgba(5, 8, 17, 0.98));
+      border: 1px solid var(--border-cyan);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+      position: relative;
+    }
+
+    .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .doc-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 1000px;
+    }
+
+    /* KPI Bar */
+    .kpi-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 24px 0 0 0;
+    }
+
+    .kpi-card {
+      background: rgba(9, 13, 22, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+
+    .kpi-val { font-size: 24px; font-weight: 800; font-family: 'Outfit', sans-serif; }
+    .kpi-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }
+
+    /* TOC Box */
+    .toc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-cyan);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 36px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.08);
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 12px;
+    }
+
+    .toc-item {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .toc-item:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateX(4px);
+    }
+
+    .toc-tag {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--accent-cyan);
+    }
+
+    /* Section Box */
+    .source-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .source-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .source-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .table-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--accent-cyan);
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .meta-box {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .meta-lbl { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .meta-val { font-size: 13.5px; color: #ffffff; font-weight: 600; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: #090d16;
+      color: var(--accent-cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+
+    tr:hover td { background: rgba(14, 21, 36, 0.6); }
+
+    /* Code Blocks */
+    pre {
+      background: #050811;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: #e2e8f0;
+      margin: 14px 0;
+    }
+
+    .extraction-box {
+      background: #090d16;
+      border: 1px solid #1e2638;
+      border-left: 4px solid var(--accent-amber);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .usage-box {
+      background: #090d16;
+      border: 1px solid #1e2638;
+      border-left: 4px solid var(--accent-green);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .box-title { font-size: 14px; font-weight: 800; color: #ffffff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      margin-top: 16px;
+      font-weight: 700;
+    }
+
+    .back-to-top:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <h1 class="doc-title">ITDR Shield: 13 Enterprise Data Sources & Usage Architecture</h1>
+    <p class="doc-subtitle">
+      Definitive technical guide specifying the 13 enterprise telemetry sources, dataset schemas, relational database tables, known API/Powershell extraction methods, and precise application usage across the ITDR 3-Layer Rule Engine.
+    </p>
+
+    <div class="kpi-bar">
+      <div class="kpi-card">
+        <div class="kpi-val" style="color: var(--accent-cyan);">13 Telemetry Sources</div>
+        <div class="kpi-lbl">Enterprise Systems</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color: var(--accent-blue);">24 SQL Tables</div>
+        <div class="kpi-lbl">Relational Datasets</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color: var(--accent-amber);">2,078 T-SQL Rules</div>
+        <div class="kpi-lbl">Executable Audits</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color: var(--accent-green);">639 Monitored ATT&CK</div>
+        <div class="kpi-lbl">Technique Scope</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTERACTIVE TOC -->
+  <div class="toc-card">
+    <div class="toc-title"><i class="fa-solid fa-list-check"></i> Interactive Table of Contents (Click to Jump)</div>
+    <div class="toc-grid">
+      <a href="#src-ad" class="toc-item"><span>1. Active Directory (On-Prem)</span> <span class="toc-tag">ad_events / ad_users</span></a>
+      <a href="#src-entra" class="toc-item"><span>2. Entra ID / Azure AD (Cloud)</span> <span class="toc-tag">entra_signin_logs</span></a>
+      <a href="#src-aws" class="toc-item"><span>3. AWS Cloud (CloudTrail & IAM)</span> <span class="toc-tag">aws_cloudtrail_events</span></a>
+      <a href="#src-azure" class="toc-item"><span>4. Azure Cloud (Activity & RBAC)</span> <span class="toc-tag">azure_activity_logs</span></a>
+      <a href="#src-gcp" class="toc-item"><span>5. GCP Cloud (Audit Logs & IAM)</span> <span class="toc-tag">gcp_audit_logs</span></a>
+      <a href="#src-vault" class="toc-item"><span>6. HashiCorp Vault (Secrets & KV)</span> <span class="toc-tag">vault_audit_logs</span></a>
+      <a href="#src-beyondtrust" class="toc-item"><span>7. BeyondTrust PAM (Bastion)</span> <span class="toc-tag">beyondtrust_session_logs</span></a>
+      <a href="#src-sailpoint" class="toc-item"><span>8. SailPoint IGA (Governance)</span> <span class="toc-tag">sailpoint_identity_events</span></a>
+      <a href="#src-wiz" class="toc-item"><span>9. Wiz.io CSPM (Toxic Issues)</span> <span class="toc-tag">wiz_vulnerability_issues</span></a>
+      <a href="#src-mdi" class="toc-item"><span>10. Defender for Identity (MDI)</span> <span class="toc-tag">defender_identity_alerts</span></a>
+      <a href="#src-s1" class="toc-item"><span>11. SentinelOne / EDR (Host Logs)</span> <span class="toc-tag">sentinelone_threat_activities</span></a>
+      <a href="#src-elastic" class="toc-item"><span>12. Elastic SIEM (SIEM Audit)</span> <span class="toc-tag">elasticsearch_audit_logs</span></a>
+      <a href="#src-vector" class="toc-item"><span>13. Vector DB / AI Query Logs</span> <span class="toc-tag">vector_search_logs</span></a>
+    </div>
+  </div>
+
+  <!-- SOURCE 1: ACTIVE DIRECTORY -->
+  <section class="source-section" id="src-ad">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-server" style="color: var(--accent-cyan);"></i> 1. Active Directory (On-Premises Domain Controllers)</div>
+      <span class="table-badge">[ad_events] & [ad_users]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">ad_events, ad_users, ad_gpo_reports</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Kerberos TGT, Kerberoasting, DCSync, Password Spray (Event 4625)</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">46 Executable T-SQL Rules</div></div>
+    </div>
+
+    <h4 style="color: var(--accent-cyan); font-size: 14px; margin-bottom: 8px;">Relational Table Schema ([ad_events]):</h4>
+    <table>
+      <thead>
+        <tr><th>Column Name</th><th>Data Type</th><th>Nullable</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>INT (PK IDENTITY)</td><td>No</td><td>Primary auto-increment key</td></tr>
+        <tr><td><code>event_id</code></td><td>INT</td><td>No</td><td>Windows Event ID (4624, 4625, 4768, 4769, 5136)</td></tr>
+        <tr><td><code>timestamp</code></td><td>DATETIME2</td><td>No</td><td>Event timestamp UTC</td></tr>
+        <tr><td><code>event_type</code></td><td>VARCHAR(100)</td><td>No</td><td>Event Type (LogonFailed, Kerberoast, DCSync)</td></tr>
+        <tr><td><code>identity_user</code></td><td>VARCHAR(150)</td><td>No</td><td>sAMAccountName / Target Identity User</td></tr>
+        <tr><td><code>source_ip</code></td><td>VARCHAR(50)</td><td>Yes</td><td>Originating Workstation IP Address</td></tr>
+        <tr><td><code>success</code></td><td>BIT</td><td>No</td><td>1 = Logon Success, 0 = Logon Failure</td></tr>
+      </tbody>
+    </table>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+        Extracted via Active Directory Web Services (ADWS), PowerShell <code>Get-WinEvent</code>, or Windows Event Forwarding (WEF) XML subscriptions:
+      </p>
+      <pre><code># PowerShell Extraction Script for Active Directory Events
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625,4768,4769; StartTime=(Get-Date).AddHours(-24)} | 
+Select-Object TimeCreated, Id, @{N='User';E={$_.Properties[5].Value}}, @{N='SourceIP';E={$_.Properties[19].Value}} | 
+ConvertTo-Json</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Used in <strong>Layer 3 Rule Engine Auditing</strong> to verify D3FEND controls <code>D3-CredentialRotation</code> and <code>D3-MFA</code>. Feeds initial entry entities (e.g. <code>USER_JDOE</code>, <code>svc_sql_production</code>) into the <strong>3-Layer Engine Blast Radius</strong>.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 2: ENTRA ID -->
+  <section class="source-section" id="src-entra">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-cloud" style="color: var(--accent-blue);"></i> 2. Microsoft Entra ID (Azure Active Directory)</div>
+      <span class="table-badge">[entra_signin_logs] & [entra_role_assignments]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">entra_signin_logs, entra_role_assignments, entra_risk_detections</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Sign-in Logs, MFA Push Fatigue, Service Principal Token Theft</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">70 Executable T-SQL Rules</div></div>
+    </div>
+
+    <h4 style="color: var(--accent-cyan); font-size: 14px; margin-bottom: 8px;">Relational Table Schema ([entra_signin_logs]):</h4>
+    <table>
+      <thead>
+        <tr><th>Column Name</th><th>Data Type</th><th>Nullable</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>INT (PK IDENTITY)</td><td>No</td><td>Primary key</td></tr>
+        <tr><td><code>user_principal_name</code></td><td>VARCHAR(200)</td><td>No</td><td>User UPN (e.g., admin@scb.com)</td></tr>
+        <tr><td><code>timestamp</code></td><td>DATETIME2</td><td>No</td><td>Authentication Timestamp</td></tr>
+        <tr><td><code>ip_address</code></td><td>VARCHAR(50)</td><td>No</td><td>Client Public IP Address</td></tr>
+        <tr><td><code>mfa_used</code></td><td>BIT</td><td>No</td><td>1 = MFA Prompt Completed, 0 = MFA Bypassed</td></tr>
+        <tr><td><code>app_display_name</code></td><td>VARCHAR(150)</td><td>Yes</td><td>Target M365 / Entra Application</td></tr>
+      </tbody>
+    </table>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># Microsoft Graph API REST Endpoint Extraction
+GET https://graph.microsoft.com/v1.0/auditLogs/signIns?$filter=createdDateTime ge 2026-08-01T00:00:00Z
+Authorization: Bearer {OIDC_ACCESS_TOKEN}</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits MFA fatigue gaps and OAuth application permissions. Used by <strong>Threat Bulletin All-Entry Blast Radius</strong> to trace service principal entry points (e.g. <code>APP-REG-001</code>).
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 3: AWS CLOUD -->
+  <section class="source-section" id="src-aws">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-brands fa-aws" style="color: var(--accent-amber);"></i> 3. Amazon Web Services (AWS CloudTrail & IAM)</div>
+      <span class="table-badge">[aws_cloudtrail_events] & [aws_iam_policies]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">aws_cloudtrail_events, aws_iam_policies, aws_security_groups</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">AssumeRole, IMDS Metadata Access, S3 Exfiltration</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">64 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># AWS CLI CloudTrail Log Export Query
+aws cloudtrail lookup-events --start-time 2026-08-01T00:00:00 --lookup-attributes AttributeKey=EventName,AttributeValue=AssumeRole</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits public S3 buckets (<code>bank-customer-pii-vault</code>) and IMDSv1 instance metadata role assumptions (<code>EC2-APP-01</code> &rarr; <code>iam-role-app-executor</code>).
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 4: AZURE CLOUD -->
+  <section class="source-section" id="src-azure">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-brands fa-microsoft" style="color: var(--accent-blue);"></i> 4. Microsoft Azure Cloud (Activity Logs & KeyVault)</div>
+      <span class="table-badge">[azure_activity_logs] & [azure_rbac_assignments]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">azure_activity_logs, azure_rbac_assignments, azure_nsg_rules</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Subscription Role Assign, KeyVault Secret Read, Open NSG Ports</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">66 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># Azure CLI Activity Log Export Query
+az monitor activity-log list --start-time 2026-08-01T00:00:00Z --caller "external.vendor@gmail.com"</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits guest user external subscription access and open network security group rules. Connects Azure Subscription nodes to Blast Radius graph traversals.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 5: GCP CLOUD -->
+  <section class="source-section" id="src-gcp">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-brands fa-google" style="color: var(--accent-green);"></i> 5. Google Cloud Platform (GCP Audit Logs & IAM)</div>
+      <span class="table-badge">[gcp_audit_logs] & [gcp_iam_bindings]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">gcp_audit_logs, gcp_iam_bindings, gcp_firewall_rules</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Service Account Key Creation, IAM Policy Modification, Public Ingress</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">75 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># gcloud CLI Log Query
+gcloud logging read "resource.type=gce_instance AND protoPayload.methodName=v1.compute.instances.insert" --format=json</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits project-level <code>roles/owner</code> bindings and un-restricted firewall rules. Maps GCP Service Accounts into cross-cloud blast radius paths.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 6: HASHICORP VAULT -->
+  <section class="source-section" id="src-vault">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-vault" style="color: var(--accent-purple);"></i> 6. HashiCorp Vault (Secrets & KV Engines)</div>
+      <span class="table-badge">[vault_audit_logs] & [vault_acl_policies]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">vault_audit_logs, vault_acl_policies, vault_server_configs</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Root Token Auth, Wildcard Policy Access, KV Read Secret</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">110 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># Vault CLI Audit Read
+vault audit list -detailed
+# Parsing Vault JSON File Audit Stream (/var/log/vault/audit.log)</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits wildcard ACL policies (<code>secret/data/*</code>) and orphaned root tokens. Acts as Hop 3/4 secret vault nodes in <strong>3-Layer Engine Blast Radius</strong>.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 7: BEYONDTRUST PAM -->
+  <section class="source-section" id="src-beyondtrust">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-user-shield" style="color: var(--accent-red);"></i> 7. BeyondTrust PAM (Privileged Access Management)</div>
+      <span class="table-badge">[beyondtrust_session_logs] & [beyondtrust_active_sessions]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">beyondtrust_session_logs, beyondtrust_active_sessions</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Un-ticketed Password Release, SSH/RDP Session Hijack, Timeout Exceeded</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">124 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># BeyondTrust Password Safe REST API Query
+GET https://pam-bastion.scb.com/BeyondTrust/api/public/v3/Sessions?status=ACTIVE_NO_TICKET</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits un-ticketed privilege checkouts on host bastions (<code>sys-bt-pam-bank-001</code>). Serves as critical Hop 4 bastion nodes in graph calculations.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 8: SAILPOINT IGA -->
+  <section class="source-section" id="src-sailpoint">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-id-card" style="color: var(--accent-cyan);"></i> 8. SailPoint IdentityIQ / IdentityNow (IGA Governance)</div>
+      <span class="table-badge">[sailpoint_identity_events] & [sailpoint_identities]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">sailpoint_identity_events, sailpoint_identities</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Terminated User Active Accounts, Entitlement Drift, Stale Certification</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">210 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># SailPoint IdentityNow REST API Extraction
+GET https://scb.api.identitynow.com/v3/identities?filter=lifecycleState eq "Terminated"</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits terminated employee accounts retaining cloud admin access. Feeds baseline identity lifecycle metadata into <strong>Layer 2 Ingestion</strong>.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 9: WIZ.IO CSPM -->
+  <section class="source-section" id="src-wiz">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-eye" style="color: var(--accent-blue);"></i> 9. Wiz.io CSPM (Cloud Security Posture Management)</div>
+      <span class="table-badge">[wiz_vulnerability_issues] & [wiz_issues]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">wiz_vulnerability_issues, wiz_issues</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Toxic Combinations, Exposed VM with Secrets, Public Storage PII</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">134 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># Wiz GraphQL API Issue Query
+POST https://api.wiz.io/graphql
+Query: query { issues(filter: {severity: CRITICAL, status: OPEN}) { id title entity { name } } }</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Identifies toxic combination node risks (Public IP + High Privilege + Secrets) and assigns edge weights in <code>security_blast_radius_edges</code>.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 10: DEFENDER FOR IDENTITY -->
+  <section class="source-section" id="src-mdi">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-shield-virus" style="color: var(--accent-red);"></i> 10. Microsoft Defender for Identity (MDI)</div>
+      <span class="table-badge">[defender_identity_alerts] & [mdi_security_alerts]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">defender_identity_alerts, mdi_security_alerts</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">DCSync Attacks, Golden Ticket Injection, Overpass-the-Hash</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">46 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># Microsoft Defender API Alerts Query
+GET https://api.security.microsoft.com/api/alerts?$filter=category eq 'ActiveDirectorySecurity'</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Correlates live Active Directory exploitation alerts with MITRE technique codes (e.g. <code>T1003.006</code> DCSync) to mark D3FEND gaps.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 11: SENTINELONE / EDR -->
+  <section class="source-section" id="src-s1">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-desktop" style="color: var(--accent-green);"></i> 11. SentinelOne & EDR Host Logs</div>
+      <span class="table-badge">[sentinelone_threat_activities] & [compliance_benchmark_reports]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Tables</div><div class="meta-val">sentinelone_threat_activities, compliance_benchmark_reports</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">LSASS Dumping, PowerShell ScriptBlock Logging, CIS Benchmark Failure</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">595 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="extraction-box">
+      <div class="box-title"><i class="fa-solid fa-terminal" style="color: var(--accent-amber);"></i> Known Extraction Methods:</div>
+      <pre><code># SentinelOne Management REST API Query
+GET https://scb.sentinelone.net/web/api/v2.1/threats?threatInfo.confidence=HIGH</code></pre>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Executes 595 OS-level compliance audit rules to verify <code>D3-PowerShellLogging</code> and host endpoint hardening baselines.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 12: ELASTIC SIEM -->
+  <section class="source-section" id="src-elastic">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--accent-amber);"></i> 12. Elastic SIEM (SIEM Audit Logs)</div>
+      <span class="table-badge">[elasticsearch_audit_logs]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Table</div><div class="meta-val">elasticsearch_audit_logs</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">SIEM Agent Indexing Failure, Deleted Security Indices, Audit Stream Stop</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">18 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits SIEM telemetry health to ensure log tampering (ATT&CK <code>T1562.002</code>) has not blinded downstream blast radius calculations.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- SOURCE 13: VECTOR DB & AI LOGS -->
+  <section class="source-section" id="src-vector">
+    <div class="source-header">
+      <div class="source-title"><i class="fa-solid fa-brain" style="color: var(--accent-purple);"></i> 13. Vector DB & AI Query Audit Logs</div>
+      <span class="table-badge">[vector_search_logs]</span>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box"><div class="meta-lbl">Target SQL Table</div><div class="meta-val">vector_search_logs</div></div>
+      <div class="meta-box"><div class="meta-lbl">Primary Event Types</div><div class="meta-val">Semantic Model Overwrite Denial, Excessive Embeddings Query, Prompt Injection</div></div>
+      <div class="meta-box"><div class="meta-lbl">Executable Rules Executed</div><div class="meta-val">12 Executable T-SQL Rules</div></div>
+    </div>
+
+    <div class="usage-box">
+      <div class="box-title"><i class="fa-solid fa-gears" style="color: var(--accent-green);"></i> Application Usage & Blast Radius Integration:</div>
+      <p style="font-size: 13px; color: #cbd5e1;">
+        Audits AI vector search request anomalies and protects LLM Threat Intelligence Parser models against adversarial prompt injections.
+      </p>
+    </div>
+    <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Table of Contents</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+    ITDR Shield Platform Enterprise Telemetry Documentation &bull; 13 Data Sources Architecture &bull; August 2026
+  </footer>
+
+</div>
+
+</body>
+</html>

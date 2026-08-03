@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "bt-pam-001",
+    "feed_id": "beyondtrust",
+    "title": "Privileged Password Checkout: Domain Admin Credentials",
+    "content": "BeyondTrust PAM checked out active local administrator password hash for the root domain controller 'SG-SRV-AD01' to administrator identity 'scb\\\\admin_jdoe' for emergency change request reference CR-10492.",
+    "severity": "MEDIUM",
+    "source": "BeyondTrust Password Safe",
+    "raw_json": "{\"checkoutId\": \"co-12948\", \"system\": \"SG-SRV-AD01\", \"account\": \"Administrator\", \"user\": \"admin_jdoe\", \"ticketNumber\": \"CR-10492\", \"durationMins\": 60}"
+  },
+  {
+    "entry_id": "bt-pam-002",
+    "feed_id": "beyondtrust",
+    "title": "Privileged Session Initiated: RDP Endpoint Access",
+    "content": "Privileged SSH gateway session initiated by admin 'scb\\\\admin_jdoe' targeting core SWIFT transaction network switch 'SW-PRD-SWIFT-01'. Session recording has been enabled.",
+    "severity": "HIGH",
+    "source": "BeyondTrust Session Manager",
+    "raw_json": "{\"sessionId\": \"sess-9402\", \"protocol\": \"SSH\", \"targetAsset\": \"SW-PRD-SWIFT-01\", \"user\": \"admin_jdoe\", \"recordingStatus\": \"active\", \"sourceIp\": \"10.147.22.45\"}"
+  }
+]

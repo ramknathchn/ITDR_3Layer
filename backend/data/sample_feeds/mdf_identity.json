@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "mdi-al-001",
+    "feed_id": "mdf_identity",
+    "title": "Defender for Identity: Suspected DCSync Replication Attack",
+    "content": "Alert: Active Directory replication request initiated from a non-domain controller asset 'SG-LAP-2244' targeted domain controller 'SG-SRV-AD01'. Request targets user hash replication.",
+    "severity": "CRITICAL",
+    "source": "Microsoft Defender for Identity",
+    "raw_json": "{\"alertType\": \"Suspected DCSync\", \"sourceHost\": \"SG-LAP-2244\", \"targetDC\": \"SG-SRV-AD01\", \"mitreTactic\": \"Credential Access\", \"mitreTechnique\": \"T1003.006\", \"actionTaken\": \"alerted\"}"
+  },
+  {
+    "entry_id": "mdi-al-002",
+    "feed_id": "mdf_identity",
+    "title": "Defender for Identity: Suspected Kerberoasting Activity",
+    "content": "Alert: Unusual volume of Kerberos ticket-granting service (TGS) requests for high-value service accounts was made by user account 'scb\\\\analyst_pwang' from source workstation.",
+    "severity": "HIGH",
+    "source": "Microsoft Defender for Identity",
+    "raw_json": "{\"alertType\": \"Kerberoasting TGS request volume anomaly\", \"sourceAccount\": \"analyst_pwang\", \"ticketCount\": 12, \"targetAccounts\": [\"svc_sql_prod\", \"svc_sap_prod\"], \"mitreTechnique\": \"T1558.003\"}"
+  }
+]

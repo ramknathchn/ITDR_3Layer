@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "ctrl-nist-001",
+    "feed_id": "control_libs",
+    "title": "NIST SP 800-53 IA-2: Identification and Authentication (Organizational Users)",
+    "content": "Control Library Policy: Require MFA (Multi-Factor Authentication) for all network access to privileged command consoles and administrative tools. Enforce conditional access controls based on source IP network blocks.",
+    "severity": "HIGH",
+    "source": "NIST Security Control Framework",
+    "raw_json": "{\"framework\": \"NIST SP 800-53 Rev 5\", \"controlId\": \"IA-2\", \"name\": \"Identification and Authentication\", \"scb_audit_requirement\": \"MFA enforced on AD, AWS Console, Entra Admin, and ForgeRock SSO access\"}"
+  },
+  {
+    "entry_id": "ctrl-cis-006",
+    "feed_id": "control_libs",
+    "title": "CIS Control 6: Access Control Management",
+    "content": "Standard: Establish and maintain an inventory of all active and inactive accounts. Automatically deactivate or suspend dormant administrative user profiles after 90 days of absolute inactivity.",
+    "severity": "MEDIUM",
+    "source": "CIS Critical Security Controls",
+    "raw_json": "{\"framework\": \"CIS Controls v8\", \"controlId\": \"CIS-6.2\", \"name\": \"Establish Inventory of Accounts\", \"scb_audit_requirement\": \"Automatic disablement process via SailPoint governance campaigns after dormancy target metrics are hit\"}"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "entry_id": "ep-risk-001",
+    "feed_id": "entra_protection",
+    "title": "Entra Protection: Risky User Detection Flagged",
+    "content": "User 'm_clarke@scb.com' risk state changed to 'atRisk'. Risk level: HIGH. Detected anomaly: Impossible travel from Singapore to London in under 1 hour.",
+    "severity": "CRITICAL",
+    "source": "Microsoft Entra ID Protection",
+    "raw_json": "{\"detectionType\": \"RiskyUser\", \"userPrincipalName\": \"m_clarke@scb.com\", \"riskLevel\": \"high\", \"riskState\": \"atRisk\", \"riskDetail\": \"impossibleTravel\", \"lastUpdatedDateTime\": \"2026-07-13T12:00:00Z\"}"
+  },
+  {
+    "entry_id": "ep-risk-002",
+    "feed_id": "entra_protection",
+    "title": "Entra Protection: Anonymous IP Address Sign-in Alert",
+    "content": "A successful sign-in attempt was detected for account 's_jones@scb.com' originating from an IP address classified as an active Tor exit node or public VPN service gateway.",
+    "severity": "HIGH",
+    "source": "Microsoft Entra ID Protection",
+    "raw_json": "{\"detectionType\": \"AnonymousIP\", \"userPrincipalName\": \"s_jones@scb.com\", \"ipAddress\": \"185.220.101.5\", \"riskLevel\": \"high\", \"application\": \"Office 365 Exchange Online\", \"location\": \"Frankfurt, DE\"}"
+  }
+]

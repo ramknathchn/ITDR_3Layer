@@ -1,0 +1,41 @@
+[
+  {
+    "event_id": "aws-ev-001",
+    "timestamp": "2026-07-13T06:30:00Z",
+    "event_type": "LOGIN_SUCCESS",
+    "identity": "arn:aws:iam::112233445566:user/cloud-ops-admin",
+    "identity_type": "admin",
+    "source_ip": "54.210.12.89",
+    "geo_location": "Ashburn, US",
+    "identity_provider": "AWS_IAM",
+    "success": true,
+    "risk_score": 10.0,
+    "raw_data": "{\"eventVersion\": \"1.08\", \"userIdentity\": {\"type\": \"IAMUser\", \"principalId\": \"AIDAEXAMPLEPRINCIPAL\", \"arn\": \"arn:aws:iam::112233445566:user/cloud-ops-admin\", \"accountId\": \"112233445566\", \"userName\": \"cloud-ops-admin\"}, \"eventTime\": \"2026-07-13T06:30:00Z\", \"eventName\": \"ConsoleLogin\", \"eventSource\": \"signin.amazonaws.com\", \"awsRegion\": \"us-east-1\", \"sourceIPAddress\": \"54.210.12.89\", \"responseElements\": {\"ConsoleLogin\": \"Success\"}, \"additionalEventData\": {\"MFAUsed\": \"Yes\"}}"
+  },
+  {
+    "event_id": "aws-ev-002",
+    "timestamp": "2026-07-13T06:32:00Z",
+    "event_type": "PRIVILEGE_ESCALATION",
+    "identity": "arn:aws:iam::112233445566:user/cloud-ops-admin",
+    "identity_type": "admin",
+    "source_ip": "54.210.12.89",
+    "geo_location": "Ashburn, US",
+    "identity_provider": "AWS_IAM",
+    "success": true,
+    "risk_score": 50.0,
+    "raw_data": "{\"eventVersion\": \"1.08\", \"userIdentity\": {\"type\": \"IAMUser\", \"arn\": \"arn:aws:iam::112233445566:user/cloud-ops-admin\"}, \"eventTime\": \"2026-07-13T06:32:00Z\", \"eventName\": \"CreateAccessKey\", \"eventSource\": \"iam.amazonaws.com\", \"awsRegion\": \"us-east-1\", \"sourceIPAddress\": \"54.210.12.89\", \"requestParameters\": {\"userName\": \"backup-agent-svc\"}, \"responseElements\": {\"accessKey\": {\"accessKeyId\": \"AKIAEXAMPLEACCESSKEY\", \"status\": \"Active\"}}}"
+  },
+  {
+    "event_id": "aws-ev-003",
+    "timestamp": "2026-07-13T06:35:00Z",
+    "event_type": "SERVICE_ACCOUNT_USAGE",
+    "identity": "arn:aws:iam::112233445566:user/backup-agent-svc",
+    "identity_type": "service_account",
+    "source_ip": "198.51.100.12",
+    "geo_location": "Lagos, NG",
+    "identity_provider": "AWS_IAM",
+    "success": true,
+    "risk_score": 90.0,
+    "raw_data": "{\"eventVersion\": \"1.08\", \"userIdentity\": {\"type\": \"IAMUser\", \"arn\": \"arn:aws:iam::112233445566:user/backup-agent-svc\", \"accessKeyId\": \"AKIAEXAMPLEACCESSKEY\"}, \"eventTime\": \"2026-07-13T06:35:00Z\", \"eventName\": \"AttachUserPolicy\", \"eventSource\": \"iam.amazonaws.com\", \"awsRegion\": \"us-east-1\", \"sourceIPAddress\": \"198.51.100.12\", \"requestParameters\": {\"userName\": \"backup-agent-svc\", \"policyArn\": \"arn:aws:iam::aws:policy/AdministratorAccess\"}}"
+  }
+]
