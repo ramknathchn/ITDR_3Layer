@@ -1,0 +1,62 @@
+/* Standard Chartered ITDR Platform Theme - Pitch Black & Light Mode Switcher */
+:root {
+  --bg-main: #000000;
+  --bg-sidebar: #08090d;
+  --bg-card: #0d0e12;
+  --bg-card-hover: #161822;
+  --bg-input: #050508;
+  --border-color: #222634;
+  --border-accent: #00ffff;
+  
+  --text-primary: #ffffff;
+  --text-muted: #94a3b8;
+  --text-accent: #00ffff;
+  --text-accent-secondary: #00ffcc;
+  
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+[data-theme="light"] {
+  --bg-main: #e6f5f4;
+  --bg-sidebar: #003B5C;
+  --bg-card: #f0faf9;
+  --bg-card-hover: #c8edeb;
+  --bg-input: #ffffff;
+  --border-color: #7dd3cf;
+  --border-accent: #00A19C;
+  
+  --text-primary: #003B5C;
+  --text-muted: #2c5f7a;
+  --text-accent: #0072AA;
+  --text-accent-secondary: #00A19C;
+  
+  --color-success: #00857C;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-main);
+}
